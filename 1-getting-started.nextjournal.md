@@ -1,6 +1,6 @@
 # 1: Getting Started with XTDB – A Tale of Time and Space
 
-![Clojure_logo.png][nextjournal#file#6e1e3414-7ad4-42fa-ace0-6939985e69e2]
+![XTDB Tutorial](https://github.com/xtdb/xtdb-tutorial/raw/main/images/1a-start-earth-title.png)
 
 # Introduction
 
@@ -114,14 +114,8 @@ This is `put`, one of xtdb's four transaction operations. Check that this was su
 
 You enter the countdown for lift off to Pluto. [See you soon](https://nextjournal.com/xtdb-tutorial/put).
 
-![pluto.png][nextjournal#file#e30d339b-2518-4991-a8a3-2fd589271aa9]
+![Pluto](https://github.com/xtdb/xtdb-tutorial/raw/main/images/1b-put-tx-pluto.png)
 
-
-[nextjournal#file#6e1e3414-7ad4-42fa-ace0-6939985e69e2]:
-<https://nextjournal.com/data/QmQSb6p1iZ3MXE9Um2sHMK12ViXgrSMyS4dRmPBpJjSPBR?content-type=image/png&node-id=6e1e3414-7ad4-42fa-ace0-6939985e69e2&filename=Clojure_logo.png&node-kind=file>
-
-[nextjournal#file#e30d339b-2518-4991-a8a3-2fd589271aa9]:
-<https://nextjournal.com/data/QmNTBZyiGLZSxz5AY1dhNW6b7GXvw6dnzAAysQBui4TPyy?content-type=image/png&node-id=e30d339b-2518-4991-a8a3-2fd589271aa9&filename=pluto.png&node-kind=file>
 
 <details id="com.nextjournal.article">
 <summary>This notebook was exported from <a href="https://nextjournal.com/a/LLjFB11JxUUKUYWtbsGd4?change-id=CwhJPtmvVCmfK5wWTcyP6R">https://nextjournal.com/a/LLjFB11JxUUKUYWtbsGd4?change-id=CwhJPtmvVCmfK5wWTcyP6R</a></summary>
