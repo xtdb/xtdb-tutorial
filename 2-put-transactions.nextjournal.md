@@ -1,6 +1,6 @@
 # 2: Put Transactions with XTDB – Pluto Assignment
 
-![Clojure_logo.png][nextjournal#file#6e1e3414-7ad4-42fa-ace0-6939985e69e2]
+![XTDB Tutorial: tx/put](https://github.com/xtdb/xtdb-tutorial/raw/main/images/2a-put-tx-pluto-title.png)
 
 # Introduction
 
@@ -266,17 +266,11 @@ It’s a long flight so you refuel, and update your manifest. You have been awar
 
 You enter the countdown for lift off to Mercury. [See you soon.](https://nextjournal.com/xtdb-tutorial/datalog-queries)
 
-![pluto.png][nextjournal#file#e30d339b-2518-4991-a8a3-2fd589271aa9]
+![Mercury: Datalog](https://github.com/xtdb/xtdb-tutorial/raw/main/images/2b-datalog-mercury.png)
 
-
-[nextjournal#file#6e1e3414-7ad4-42fa-ace0-6939985e69e2]:
-<https://nextjournal.com/data/QmRZrgyeVttQNmkPt7D4fz8kPy8KAoFvahV74kFCkVo8N2?content-type=image/png&node-id=6e1e3414-7ad4-42fa-ace0-6939985e69e2&filename=Clojure_logo.png&node-kind=file>
 
 [nextjournal#file#48b4711b-6c2d-4b09-9584-a15ef4f05ef2]:
 <https://nextjournal.com/data/Qmct2hGgaAQDaxMFcdBoKarvzvSPhv384scisZr7V1BEyG?content-type=text/plain&node-id=48b4711b-6c2d-4b09-9584-a15ef4f05ef2&filename=commodities.txt&node-kind=file>
-
-[nextjournal#file#e30d339b-2518-4991-a8a3-2fd589271aa9]:
-<https://nextjournal.com/data/QmVS69wN3o1gSj3mKfi1gYKUR1Kzb7tvENAmn7dkPpm36w?content-type=image/png&node-id=e30d339b-2518-4991-a8a3-2fd589271aa9&filename=pluto.png&node-kind=file>
 
 <details id="com.nextjournal.article">
 <summary>This notebook was exported from <a href="https://nextjournal.com/a/LPTEfabvNe9tQwAxnjcVb?change-id=Cwhb8NVitzzYpLhtwA4ew3">https://nextjournal.com/a/LPTEfabvNe9tQwAxnjcVb?change-id=Cwhb8NVitzzYpLhtwA4ew3</a></summary>

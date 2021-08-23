@@ -1,6 +1,6 @@
 # 1: Getting Started with XTDB – A Tale of Time and Space
 
-![XTDB Tutorial](https://github.com/xtdb/xtdb-tutorial/raw/main/images/1a-start-earth-title.png)
+![XTDB Tutorial: Start](https://github.com/xtdb/xtdb-tutorial/raw/main/images/1a-start-earth-title.png)
 
 # Introduction
 
@@ -114,7 +114,7 @@ This is `put`, one of xtdb's four transaction operations. Check that this was su
 
 You enter the countdown for lift off to Pluto. [See you soon](https://nextjournal.com/xtdb-tutorial/put).
 
-![Pluto](https://github.com/xtdb/xtdb-tutorial/raw/main/images/1b-put-tx-pluto.png)
+![Pluto: tx/put](https://github.com/xtdb/xtdb-tutorial/raw/main/images/1b-put-tx-pluto.png)
 
 
 <details id="com.nextjournal.article">
