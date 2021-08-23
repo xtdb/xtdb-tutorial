@@ -1,6 +1,6 @@
 # 3: Datalog Queries with XTDB – Mercury Assignment
 
-![Clojure_logo.png][nextjournal#file#6e1e3414-7ad4-42fa-ace0-6939985e69e2]
+![Mercury: Datalog Queries](https://github.com/xtdb/xtdb-tutorial/raw/main/images/3a-datalog-queries-mercury-title.png)
 
 # Introduction
 
@@ -318,17 +318,10 @@ You update your manifest with the latest badge.
 
 You enter the countdown for lift off to Neptune.[ See you soon.](https://nextjournal.com/xtdb-tutorial/bitemporality)
 
-![neptune.png][nextjournal#file#175ff797-b4ba-4335-b5e5-be5b2086c24b]
-
-
-[nextjournal#file#6e1e3414-7ad4-42fa-ace0-6939985e69e2]:
-<https://nextjournal.com/data/QmTHuKgi3vjGTvyPg3AVNVt5amZ8C1P8xH22PeCd7s1sNm?content-type=image/png&node-id=6e1e3414-7ad4-42fa-ace0-6939985e69e2&filename=Clojure_logo.png&node-kind=file>
+![Neptune: Bitemporality](https://github.com/xtdb/xtdb-tutorial/raw/main/images/3b-bitemporality-neptune.png)
 
 [nextjournal#file#551cde09-6dd5-4f40-90ee-b2024a0ceceb]:
 <https://nextjournal.com/data/QmSYFEqzjKccDoa3u22xMyHYMphmxwygBrMt6hUGaHeVdy?content-type=text/plain&node-id=551cde09-6dd5-4f40-90ee-b2024a0ceceb&filename=example_data.txt&node-kind=file>
-
-[nextjournal#file#175ff797-b4ba-4335-b5e5-be5b2086c24b]:
-<https://nextjournal.com/data/QmdUdMvwwgpi6Jrne9hzDfs6BGoPYKZJnfqnUwa7cwZQRG?content-type=image/png&node-id=175ff797-b4ba-4335-b5e5-be5b2086c24b&filename=neptune.png&node-kind=file>
 
 <details id="com.nextjournal.article">
 <summary>This notebook was exported from <a href="https://nextjournal.com/a/LPUNww665btBQpne5piTg?change-id=CwhbAJ6BvJ3U1h324Sjhsg">https://nextjournal.com/a/LPUNww665btBQpne5piTg?change-id=CwhbAJ6BvJ3U1h324Sjhsg</a></summary>
