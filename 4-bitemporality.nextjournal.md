@@ -1,6 +1,6 @@
 # 4: Bitemporality with XTDB – Neptune Assignment
 
-![Clojure_logo.png][nextjournal#file#6e1e3414-7ad4-42fa-ace0-6939985e69e2]
+![Neptune: Bitemporality](https://github.com/xtdb/xtdb-tutorial/raw/main/images/4a-bitemporality-neptune-title.png)
 
 # Introduction
 
@@ -236,16 +236,10 @@ You add the new badge to your manifest
     :cargo ["stereo" "gold fish" "slippers" "secret note"]}]])
 ```
 
-You enter the countdown for lift off the ringed plant.[ See you soon.](https://nextjournal.com/xtdb-tutorial/match)
+You enter the countdown for lift off the ringed plant. [See you soon.](https://nextjournal.com/xtdb-tutorial/match)
 
-![neptune.png][nextjournal#file#175ff797-b4ba-4335-b5e5-be5b2086c24b]
+![Saturn: Match](https://github.com/xtdb/xtdb-tutorial/raw/main/images/4b-match-saturn.png)
 
-
-[nextjournal#file#6e1e3414-7ad4-42fa-ace0-6939985e69e2]:
-<https://nextjournal.com/data/QmZJYyg3A4vUATWH4JyQZgniY6fUQLsqnRcTDKr3dRQ3Et?content-type=image/png&node-id=6e1e3414-7ad4-42fa-ace0-6939985e69e2&filename=Clojure_logo.png&node-kind=file>
-
-[nextjournal#file#175ff797-b4ba-4335-b5e5-be5b2086c24b]:
-<https://nextjournal.com/data/QmPHj5AsQrYsBucUEs5jY5m8jYUbzhLKeLosBfBXbftaY3?content-type=image/png&node-id=175ff797-b4ba-4335-b5e5-be5b2086c24b&filename=neptune.png&node-kind=file>
 
 <details id="com.nextjournal.article">
 <summary>This notebook was exported from <a href="https://nextjournal.com/a/LPfueTz7gpQaDRhsbnrBH?change-id=CwhbCRtFmzWBDteGre3EjE">https://nextjournal.com/a/LPfueTz7gpQaDRhsbnrBH?change-id=CwhbCRtFmzWBDteGre3EjE</a></summary>
