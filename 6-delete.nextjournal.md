@@ -1,6 +1,6 @@
 # 6: Delete with XTDB – Jupiter Assignment
 
-![Clojure_logo.png][nextjournal#file#6e1e3414-7ad4-42fa-ace0-6939985e69e2]
+![Jupiter: Delete](https://github.com/xtdb/xtdb-tutorial/raw/main/images/6a-delete-jupiter-title.png)
 
 # Introduction
 
@@ -211,17 +211,11 @@ What do you think?"
 
 **"No thanks, not for me."** - *You choose not to got with Kaarlang. You continue working for Helios Banking Inc. for the rest of your days.*
 
-![oumuamua.jpg][nextjournal#file#82b75d0b-67f2-4bc2-a36a-5bd2051e1807]
+![Oumuamua: Evict](https://github.com/xtdb/xtdb-tutorial/raw/main/images/6b-evict-meteor.jpg)
 
-
-[nextjournal#file#6e1e3414-7ad4-42fa-ace0-6939985e69e2]:
-<https://nextjournal.com/data/QmSZfvqb1a4H31qjFgVXTX5WbkPncsjumJU8bEpR6F7cTU?content-type=image/png&node-id=6e1e3414-7ad4-42fa-ace0-6939985e69e2&filename=Clojure_logo.png&node-kind=file>
 
 [nextjournal#output#cf517ae0-bb75-40a0-b34d-d6a20a5c855b#result]:
 <https://nextjournal.com/data/Qmb916RdkE8C3ZUY7HYdwwucyBw2AXM71KjedQFMk9kveP?content-type=application/transit%2Bjson&node-id=cf517ae0-bb75-40a0-b34d-d6a20a5c855b&node-kind=output>
-
-[nextjournal#file#82b75d0b-67f2-4bc2-a36a-5bd2051e1807]:
-<https://nextjournal.com/data/QmXnPp5t6NYoZYK4iT438kr6KxV4h2TKXfjW4KbRBrt6XN?content-type=image/jpeg&node-id=82b75d0b-67f2-4bc2-a36a-5bd2051e1807&filename=oumuamua.jpg&node-kind=file>
 
 <details id="com.nextjournal.article">
 <summary>This notebook was exported from <a href="https://nextjournal.com/a/LPt2uB1vJAVKPxEkT2UX1?change-id=CwhbFpziTmZXDBkHboZXFj">https://nextjournal.com/a/LPt2uB1vJAVKPxEkT2UX1?change-id=CwhbFpziTmZXDBkHboZXFj</a></summary>
