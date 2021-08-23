@@ -1,6 +1,6 @@
 # 5: Match with XTDB – Saturn Assignment
 
-![Clojure_logo.png][nextjournal#file#6e1e3414-7ad4-42fa-ace0-6939985e69e2]
+![Saturn: Match Transactions](https://github.com/xtdb/xtdb-tutorial/raw/main/images/5a-match-saturn-title.png)
 
 # Introduction
 
@@ -41,7 +41,7 @@ They are asking to see your flight manifest.
 
 **You have your manifest** : *You have permission to land, continue to the space port.*
 
-**You do not have your manifest** : *You do not have permission to land. You can either return to [Neptune](https://nextjournal.com/xtdb-tutorial/bitempoarlity) or continue at your own risk.*
+**You do not have your manifest** : *You do not have permission to land. You can either return to [Neptune](https://nextjournal.com/xtdb-tutorial/bitemporality) or continue at your own risk.*
 
 # Space Port
 
@@ -335,19 +335,14 @@ As you do so, you check to see if you still have the note that the porter gave y
            :args [{'belongings "secret note"}]})
 ```
 
-Feeling a bit apprehensive, you enter countdown for lift off to Jupiter.[ See you soon.](https://nextjournal.com/xtdb-tutorial/delete)
+Feeling a bit apprehensive, you enter countdown for lift off to Jupiter. 
+[See you soon.](https://nextjournal.com/xtdb-tutorial/delete)
 
-![jupiter.png][nextjournal#file#e9e8d400-877f-491a-a4ab-28fc05c935c8]
+![Jupiter: Delete](https://github.com/xtdb/xtdb-tutorial/raw/main/images/5b-delete-jupiter.png)
 
-
-[nextjournal#file#6e1e3414-7ad4-42fa-ace0-6939985e69e2]:
-<https://nextjournal.com/data/QmXv8JdzfS4Un1t67vVb4rcFwM4sZKaTHAbxirEFxgHrGy?content-type=image/png&node-id=6e1e3414-7ad4-42fa-ace0-6939985e69e2&filename=Clojure_logo.png&node-kind=file>
 
 [nextjournal#file#6b4d39da-314d-4dab-87f7-f2f61bd99ac4]:
 <https://nextjournal.com/data/QmZccAoCmFKy7FwaS9bYhwC22jUzHfwR8jWXxgGZTYwayr?content-type=text/plain&node-id=6b4d39da-314d-4dab-87f7-f2f61bd99ac4&filename=example_data.txt&node-kind=file>
-
-[nextjournal#file#e9e8d400-877f-491a-a4ab-28fc05c935c8]:
-<https://nextjournal.com/data/QmR2qQSDkzSAyWXWwdzvmdFz9eshAKJ3bWVNJRCgMvrdJV?content-type=image/png&node-id=e9e8d400-877f-491a-a4ab-28fc05c935c8&filename=jupiter.png&node-kind=file>
 
 <details id="com.nextjournal.article">
 <summary>This notebook was exported from <a href="https://nextjournal.com/a/LPgjG6AfUeVJw6fqWZ98f?change-id=CwhbE6uZ7FGJSzanpYMcVb">https://nextjournal.com/a/LPgjG6AfUeVJw6fqWZ98f?change-id=CwhbE6uZ7FGJSzanpYMcVb</a></summary>
