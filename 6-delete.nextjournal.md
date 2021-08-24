@@ -211,7 +211,7 @@ What do you think?"
 
 **"No thanks, not for me."** - *You choose not to got with Kaarlang. You continue working for Helios Banking Inc. for the rest of your days.*
 
-![Oumuamua: Evict](https://github.com/xtdb/xtdb-tutorial/raw/main/images/6b-evict-meteor.jpg)
+![Oumuamua: Evict](https://github.com/xtdb/xtdb-tutorial/raw/main/images/6b-evict-meteor.png)
 
 
 [nextjournal#output#cf517ae0-bb75-40a0-b34d-d6a20a5c855b#result]:

@@ -1,6 +1,6 @@
 # 7: Evict with XTDB – The secret mission.
 
-![Clojure_logo.png][nextjournal#file#6e1e3414-7ad4-42fa-ace0-6939985e69e2]
+![Oumuamua: Evict](https://github.com/xtdb/xtdb-tutorial/raw/main/images/7a-evict-meteor-title.png)
 
 # Introduction
 
@@ -178,21 +178,10 @@ Your eyes get heavy as the cryogenicist initiates the hibernation process. As th
 
 # This is not The End
 
-I hope you enjoyed learning about the basics of xtdb. Although this is the final installment for the main tutorial series it is not the end of the xtdb tutorial. Watch this space for more tutorial releases of the tutorial where you will be sent on assignments to solve more specific and complex tasks using xtdb.
+I hope you enjoyed learning about the basics of xtdb. Although this is the final installment for the main tutorial series it is not the end of the xtdb tutorial. There is one last bonus mission to complete: learning to `await` transactions on [Kepra-5](https://nextjournal.com/xtdb-tutorial/await).
 
-I’d love to hear any ideas for enhancements so don’t hesitate to get in touch.
+![Kepra 5: Await](https://github.com/xtdb/xtdb-tutorial/raw/main/images/7b-await-kepra5.png)
 
-![oumuamua.jpg][nextjournal#file#82b75d0b-67f2-4bc2-a36a-5bd2051e1807]
-
-
-[nextjournal#file#6e1e3414-7ad4-42fa-ace0-6939985e69e2]:
-<https://nextjournal.com/data/QmeRF9PNTDvthrnwMqDN3RooRGtNCWaUcAzHjEvGSwMUet?content-type=image/png&node-id=6e1e3414-7ad4-42fa-ace0-6939985e69e2&filename=Clojure_logo.png&node-kind=file>
-
-[nextjournal#file#f0026e73-9244-45f5-ac13-bab33663707d]:
-<https://nextjournal.com/data/Qmbs3zaMfcuUkqLb4aH1v3oaPPK6NmzT2xGQkfY4TUKEzb?content-type=image/jpeg&node-id=f0026e73-9244-45f5-ac13-bab33663707d&filename=ice.jpg&node-kind=file>
-
-[nextjournal#file#82b75d0b-67f2-4bc2-a36a-5bd2051e1807]:
-<https://nextjournal.com/data/QmXnPp5t6NYoZYK4iT438kr6KxV4h2TKXfjW4KbRBrt6XN?content-type=image/jpeg&node-id=82b75d0b-67f2-4bc2-a36a-5bd2051e1807&filename=oumuamua.jpg&node-kind=file>
 
 <details id="com.nextjournal.article">
 <summary>This notebook was exported from <a href="https://nextjournal.com/a/LPtrycCCeyMe5hDp9YQTU?change-id=CyhMmbqH2c4Wsqyu6fbq33">https://nextjournal.com/a/LPtrycCCeyMe5hDp9YQTU?change-id=CyhMmbqH2c4Wsqyu6fbq33</a></summary>

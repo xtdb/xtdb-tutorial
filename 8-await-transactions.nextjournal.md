@@ -1,6 +1,6 @@
 # 8: XTDB New World Assignment: Await transactions
 
-![Clojure_logo.png][nextjournal#file#6e1e3414-7ad4-42fa-ace0-6939985e69e2]
+![Kepra-5: Await](https://github.com/xtdb/xtdb-tutorial/raw/main/images/8a-await-kepra5-title.png)
 
 # Introduction
 
@@ -231,7 +231,7 @@ You want to check against the data of the other planets on your node, to see how
     :where [[planet :gravity g]]}))
 ```
 
-Nice, you see that Kepler 5 has gravitational forces stronger than Neptune but weaker than Jupiter.
+Nice, you see that Kepra-5 has gravitational forces stronger than Neptune but weaker than Jupiter.
 
 Now you’ve satisfied your curiosity, you head over to passport control.
 
@@ -354,8 +354,7 @@ Now that you are in the Gilese 667C you must keep your passport up to date where
 
 Through customs, you are now free to explore the exciting new planet. Taking in your surroundings, you see a hostel nearby. You head over. Although you’ve been in cryostasis for such a long time, the new gravity has made you very tired.
 
-[nextjournal#file#6e1e3414-7ad4-42fa-ace0-6939985e69e2]:
-<https://nextjournal.com/data/QmYkzsg1MoR7xRzs82DvGG7MwJQtQ4wgfBndGD9zVSrTEy?content-type=image/png&node-id=6e1e3414-7ad4-42fa-ace0-6939985e69e2&filename=Clojure_logo.png&node-kind=file>
+# THE END.
 
 <details id="com.nextjournal.article">
 <summary>This notebook was exported from <a href="https://nextjournal.com/a/MPrTfmoyFHctxUufCNRJV?change-id=CwhbKgNeHLxGW2DSrNhzvN">https://nextjournal.com/a/MPrTfmoyFHctxUufCNRJV?change-id=CwhbKgNeHLxGW2DSrNhzvN</a></summary>
