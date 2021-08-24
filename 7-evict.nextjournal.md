@@ -1,4 +1,4 @@
-# 7: Evict with XTDB – The secret mission.
+# 7: Evict with XTDB – The secret mission
 
 ![Oumuamua: Evict](https://github.com/xtdb/xtdb-tutorial/raw/main/images/7a-evict-meteor-title.png)
 
