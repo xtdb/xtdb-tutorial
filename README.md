@@ -27,39 +27,35 @@ prefer.
 1. Create a new account on [Nextjournal](https://nextjournal.com).
 2. Download a Markdown file from this repository root.
 3. Click "+ NEW" to create a new notebook on the [Nextjournal Dashboard](https://nextjournal.com/dashboard).
-4. At the bottom of the page, choose "Import: Select a Markdown file to import" and upload the `.md` file you downloaded in Step 2.
-Do not use "Import from a (GitHub) URL" -- it will not work.
-5. Once imported, scroll down to the EDN block which begins with `{:deps ...` under "Runtime Setup".
-Hover your cursor over this EDN block and an ellipsis ("...") will appear on the lefthand side.
-Click the ellipsis.
-Choose "Assign Name" and enter `deps.edn`.
-6. Open the Clojure Runtime Settings by clicking "Runtimes: Clojure" in the lefthand sidebar.
-Scroll down to "Mounts" and click "+ Add mount".
-Select `deps.edn`.
+4. At the bottom of the page, choose "Import: Select (or drag & drop) a Markdown file to import" and upload the `.md` file you downloaded in Step 2.
+Do not use "Import from a URL (e.g. GitHub)" -- it will not work.
+5. You do not need to name the `deps.edn` block -- the metadata names it for you.
+6. You do not need to configure the Clojure runtime or mounts -- the metadata configures it for you.
 Click "Save changes and start" in the dialog that appears at the top.
 
 You can now run the tutorial notebook.
 
 ## Reinstallation (for maintainers)
 
-For now, the Nextjournal notebooks are the golden store for the Space Adventure tutorial.
-As such, you should edit a Nextjournal notebook by following these steps:
+To reinstall the tutorial: Treat this GitHub repository as the golden store. Make edits to the Markdown file in
+GitHub, then reimport the notebooks using the following instructions.
 
-1. Edit the notebook directly in Nextjournal
-2. Select "Share: Publish Changes" to republish it
-3. Select "Editor => Export => Export As Markdown" from the upper-right menu
-4. Rename the exported file so it matches the corresponding file in this repository.
-Do not edit any of the image references.
-Although the images are tracked in this repo, they are not linked from the Markdown files.
-(See below.)
-5. Push your changed notebook to this repository.
+1. Log in as the `xtdb-tutorial` Nextjournal user (ask @deobald, @refset, or @johantonelli for creds)
+2. Go to the [Nextjournal Dashboard](https://nextjournal.com/dashboard) and open notebook you want to edit.
+3. Open the "Share" dialog (in the upper-right):
+   1. Select "Notebook Visibility: Private"
+   2. Select "Edit Slug" and change the slug to a name like `evict-old-05` so it won't collide with the notebook you are about to import.
+   3. Select "Published Version: Unpublish this notebook..."
+7. Edit the title of the document to `"Evict - Old05"` or something similar so it's easy to identify
+in the list of archived notebooks.
+8. Refresh the [Nextjournal Dashboard](https://nextjournal.com/dashboard). You should see `"Evict - Old05"` (or similar) in the list. Select "Actions: Archive". (At present, you cannot completely delete a notebook.)
+9. Follow the `"Installation"` instructions above, with the following additional steps from the "Share" dialog:
+   1. Select "Notebook Visibility: Public"
+   2. Select "Edit Slug" and change the slug to the original (`evict`, in the above example)
+   3. Select "Publish Changes" to see the preview dialog. Click "Publish".
+10. Check to make sure the public URLs in the `"Quickstart"` work correctly.
+11. If the lessons seem out-of-order, it is because they are listed reverse-chronologically. Whatever lesson you edited, publish lessons _backward_ from that point. For example, if you edited Lesson 4, you must publish #3, #2, and finally #1.
 
-TODO: In the future, it would make more sense to switch to the "Markdown-first" technique of using
-GitHub as the golden store. To do this, we need to edit the Markdown files to remove Nextjournal
-metadata and reference absolute GitHub URLs instad of Nextjournal URLs.
-After that happens, please replace these instructions with reinstallation
-instructions similar to those used for the "Learn XTDB Datalog Today" tutorial:
-https://github.com/xtdb/learn-xtdb-datalog-today#re-installation-for-maintainers
 
 ## Copyright & License
 
