@@ -1,4 +1,4 @@
-# 8: XTDB New World Assignment: Await transactions
+# 8: Await with XTDB - Kepra-5 Assignment
 
 ![Kepra-5: Await](https://github.com/xtdb/xtdb-tutorial/raw/main/images/8a-await-kepra5-title.png)
 
