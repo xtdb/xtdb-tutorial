@@ -16,11 +16,14 @@ You need to get xtdb running before you can use it.
   org.clojure/tools.deps.alpha
   {:git/url "https://github.com/clojure/tools.deps.alpha.git"
    :sha "f6c080bd0049211021ea59e516d1785b08302515"}
-  juxt/crux-core {:mvn/version "RELEASE"}}}
+  com.xtdb/xtdb-core {:mvn/version "dev-SNAPSHOT"}} ;; "RELEASE"
+
+  :mvn/repos
+  {"snapshots" {:url "https://s01.oss.sonatype.org/content/repositories/snapshots"}}}
 ```
 
 ```clojure id=35dc65e9-f458-4e32-9a59-1af72cd12a78
-(require '[crux.api :as crux])
+(require '[xtdb.api :as xt])
 ```
 
 # Arrival on Pluto
@@ -32,7 +35,7 @@ As you enter the Plutonian atmosphere, a message pops up on your communication p
 
 Have a nice day."
 
-- Anarchic Directorate of Pluto 
+- Anarchic Directorate of Pluto
 ```
 
 The government of Pluto is asking to see your flight manifest.
@@ -56,11 +59,11 @@ As you circle the dwarf planet to land, you have a quick read of your xtdb manua
     match     (Stops a transaction if the precondition is not met.)
     evict    	(Removes a document entirely)
 
-    
+
 Put:
 The put transaction is used to write versions of a document (doc).
 
-Each document must be in Extensible Data Notation (edn) and must contain a unique :crux.db/id value. However, beyond those two requirements you have the flexibility to add whatever you like to your documents because xtdb is schemaless.
+Each document must be in Extensible Data Notation (edn) and must contain a unique :xt/id value. However, beyond those two requirements you have the flexibility to add whatever you like to your documents because xtdb is schemaless.
 
 Along with the document (doc), put has two optional additional arguments:
     start valid-time 	  (The time at which the entry will be valid from.)
@@ -76,7 +79,7 @@ Time in xtdb is denoted #inst "yyyy-MM-ddThh:mm:ss". For example, 9:30 pm on Jan
 
 
 A complete put transaction has the form:
-[:crux.tx/put doc valid-time-start valid-time-end]"
+[::xt/put doc valid-time-start valid-time-end]"
 
 — xtdb manual
 ```
@@ -86,7 +89,7 @@ A complete put transaction has the form:
 You are happy with what you have read, and in anticipation of your first assignment you define the standalone node.
 
 ```clojure id=2bdeaaa6-3672-48c1-bbc7-aa5d05fd1153
-(def crux (crux/start-node {}))
+(def node (xt/start-node {}))
 ```
 
 # Assignment
@@ -109,23 +112,23 @@ Additional information:
 You make your way over to the mines on the next shuttle. On your way you decide to get a head start and put the commodities into xtdb.
 
 ```clojure id=ff24c118-14bf-4e4a-a4d3-03e890292d1b
-(crux/submit-tx crux
-                [[:crux.tx/put
-                  {:crux.db/id :commodity/Pu
+(xt/submit-tx node
+                [[::xt/put
+                  {:xt/id :commodity/Pu
                    :common-name "Plutonium"
                    :type :element/metal
                    :density 19.816
                    :radioactive true}]
 
-                 [:crux.tx/put
-                  {:crux.db/id :commodity/N
+                 [::xt/put
+                  {:xt/id :commodity/N
                    :common-name "Nitrogen"
                    :type :element/gas
                    :density 1.2506
                    :radioactive false}]
 
-                 [:crux.tx/put
-                  {:crux.db/id :commodity/CH4
+                 [::xt/put
+                  {:xt/id :commodity/CH4
                    :common-name "Methane"
                    :type :molecule/gas
                    :density 0.717
@@ -147,7 +150,7 @@ The stock for each day must be submitted at 6pm Earth time (UTC) for your banks 
 
 Are you able to do that for me?"
 
-— R. Glogofloon 
+— R. Glogofloon
 ```
 
 ## Choose your path:
@@ -159,33 +162,33 @@ Are you able to do that for me?"
 You remember that with xtdb you have the option of adding a `valid-time`. This comes in useful now as you enter the weeks worth of stock takes for Plutonium.
 
 ```clojure id=990d9283-0343-4d24-8d59-e5ed9aa04668
-(crux/submit-tx crux
-                [[:crux.tx/put
-                  {:crux.db/id :stock/Pu
+(xt/submit-tx node
+                [[::xt/put
+                  {:xt/id :stock/Pu
                    :commod :commodity/Pu
                    :weight-ton 21 }
                   #inst "2115-02-13T18"]
 
-                 [:crux.tx/put
-                  {:crux.db/id :stock/Pu
+                 [::xt/put
+                  {:xt/id :stock/Pu
                    :commod :commodity/Pu
                    :weight-ton 23 }
                   #inst "2115-02-14T18"]
 
-                 [:crux.tx/put
-                  {:crux.db/id :stock/Pu
+                 [::xt/put
+                  {:xt/id :stock/Pu
                    :commod :commodity/Pu
                    :weight-ton 22.2 }
                   #inst "2115-02-15T18"]
 
-                 [:crux.tx/put
-                  {:crux.db/id :stock/Pu
+                 [::xt/put
+                  {:xt/id :stock/Pu
                    :commod :commodity/Pu
                    :weight-ton 24 }
                   #inst "2115-02-18T18"]
 
-                 [:crux.tx/put
-                  {:crux.db/id :stock/Pu
+                 [::xt/put
+                  {:xt/id :stock/Pu
                    :commod :commodity/Pu
                    :weight-ton 24.9 }
                   #inst "2115-02-19T18"]])
@@ -194,16 +197,16 @@ You remember that with xtdb you have the option of adding a `valid-time`. This c
 You notice that the amount of Nitrogen and Methane has not changed which saves you some time:
 
 ```clojure id=7fb5e55a-cf65-4628-8079-5597bad38806
-(crux/submit-tx crux
-                [[:crux.tx/put
-                  {:crux.db/id :stock/N
+(xt/submit-tx node
+                [[::xt/put
+                  {:xt/id :stock/N
                    :commod :commodity/N
                    :weight-ton 3 }
                   #inst "2115-02-13T18"
                   #inst "2115-02-19T18"]
 
-                 [:crux.tx/put
-                  {:crux.db/id :stock/CH4
+                 [::xt/put
+                  {:xt/id :stock/CH4
                    :commod :commodity/CH4
                    :weight-ton 92 }
                   #inst "2115-02-15T18"
@@ -215,11 +218,11 @@ The CEO is impressed with your speed, but a little skeptical that you have done 
 You gain their confidence by showing them the entries for Plutonium on two different days:
 
 ```clojure id=87681d10-7b1f-481c-ab36-80dffbf5ecba
-(crux/entity (crux/db crux #inst "2115-02-14") :stock/Pu)
+(xt/entity (xt/db node #inst "2115-02-14") :stock/Pu)
 ```
 
 ```clojure id=42e3db39-68e7-4786-b5f5-1e11202a7bd7
-(crux/entity (crux/db crux #inst "2115-02-18") :stock/Pu)
+(xt/entity (xt/db node #inst "2115-02-18") :stock/Pu)
 ```
 
 ## Easy Ingest
@@ -231,9 +234,9 @@ As a parting gift to them you create an easy ingest function so that if they nee
   "Uses xtdb put transaction to add a vector of documents to a specified
   node"
   [node docs]
-  (crux/submit-tx node
+  (xt/submit-tx node
                   (vec (for [doc docs]
-                         [:crux.tx/put doc]))))
+                         [::xt/put doc]))))
 ```
 
 Tombaugh Resources Ltd. are happy that this will be simple enough to use. They thank you for the extra help and you head back to your ship.
@@ -247,16 +250,16 @@ You are back at your ship and check your communications panel. There is a new as
 
 We would like you to go to Mercury, the hub of the trade world. Their main trade center has a new IT department and want you to show them how to query xtdb"
 
-— Helios Banking Inc. 
+— Helios Banking Inc.
 ```
 
 It’s a long flight so you refuel, and update your manifest. You have been awarded a new badge, so you add this to your manifest.
 
 ```clojure id=ab2ade6b-7352-4e44-b659-cad259ea12f9
-(crux/submit-tx
- crux
- [[:crux.tx/put 
-   {:crux.db/id :manifest
+(xt/submit-tx
+ node
+ [[::xt/put
+   {:xt/id :manifest
     :pilot-name "Johanna"
     :id/rocket "SB002-sol"
     :id/employee "22910x2"

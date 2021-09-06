@@ -16,11 +16,14 @@ You need to get xtdb running before you can use it.
   org.clojure/tools.deps.alpha
   {:git/url "https://github.com/clojure/tools.deps.alpha.git"
    :sha "f6c080bd0049211021ea59e516d1785b08302515"}
-  juxt/crux-core {:mvn/version "RELEASE"}}}
+  com.xtdb/xtdb-core {:mvn/version "dev-SNAPSHOT"}} ;; "RELEASE"
+
+  :mvn/repos
+  {"snapshots" {:url "https://s01.oss.sonatype.org/content/repositories/snapshots"}}}
 ```
 
 ```clojure id=35dc65e9-f458-4e32-9a59-1af72cd12a78
-(require '[crux.api :as crux])
+(require '[xtdb.api :as xt])
 ```
 
 # Arrival on Neptune
@@ -62,7 +65,7 @@ If no valid-time is provided, xtdb will default to the transaction time, i.e. th
 You are happy with what you have read, and in anticipation of the assignment you define the standalone node.
 
 ```clojure id=2bdeaaa6-3672-48c1-bbc7-aa5d05fd1153
-(def crux (crux/start-node {}))
+(def node (xt/start-node {}))
 ```
 
 # Assignment
@@ -105,10 +108,10 @@ Lyndon gives you some data for a client that you can use as an example. Coast In
 You show them how to ingest a document using a `valid-time` so that the information is backdated to when the customer took the cover out.
 
 ```clojure id=061c7ac5-9255-48ab-ac82-97bbdf7d9746
-(crux/submit-tx
- crux
- [[:crux.tx/put
-   {:crux.db/id :consumer/RJ29sUU
+(xt/submit-tx
+ node
+ [[::xt/put
+   {:xt/id :consumer/RJ29sUU
     :consumer-id :RJ29sUU
     :first-name "Jay"
     :last-name "Rose"
@@ -120,10 +123,10 @@ You show them how to ingest a document using a `valid-time` so that the informat
 The company needs to know the history of insurance for each cover. You show them how to use the bitemporality of xtdb to do this.
 
 ```clojure id=adaf6a80-4241-40a1-9016-d342e1a056c1
-(crux/submit-tx
- crux
- [[:crux.tx/put	;; (1) 
-   {:crux.db/id :consumer/RJ29sUU
+(xt/submit-tx
+ node
+ [[::xt/put	;; (1)
+   {:xt/id :consumer/RJ29sUU
     :consumer-id :RJ29sUU
     :first-name "Jay"
     :last-name "Rose"
@@ -131,9 +134,9 @@ The company needs to know the history of insurance for each cover. You show them
     :cover-type :Full}
    #inst "2113-12-03" ;; Valid time start
    #inst "2114-12-03"] ;; Valid time end
-  
-  [:crux.tx/put  ;; (2)
-   {:crux.db/id :consumer/RJ29sUU
+
+  [::xt/put  ;; (2)
+   {:xt/id :consumer/RJ29sUU
     :consumer-id :RJ29sUU
     :first-name "Jay"
     :last-name "Rose"
@@ -141,9 +144,9 @@ The company needs to know the history of insurance for each cover. You show them
     :cover-type :Full}
    #inst "2112-12-03"
    #inst "2113-12-03"]
-  
-  [:crux.tx/put	;; (3)
-   {:crux.db/id :consumer/RJ29sUU
+
+  [::xt/put	;; (3)
+   {:xt/id :consumer/RJ29sUU
     :consumer-id :RJ29sUU
     :first-name "Jay"
     :last-name "Rose"
@@ -151,8 +154,8 @@ The company needs to know the history of insurance for each cover. You show them
    #inst "2112-06-03"
    #inst "2112-12-02"]
 
-  [:crux.tx/put ;; (4)
-   {:crux.db/id :consumer/RJ29sUU
+  [::xt/put ;; (4)
+   {:xt/id :consumer/RJ29sUU
     :consumer-id :RJ29sUU
     :first-name "Jay"
     :last-name "Rose"
@@ -174,7 +177,7 @@ You now show them a few queries. You know that you can query xtdb as of a given 
 First you chose a date that the customer had full cover:
 
 ```clojure id=64649b39-12e3-4cc8-b4bd-9b9877f07d58
-(crux/q (crux/db crux #inst "2114-01-01")
+(xt/q (xt/db node #inst "2114-01-01")
         '{:find [cover type]
           :where [[e :consumer-id :RJ29sUU]
                   [e :cover? cover]
@@ -184,7 +187,7 @@ First you chose a date that the customer had full cover:
 Next you show them a query for a the customer in a time when they had a different type of cover:
 
 ```clojure id=5cac500b-fcd3-4a45-a2af-aca30afb8b0e
-(crux/q (crux/db crux #inst "2111-07-03")
+(xt/q (xt/db node #inst "2111-07-03")
         '{:find [cover type]
           :where [[e :consumer-id :RJ29sUU]
                   [e :cover? cover]
@@ -194,7 +197,7 @@ Next you show them a query for a the customer in a time when they had a differen
 And finally you show them a time when the customer had no cover at all.
 
 ```clojure id=1f02d99e-b8c6-4de4-8cf1-8a2fe94e4f1a
-(crux/q (crux/db crux #inst "2112-07-03")
+(xt/q (xt/db node #inst "2112-07-03")
         '{:find [cover type]
           :where [[e :consumer-id :RJ29sUU]
                   [e :cover? cover]
@@ -219,16 +222,16 @@ Back at your spaceship you check your communications panel. There is a new assig
 
 This shouldn’t take long, but don’t forget they will still need to see your manifest."
 
-— Helios Banking Inc. 
+— Helios Banking Inc.
 ```
 
 You add the new badge to your manifest
 
 ```clojure id=ab2ade6b-7352-4e44-b659-cad259ea12f9
-(crux/submit-tx
- crux
- [[:crux.tx/put 
-   {:crux.db/id :manifest
+(xt/submit-tx
+ node
+ [[::xt/put
+   {:xt/id :manifest
     :pilot-name "Johanna"
     :id/rocket "SB002-sol"
     :id/employee "22910x2"

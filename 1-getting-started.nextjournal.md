@@ -26,11 +26,14 @@ You need to get xtdb running before you can use it.
   org.clojure/tools.deps.alpha
   {:git/url "https://github.com/clojure/tools.deps.alpha.git"
    :sha "f6c080bd0049211021ea59e516d1785b08302515"}
-  juxt/crux-core {:mvn/version "RELEASE"}}}
+  com.xtdb/xtdb-core {:mvn/version "dev-SNAPSHOT"}} ;; "RELEASE"
+
+  :mvn/repos
+  {"snapshots" {:url "https://s01.oss.sonatype.org/content/repositories/snapshots"}}}
 ```
 
 ```clojure id=35dc65e9-f458-4e32-9a59-1af72cd12a78
-(require '[crux.api :as crux])
+(require '[xtdb.api :as xt])
 ```
 
 You are now ready for your first assignment, so you head over to the space port.
@@ -68,8 +71,8 @@ For persistent storage consider using RocksDB and for scale you should consider 
 You decide this is fine for now, and so define your xtdb node.
 
 ```clojure id=2bdeaaa6-3672-48c1-bbc7-aa5d05fd1153
-(def crux
-  (crux/start-node {}))
+(def node
+  (xt/start-node {}))
 ```
 
 ## Flight Manifest
@@ -79,7 +82,7 @@ You take a look around your ship and check the critical levels.
 You read the manual entry for putting data into xtdb.
 
 ```clojure no-exec id=ca575f8d-8096-48d8-acef-9a05712e43c6
-"XTDB takes information in document form. Each document must be in Extensible Data Notation (edn) and each document must contain a unique `:crux.db/id` value. However, beyond those two requirements you have the flexibility to add whatever you like to your documents because xtdb is schemaless."
+"XTDB takes information in document form. Each document must be in Extensible Data Notation (edn) and each document must contain a unique `:xt/id` value. However, beyond those two requirements you have the flexibility to add whatever you like to your documents because xtdb is schemaless."
 
 — xtdb manual
 ```
@@ -90,7 +93,7 @@ Just as you’re about to write your manifest, one of the porters passes you a s
 
 ```clojure id=4a6c4961-14b1-4ac9-96e7-7aec033b55a8
 (def manifest
-  {:crux.db/id :manifest
+  {:xt/id :manifest
    :pilot-name "Johanna"
    :id/rocket "SB002-sol"
    :id/employee "22910x2"
@@ -101,13 +104,13 @@ Just as you’re about to write your manifest, one of the porters passes you a s
 You put the manifest into xtdb.
 
 ```clojure id=bd1e9012-f10e-4bfb-bee3-83abf3be162e
-(crux/submit-tx crux [[:crux.tx/put manifest]])
+(xt/submit-tx node [[::xt/put manifest]])
 ```
 
 This is `put`, one of xtdb's four transaction operations. Check that this was successful by asking xtdb to show the whole entity.
 
 ```clojure id=3e0d81c5-2598-432f-9f83-038b47b5f5fc
-(crux/entity (crux/db crux) :manifest)
+(xt/entity (xt/db node) :manifest)
 ```
 
 *Note: You should run this code block separately otherwise you may see only `nil` returned. The reason for this is covered in the [await-tx](https://nextjournal.com/xtdb-tutorial/await/) tutorial.*

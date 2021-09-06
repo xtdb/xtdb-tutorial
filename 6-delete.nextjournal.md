@@ -16,11 +16,14 @@ You need to get xtdb running before you can use it.
   org.clojure/tools.deps.alpha
   {:git/url "https://github.com/clojure/tools.deps.alpha.git"
    :sha "f6c080bd0049211021ea59e516d1785b08302515"}
-  juxt/crux-core {:mvn/version "RELEASE"}}}
+  com.xtdb/xtdb-core {:mvn/version "dev-SNAPSHOT"}} ;; "RELEASE"
+
+  :mvn/repos
+  {"snapshots" {:url "https://s01.oss.sonatype.org/content/repositories/snapshots"}}}
 ```
 
 ```clojure id=35dc65e9-f458-4e32-9a59-1af72cd12a78
-(require '[crux.api :as crux])
+(require '[xtdb.api :as xt])
 ```
 
 # Arrival on Jupiter
@@ -33,7 +36,7 @@ As you enter the Jovian atmosphere your communications panel lights up with the 
 "Jupiter’s boundary is controlled.
 If you wish to enter, present your papers now."
 
-— Zeus Confederacy  
+— Zeus Confederacy
 ```
 
 The government is asking to see your flight manifest.
@@ -64,7 +67,7 @@ The delete operation takes a valid eid with the option to include a start and en
 The document will be deleted as of the transaction time, or beteen the start and end valid-times if provided. Historical versions of the document that fall outside of the valid-time window will be preserved.
 
 A complete delete transaction has the form:
-[:crux.tx/delete eid valid-time-start valid-time-end]"
+[::xt/delete eid valid-time-start valid-time-end]"
 
 — xtdb manual
 ```
@@ -74,7 +77,7 @@ A complete delete transaction has the form:
 You are happy with what you have read, and in anticipation of the assignment you define the standalone node.
 
 ```clojure id=2bdeaaa6-3672-48c1-bbc7-aa5d05fd1153
-(def crux (crux/start-node {}))
+(def node (xt/start-node {}))
 ```
 
 # Assignment
@@ -115,23 +118,23 @@ Is this something you can help me with?"
 Kaarlang gives you his client history so you can sync up your xtdb node.
 
 ```clojure id=061c7ac5-9255-48ab-ac82-97bbdf7d9746
-(crux/submit-tx crux
-                [[:crux.tx/put {:crux.db/id :kaarlang/clients
+(xt/submit-tx node
+                [[::xt/put {:xt/id :kaarlang/clients
                                 :clients [:encompass-trade]}
                   #inst "2110-01-01T09"
                   #inst "2111-01-01T09"]
 
-                 [:crux.tx/put {:crux.db/id :kaarlang/clients
+                 [::xt/put {:xt/id :kaarlang/clients
                                 :clients [:encompass-trade :blue-energy]}
                   #inst "2111-01-01T09"
                   #inst "2113-01-01T09"]
 
-                 [:crux.tx/put {:crux.db/id :kaarlang/clients
+                 [::xt/put {:xt/id :kaarlang/clients
                                 :clients [:blue-energy]}
                   #inst "2113-01-01T09"
                   #inst "2114-01-01T09"]
 
-                 [:crux.tx/put {:crux.db/id :kaarlang/clients
+                 [::xt/put {:xt/id :kaarlang/clients
                                 :clients [:blue-energy :gold-harmony :tombaugh-resources]}
                   #inst "2114-01-01T09"
                   #inst "2115-01-01T09"]])
@@ -140,8 +143,8 @@ Kaarlang gives you his client history so you can sync up your xtdb node.
 To get a good visual aid, you show Kaarlang how to view his client history. This way you both can see when the clients are deleted.
 
 ```clojure id=cf517ae0-bb75-40a0-b34d-d6a20a5c855b
-(crux/entity-history
- (crux/db crux #inst "2116-01-01T09")
+(xt/entity-history
+ (xt/db node #inst "2116-01-01T09")
  :kaarlang/clients
  :desc
  {:with-docs true})
@@ -156,16 +159,16 @@ The result shows the names of the clients that have been assigned to Kaarlang si
 Next you delete the whole history of clients buy choosing a start and end `valid-time` that spans his entire employment time.
 
 ```clojure id=1b0cfda6-c1c6-4def-99bd-c071c6938be0
-(crux/submit-tx 
- crux
- [[:crux.tx/delete :kaarlang/clients #inst "2110-01-01" #inst "2116-01-01"]])
+(xt/submit-tx
+ node
+ [[::xt/delete :kaarlang/clients #inst "2110-01-01" #inst "2116-01-01"]])
 ```
 
 Using the same method as before you show Kaarlang the effect that this operation has had.
 
 ```clojure id=a9aa840c-db6e-49a0-aa74-6aca9b824072
-(crux/entity-history
- (crux/db crux #inst "2115-01-01T08")
+(xt/entity-history
+ (xt/db node #inst "2115-01-01T08")
  :kaarlang/clients
  :desc
  {:with-docs? true})

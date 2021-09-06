@@ -16,11 +16,14 @@ You need to get xtdb running before you can use it.
   org.clojure/tools.deps.alpha
   {:git/url "https://github.com/clojure/tools.deps.alpha.git"
    :sha "f6c080bd0049211021ea59e516d1785b08302515"}
-  juxt/crux-core {:mvn/version "RELEASE"}}}
+  com.xtdb/xtdb-core {:mvn/version "dev-SNAPSHOT"}} ;; "RELEASE"
+
+  :mvn/repos
+  {"snapshots" {:url "https://s01.oss.sonatype.org/content/repositories/snapshots"}}}
 ```
 
 ```clojure id=35dc65e9-f458-4e32-9a59-1af72cd12a78
-(require '[crux.api :as crux])
+(require '[xtdb.api :as xt])
 ```
 
 # Arrival on Saturn
@@ -32,7 +35,7 @@ As you pass through the innermost ring of Saturn, A warning light appears on you
 
 We must check papers before we can give you permission to land."
 
-— Cronus Peaceful Nations 
+— Cronus Peaceful Nations
 ```
 
 They are asking to see your flight manifest.
@@ -65,7 +68,7 @@ Time in xtdb is denoted #inst 'yyyy-MM-ddThh:mm:ss'. For example, 9:30 pm on Jan
 
 A complete match transaction has the form:
 
-    [:crux.tx/match entity-id expected-doc valid-time]
+    [::xt/match entity-id expected-doc valid-time]
 
 Note that if there is no old-doc in the system, you can provide `nil` in its place."
 
@@ -77,7 +80,7 @@ Note that if there is no old-doc in the system, you can provide `nil` in its pla
 You are happy with what you have read, and in anticipation of the assignment you define the standalone node.
 
 ```clojure id=2bdeaaa6-3672-48c1-bbc7-aa5d05fd1153
-(def crux (crux/start-node {}))
+(def node (xt/start-node {}))
 ```
 
 # Assignment
@@ -97,26 +100,26 @@ Additional information:
 
 [example_data.txt][nextjournal#file#6b4d39da-314d-4dab-87f7-f2f61bd99ac4]
 
-The next shuttle to the CMT office leaves in 5 Earth minutes. While you wait you use your easy ingest function you created on Pluto to put the example data into your system. 
+The next shuttle to the CMT office leaves in 5 Earth minutes. While you wait you use your easy ingest function you created on Pluto to put the example data into your system.
 
 ```clojure id=c89cbbfb-52db-4b38-8e24-53fbe15ab1a6
 (defn easy-ingest
-  "Uses xtdb put transaction to add a vector of 
+  "Uses xtdb put transaction to add a vector of
   documents to a specified node"
   [node docs]
-  (crux/submit-tx node
+  (xt/submit-tx node
                   (vec (for [doc docs]
-                         [:crux.tx/put doc]))))
+                         [::xt/put doc]))))
 
 (def data
-  [{:crux.db/id :gold-harmony
+  [{:xt/id :gold-harmony
     :company-name "Gold Harmony"
     :seller? true
     :buyer? false
     :units/Au 10211
     :credits 51}
 
-   {:crux.db/id :tombaugh-resources
+   {:xt/id :tombaugh-resources
     :company-name "Tombaugh Resources Ltd."
     :seller? true
     :buyer? false
@@ -125,7 +128,7 @@ The next shuttle to the CMT office leaves in 5 Earth minutes. While you wait you
     :units/CH4 92
     :credits 51}
 
-   {:crux.db/id :encompass-trade
+   {:xt/id :encompass-trade
     :company-name "Encompass Trade"
     :seller? true
     :buyer? true
@@ -134,13 +137,13 @@ The next shuttle to the CMT office leaves in 5 Earth minutes. While you wait you
     :units/CH4 211
     :credits 1002}
 
-   {:crux.db/id :blue-energy
+   {:xt/id :blue-energy
     :seller? false
     :buyer? true
     :company-name "Blue Energy"
     :credits 1000}])
 
-(easy-ingest crux data)
+(easy-ingest node data)
 ```
 
 You also decide to make some Clojure functions so you can easily show Ubuku the stock and fund levels after the trades.
@@ -148,7 +151,7 @@ You also decide to make some Clojure functions so you can easily show Ubuku the 
 ```clojure id=c4a32745-7d07-4e86-9c00-13251bfaf172
 (defn stock-check
   [company-id item]
-  {:result (crux/q (crux/db crux)
+  {:result (xt/q (xt/db node)
                    {:find '[name funds stock]
                     :where ['[e :company-name name]
                             '[e :credits funds]
@@ -194,26 +197,26 @@ You explain to Ubuku that all they need to do to solve their problem is to use t
 You show Ubuku the `match` operation for a valid transaction. You move 10 units of Methane (`:units/CH4`) each at the cost of 100 credits to Blue Energy:
 
 ```clojure id=061c7ac5-9255-48ab-ac82-97bbdf7d9746
-(crux/submit-tx
- crux
- [[:crux.tx/match
+(xt/submit-tx
+ node
+ [[::xt/match
    :blue-energy
-   {:crux.db/id :blue-energy
+   {:xt/id :blue-energy
     :seller? false
     :buyer? true
     :company-name "Blue Energy"
     :credits 1000}]
-  [:crux.tx/put
-   {:crux.db/id :blue-energy
+  [::xt/put
+   {:xt/id :blue-energy
     :seller? false
     :buyer? true
     :company-name "Blue Energy"
     :credits 900
     :units/CH4 10}]
 
-  [:crux.tx/match
+  [::xt/match
    :tombaugh-resources
-   {:crux.db/id :tombaugh-resources
+   {:xt/id :tombaugh-resources
     :company-name "Tombaugh Resources Ltd."
     :seller? true
     :buyer? false
@@ -221,8 +224,8 @@ You show Ubuku the `match` operation for a valid transaction. You move 10 units 
     :units/N 3
     :units/CH4 92
     :credits 51}]
-  [:crux.tx/put
-   {:crux.db/id :tombaugh-resources
+  [::xt/put
+   {:xt/id :tombaugh-resources
     :company-name "Tombaugh Resources Ltd."
     :seller? true
     :buyer? false
@@ -249,27 +252,27 @@ They are happy that this works as he sees the 1000 credits move from Blue energy
 Ubuku asks if you can show them what would happen if there was not enough funds in the account of a buyer. You show him a trade where the old doc is not as expected for Encompass trade, to buy 10,000 units of Gold from Gold Harmony.
 
 ```clojure id=1b0cfda6-c1c6-4def-99bd-c071c6938be0
-(crux/submit-tx
- crux
- [[:crux.tx/match
+(xt/submit-tx
+ node
+ [[::xt/match
    :gold-harmony
-   {:crux.db/id :gold-harmony
+   {:xt/id :gold-harmony
     :company-name "Gold Harmony"
     :seller? true
     :buyer? false
     :units/Au 10211
     :credits 51}]
-  [:crux.tx/put
-   {:crux.db/id :gold-harmony
+  [::xt/put
+   {:xt/id :gold-harmony
     :company-name "Gold Harmony"
     :seller? true
     :buyer? false
     :units/Au 211
     :credits 51}]
 
-  [:crux.tx/match
+  [::xt/match
    :encompass-trade
-   {:crux.db/id :encompass-trade
+   {:xt/id :encompass-trade
     :company-name "Encompass Trade"
     :seller? true
     :buyer? true
@@ -277,8 +280,8 @@ Ubuku asks if you can show them what would happen if there was not enough funds 
     :units/Pu 5
     :units/CH4 211
     :credits 100002}]
-  [:crux.tx/put
-   {:crux.db/id :encompass-trade
+  [::xt/put
+   {:xt/id :encompass-trade
     :company-name "Encompass Trade"
     :seller? true
     :buyer? true
@@ -309,16 +312,16 @@ Back at the spaceship there is a light waiting for you on your communications pa
 
 You need to go to Jupiter and meet Kaarlang, it’s his last day working for us and he needs to delete his trade clients from his personal xtdb node for data protection."
 
-— Helios Banking Inc. 
+— Helios Banking Inc.
 ```
 
 You update your manifest with your most recent badge.
 
 ```clojure id=ab2ade6b-7352-4e44-b659-cad259ea12f9
-(crux/submit-tx
- crux
- [[:crux.tx/put 
-   {:crux.db/id :manifest
+(xt/submit-tx
+ node
+ [[::xt/put
+   {:xt/id :manifest
     :pilot-name "Johanna"
     :id/rocket "SB002-sol"
     :id/employee "22910x2"
@@ -329,13 +332,13 @@ You update your manifest with your most recent badge.
 As you do so, you check to see if you still have the note that the porter gave you for Kaarlang back on Earth.
 
 ```clojure id=b8cc575e-1643-4334-bbeb-bc1ba34bbcc0
-(crux/q (crux/db crux)
+(xt/q (xt/db node)
           {:find '[belongings]
            :where '[[e :cargo belongings]]
            :args [{'belongings "secret note"}]})
 ```
 
-Feeling a bit apprehensive, you enter countdown for lift off to Jupiter. 
+Feeling a bit apprehensive, you enter countdown for lift off to Jupiter.
 [See you soon.](https://nextjournal.com/xtdb-tutorial/delete)
 
 ![Jupiter: Delete](https://github.com/xtdb/xtdb-tutorial/raw/main/images/5b-delete-jupiter.png)

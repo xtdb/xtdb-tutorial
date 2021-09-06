@@ -16,11 +16,14 @@ You need to get xtdb running before you can use it.
   org.clojure/tools.deps.alpha
   {:git/url "https://github.com/clojure/tools.deps.alpha.git"
    :sha "f6c080bd0049211021ea59e516d1785b08302515"}
-  juxt/crux-core {:mvn/version "RELEASE"}}}
+  com.xtdb/xtdb-core {:mvn/version "dev-SNAPSHOT"}} ;; "RELEASE"
+
+  :mvn/repos
+  {"snapshots" {:url "https://s01.oss.sonatype.org/content/repositories/snapshots"}}}
 ```
 
 ```clojure id=35dc65e9-f458-4e32-9a59-1af72cd12a78
-(require '[crux.api :as crux])
+(require '[xtdb.api :as xt])
 ```
 
 # Arrival
@@ -30,7 +33,7 @@ You arrive at the comet 'Oumuamua and pull along side, asking for permission to 
 ```clojure no-exec id=a86efe70-c896-4cc1-ad16-2bdc46cb01b2
 "How did you find us? Who sent you??"
 
-— Mysterious person  
+— Mysterious person
 ```
 
 ## Choose your path:
@@ -74,7 +77,7 @@ The main transaction log contains only hashes and is immutable. All document con
 evict removes a document from xtdb. The transaction history will be available, but all versions at or within the provided valid time window are evicted.
 
 A complete evict transaction has the form:
-[:crux.tx/put eid]
+[::xt/put eid]
 
 - xtdb manual
 ```
@@ -84,7 +87,7 @@ A complete evict transaction has the form:
 You are happy with what you have read, and in anticipation of the assignment you define the standalone system.
 
 ```clojure id=2bdeaaa6-3672-48c1-bbc7-aa5d05fd1153
-(def crux (crux/start-node {}))
+(def node (xt/start-node {}))
 ```
 
 # Data Removal
@@ -92,30 +95,30 @@ You are happy with what you have read, and in anticipation of the assignment you
 You are given the data for the people on the ship and sync up your xtdb node. You decide that you are going to embark on this adventure along with them so you add your name to the list.
 
 ```clojure id=950de198-0847-4b3b-bd24-1d1300a30158
-(crux/submit-tx crux
-                [[:crux.tx/put
-                  {:crux.db/id :person/kaarlang
+(xt/submit-tx node
+                [[::xt/put
+                  {:xt/id :person/kaarlang
                    :full-name "Kaarlang"
                    :origin-planet "Mars"
                    :identity-tag :KA01299242093
                    :DOB #inst "2040-11-23"}]
 
-                 [:crux.tx/put
-                  {:crux.db/id :person/ilex
+                 [::xt/put
+                  {:xt/id :person/ilex
                    :full-name "Ilex Jefferson"
                    :origin-planet "Venus"
                    :identity-tag :IJ01222212454
                    :DOB #inst "2061-02-17"}]
 
-                 [:crux.tx/put
-                  {:crux.db/id :person/thadd
+                 [::xt/put
+                  {:xt/id :person/thadd
                    :full-name "Thad Christover"
                    :origin-moon "Titan"
                    :identity-tag :IJ01222212454
                    :DOB #inst "2101-01-01"}]
 
-                 [:crux.tx/put
-                  {:crux.db/id :person/johanna
+                 [::xt/put
+                  {:xt/id :person/johanna
                    :full-name "Johanna"
                    :origin-planet "Earth"
                    :identity-tag :JA012992129120
@@ -127,36 +130,36 @@ Before you start the eviction process you make a query function so you can see t
 ```clojure id=99b0dd9c-d5cb-4c34-8a77-d71f941e97cd
 (defn full-query
   [node]
-  (crux/q
-   (crux/db node)
+  (xt/q
+   (xt/db node)
    '{:find [(pull e [*])]
-     :where [[e :crux.db/id id]]}))
+     :where [[e :xt/id id]]}))
 ```
 
 You show the others the result:
 
 ```clojure id=9aaf2276-94b6-4c1e-a4e2-716c1dc3d7c3
-(full-query crux)
+(full-query node)
 ```
 
 The xtdb manual said that the `evict` operation will remove a document entirely. Ilex tells you the only person who whishes to exercise their right to be forgotten is Kaarlang.
 
 ```clojure id=188a6bc3-288a-4a96-b18d-bdbe893c7bcb
-  (crux/submit-tx crux [[:crux.tx/evict :person/kaarlang]])
+  (xt/submit-tx node [[::xt/evict :person/kaarlang]])
 ```
 
 You use your function and see that the transaction was a success.
 
 ```clojure id=c8c2c663-6436-429b-8125-70350b4302e3
-(full-query crux)
+(full-query node)
 ```
 
-All the data associated with the the specified `:crux.db/id` has been removed from the xtdb along with the eid itself.
+All the data associated with the the specified `:xt/id` has been removed from the xtdb along with the eid itself.
 
 The transaction history is immutable. This means the transactions will never be removed. You assure Ilex that the documents are completely removed from xtdb, you can show this by looking at the `history-descending` information for each person.
 
 ```clojure id=00a1bb7a-46dc-4455-ba90-a50c485f7e46
-(crux/entity-history (crux/db crux)
+(xt/entity-history (xt/db node)
                      :person/kaarlang
                      :desc
                      {:with-docs? true})

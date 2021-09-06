@@ -16,11 +16,14 @@ You need to get xtdb running before you can use it.
   org.clojure/tools.deps.alpha
   {:git/url "https://github.com/clojure/tools.deps.alpha.git"
    :sha "f6c080bd0049211021ea59e516d1785b08302515"}
-  juxt/crux-core {:mvn/version "RELEASE"}}}
+  com.xtdb/xtdb-core {:mvn/version "dev-SNAPSHOT"}} ;; "RELEASE"
+
+  :mvn/repos
+  {"snapshots" {:url "https://s01.oss.sonatype.org/content/repositories/snapshots"}}}
 ```
 
 ```clojure id=35dc65e9-f458-4e32-9a59-1af72cd12a78
-(require '[crux.api :as crux])
+(require '[xtdb.api :as xt])
 ```
 
 # Arrival on Mercury
@@ -52,7 +55,7 @@ You read your xtdb manual as you wait for an available landing pad.
 ```clojure no-exec id=223ddbe8-8eed-4e69-ae1c-57f484971dcb
 "A Datalog query consists of a set of variables and a set of clauses. The result of running a query is a result set (or lazy sequence) of the possible combinations of values that satisfy all of the clauses at the same time. These combinations of values are referred to as "tuples".
 
-The possible values within the result tuples are derived from your database of documents. The documents themselves are represented in the database indexes as "entity–attribute–value" (EAV) facts. For example, a single document {:crux.db/id :myid :color "blue" :age 12} is transformed into two facts [[:myid :color "blue"][:myid :age 12]].
+The possible values within the result tuples are derived from your database of documents. The documents themselves are represented in the database indexes as "entity–attribute–value" (EAV) facts. For example, a single document {:xt/id :myid :color "blue" :age 12} is transformed into two facts [[:myid :color "blue"][:myid :age 12]].
 
 In the most basic case, a Datalog query works by searching for "subgraphs" in the database that match the pattern defined by the clauses. The values within these subgraphs are then returned according to the list of return variables requested in the :find vector within the query."
 
@@ -64,7 +67,7 @@ In the most basic case, a Datalog query works by searching for "subgraphs" in th
 You are happy with what you have read, and in anticipation of the assignment you define the standalone node.
 
 ```clojure id=2bdeaaa6-3672-48c1-bbc7-aa5d05fd1153
-(def crux (crux/start-node {}))
+(def node (xt/start-node {}))
 ```
 
 # Assignment
@@ -91,41 +94,41 @@ On your way over to the IPBS office you input the data in the attachment using t
   "Uses xtdb put transaction to add a vector of
   documents to a specified system"
   [db docs]
-  (crux/submit-tx db
+  (xt/submit-tx db
                   (vec (for [doc docs]
-                         [:crux.tx/put doc]))))
+                         [::xt/put doc]))))
 (def data
-  [{:crux.db/id :commodity/Pu
+  [{:xt/id :commodity/Pu
     :common-name "Plutonium"
     :type :element/metal
     :density 19.816
     :radioactive true}
 
-   {:crux.db/id :commodity/N
+   {:xt/id :commodity/N
     :common-name "Nitrogen"
     :type :element/gas
     :density 1.2506
     :radioactive false}
 
-   {:crux.db/id :commodity/CH4
+   {:xt/id :commodity/CH4
     :common-name "Methane"
     :type :molecule/gas
     :density 0.717
     :radioactive false}
 
-   {:crux.db/id :commodity/Au
+   {:xt/id :commodity/Au
     :common-name "Gold"
     :type :element/metal
     :density 19.300
     :radioactive false}
 
-   {:crux.db/id :commodity/C
+   {:xt/id :commodity/C
     :common-name "Carbon"
     :type :element/non-metal
     :density 2.267
     :radioactive false}
 
-   {:crux.db/id :commodity/borax
+   {:xt/id :commodity/borax
     :common-name "Borax"
     :IUPAC-name "Sodium tetraborate decahydrate"
     :other-names ["Borax decahydrate" "sodium borate" "sodium tetraborate" "disodium tetraborate"]
@@ -134,7 +137,7 @@ On your way over to the IPBS office you input the data in the attachment using t
     :density 1.73
     :radioactive false}])
 
-(easy-ingest crux data)
+(easy-ingest node data)
 ```
 
 This means you are ready to give them a tutorial when you get there.
@@ -168,28 +171,28 @@ You put together examples and make notes so you can be confident in your lesson.
 *Example 1.* **Basic Query**
 
 ```clojure id=6e945190-c8d6-4f61-bbf5-6f0a96fa4726
-(crux/q (crux/db crux)
+(xt/q (xt/db node)
         '{:find [element]
           :where [[element :type :element/metal]]})
 ```
 
-*This basic query is returning all the elements that are defined as `:element/metal`. The `:find` clause tells xtdb the variables you want to return.* 
+*This basic query is returning all the elements that are defined as `:element/metal`. The `:find` clause tells xtdb the variables you want to return.*
 
-*In this case we are returning the `:crux.db/id` due to our placement of `element`.* 
+*In this case we are returning the `:xt/id` due to our placement of `element`.*
 
 *Example 2.* **Quoting**
 
 ```clojure id=4bbf4ada-e34a-4af9-977e-f8d8f2d9d42a
 (=
- (crux/q (crux/db crux)
+ (xt/q (xt/db node)
          '{:find [element]
            :where [[element :type :element/metal]]})
 
- (crux/q (crux/db crux)
+ (xt/q (xt/db node)
          {:find '[element]
           :where '[[element :type :element/metal]]})
 
- (crux/q (crux/db crux)
+ (xt/q (xt/db node)
          (quote
           {:find [element]
            :where [[element :type :element/metal]]})))
@@ -200,7 +203,7 @@ You put together examples and make notes so you can be confident in your lesson.
 *Example 3*. **Return the name of metal elements.**
 
 ```clojure id=14f91b2a-9f3f-4ab5-9796-279bdfbcdf67
-(crux/q (crux/db crux)
+(xt/q (xt/db node)
         '{:find [name]
           :where [[e :type :element/metal]
                   [e :common-name name]]})
@@ -213,7 +216,7 @@ You put together examples and make notes so you can be confident in your lesson.
 *Example 4.* **More information.**
 
 ```clojure id=9a20d1a9-a466-4143-8f77-b8154f362ab4
-(crux/q (crux/db crux)
+(xt/q (xt/db node)
         '{:find [name rho]
           :where [[e :density rho]
                   [e :common-name name]]})
@@ -226,7 +229,7 @@ You put together examples and make notes so you can be confident in your lesson.
 *Example 5*. **Arguments***.*
 
 ```clojure id=9c836f78-21cc-4ddd-aef8-e40a755d99a2
-(crux/q (crux/db crux)
+(xt/q (xt/db node)
         {:find '[name]
          :where '[[e :type t]
                   [e :common-name name]]
@@ -235,7 +238,7 @@ You put together examples and make notes so you can be confident in your lesson.
 
 *`:args` can be used to further filter the results. Lets break down what is going down here.*
 
-*First, we are assigning all `:crux.db/id`s that have a `:type` to `e`:*
+*First, we are assigning all `:xt/id`s that have a `:type` to `e`:*
 
 `e` ← `#{[:commodity/Pu] [:commodity/borax] [:commodity/CH4] [:commodity/Au] [:commodity/C] [:commodity/N]}`
 
@@ -262,7 +265,7 @@ To check their understanding you set them a task to create a function to aid the
 ```clojure id=de58e539-f7db-47c7-974c-52c5450b69fe
 (defn filter-type
   [type]
-  (crux/q (crux/db crux)
+  (xt/q (xt/db node)
         {:find '[name]
          :where '[[e :type t]
                   [e :common-name name]]
@@ -270,7 +273,7 @@ To check their understanding you set them a task to create a function to aid the
 
 (defn filter-appearance
   [description]
-  (crux/q (crux/db crux)
+  (xt/q (xt/db node)
         {:find '[name IUPAC]
          :where '[[e :common-name name]
                   [e :IUPAC-name IUPAC]
@@ -299,16 +302,16 @@ We would like you to go to Neptune. They have recently lost a lot of data in a f
 
 Good luck, and don’t forget to update your manifest."
 
-— Helios Banking Inc. 
+— Helios Banking Inc.
 ```
 
 You update your manifest with the latest badge.
 
 ```clojure id=ab2ade6b-7352-4e44-b659-cad259ea12f9
-(crux/submit-tx
- crux
- [[:crux.tx/put 
-   {:crux.db/id :manifest
+(xt/submit-tx
+ node
+ [[::xt/put
+   {:xt/id :manifest
     :pilot-name "Johanna"
     :id/rocket "SB002-sol"
     :id/employee "22910x2"
