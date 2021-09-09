@@ -8,7 +8,7 @@ Official xtdb "Space Adventure" tutorial
 * Try online:
     1. https://nextjournal.com/try/xtdb-tutorial/start
     2. https://nextjournal.com/try/xtdb-tutorial/put
-    3. https://nextjournal.com/try/xtdb-tutorial/datalog-queries
+    3. https://nextjournal.com/try/xtdb-tutorial/datalog
     4. https://nextjournal.com/try/xtdb-tutorial/bitemporality
     5. https://nextjournal.com/try/xtdb-tutorial/match
     6. https://nextjournal.com/try/xtdb-tutorial/delete
