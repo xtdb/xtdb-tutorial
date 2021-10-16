@@ -267,7 +267,7 @@ It’s a long flight so you refuel, and update your manifest. You have been awar
     :cargo ["stereo" "gold fish" "slippers" "secret note"]}]])
 ```
 
-You enter the countdown for lift off to Mercury. [See you soon.](https://nextjournal.com/xtdb-tutorial/datalog-queries)
+You enter the countdown for lift off to Mercury. [See you soon.](https://nextjournal.com/xtdb-tutorial/datalog)
 
 ![Mercury: Datalog](https://github.com/xtdb/xtdb-tutorial/raw/main/images/2b-datalog-mercury.png)
 
