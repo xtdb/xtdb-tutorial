@@ -272,8 +272,7 @@ You enter the countdown for lift off to Mercury. [See you soon.](https://nextjou
 ![Mercury: Datalog](https://github.com/xtdb/xtdb-tutorial/raw/main/images/2b-datalog-mercury.png)
 
 
-[nextjournal#file#48b4711b-6c2d-4b09-9584-a15ef4f05ef2]:
-<https://nextjournal.com/data/Qmct2hGgaAQDaxMFcdBoKarvzvSPhv384scisZr7V1BEyG?content-type=text/plain&node-id=48b4711b-6c2d-4b09-9584-a15ef4f05ef2&filename=commodities.txt&node-kind=file>
+[nextjournal#file#48b4711b-6c2d-4b09-9584-a15ef4f05ef2]: <https://raw.githubusercontent.com/xtdb/xtdb-tutorial/main/files/commodities.txt>
 
 <details id="com.nextjournal.article">
 <summary>This notebook was exported from <a href="https://nextjournal.com/a/LPTEfabvNe9tQwAxnjcVb?change-id=Cwhb8NVitzzYpLhtwA4ew3">https://nextjournal.com/a/LPTEfabvNe9tQwAxnjcVb?change-id=Cwhb8NVitzzYpLhtwA4ew3</a></summary>
