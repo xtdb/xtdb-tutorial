@@ -1,16 +1,16 @@
-{:crux.db/id :commodity/Pu
+{:xt/id :commodity/Pu
  :common-name "Plutonium"
  :type :element/metal
  :density 19.816
  :radioactive true}
 
-{:crux.db/id :commodity/N
+{:xt/id :commodity/N
  :common-name "Nitrogen"
  :type :element/gas
  :density 1.2506
  :radioactive false}
 
-{:crux.db/id :commodity/CH4
+{:xt/id :commodity/CH4
  :common-name "Methane"
  :type :molecule/gas
  :density 0.717
