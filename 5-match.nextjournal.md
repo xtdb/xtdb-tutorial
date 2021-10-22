@@ -325,7 +325,7 @@ You update your manifest with your most recent badge.
     :pilot-name "Johanna"
     :id/rocket "SB002-sol"
     :id/employee "22910x2"
-    :badges ["SETUP" "PUT" "DATALOG-QUERIES" "MATCH"]
+    :badges ["SETUP" "PUT" "DATALOG-QUERIES" "BITEMP" "MATCH"]
     :cargo ["stereo" "gold fish" "slippers" "secret note"]}]])
 ```
 
