@@ -152,13 +152,13 @@ You also decide to make some Clojure functions so you can easily show Ubuku the 
 (defn stock-check
   [company-id item]
   {:result (xt/q (xt/db node)
-                   {:find '[name funds stock]
-                    :where ['[e :company-name name]
-                            '[e :credits funds]
-                            ['e item 'stock]]
-                    :args [{'e company-id}]})
+                 {:find '[name funds stock]
+                  :where ['[e :company-name name]
+                          '[e :credits funds]
+                          ['e item 'stock]]
+                  :in '[e]}
+                 company-id)
    :item item})
-
 
 (defn format-stock-check
   [{:keys [result item] :as stock-check}]
@@ -333,9 +333,10 @@ As you do so, you check to see if you still have the note that the porter gave y
 
 ```clojure id=b8cc575e-1643-4334-bbeb-bc1ba34bbcc0
 (xt/q (xt/db node)
-          {:find '[belongings]
-           :where '[[e :cargo belongings]]
-           :args [{'belongings "secret note"}]})
+      '{:find [belongings]
+        :where [[e :cargo belongings]]
+        :in [belongings]}
+      "secret note")
 ```
 
 Feeling a bit apprehensive, you enter countdown for lift off to Jupiter.

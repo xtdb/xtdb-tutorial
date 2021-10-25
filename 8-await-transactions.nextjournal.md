@@ -201,8 +201,7 @@ You spin up a new xtdb node and ingest the known data from the solar system.
     :type "planet"
     :xt/id :Mercury}])
 
-(xt/submit-tx node
-                (mapv (fn [stat] [::xt/put stat]) stats))
+(xt/submit-tx node (mapv (fn [stat] [::xt/put stat]) stats))
 ```
 
 The elevator arrives and you drag yourself aboard. As you are carried to the surface, you note the relief as the force of gravity on your body is canceled by the movement of the lift.
@@ -254,10 +253,11 @@ Your task is to make a function that ensures no passport is given before the tra
   (xt/submit-tx node [[::xt/put traveler-doc]])
   (xt/q
    (xt/db node)
-   {:find '[n]
-    :where '[[e :xt/id id]
+   '{:find [n]
+     :where [[e :xt/id id]
              [e :passport-number n]]
-    :args [{'id (:xt/id traveler-doc)}]}))
+     :in [id]}
+   (:xt/id traveler-doc)))
 ```
 
 You test out your function.
@@ -306,13 +306,14 @@ Of course. Submit operations in xtdb are **asynchronous** - your query did not r
   number once the transaction is complete."
   [traveler-doc]
   (xt/await-tx node
-                 (xt/submit-tx node [[::xt/put traveler-doc]]))
+               (xt/submit-tx node [[::xt/put traveler-doc]]))
   (xt/q
    (xt/db node)
-   {:find '[n]
-    :where '[[e :xt/id id]
+   '{:find [n]
+     :where [[e :xt/id id]
              [e :passport-number n]]
-    :args [{'id (:xt/id traveler-doc)}]}))
+     :in [id]}
+   (:xt/id traveler-doc)))
 ```
 
 You run the function again, Changing the traveler-doc so you can see if it’s worked. This time you receive the following:

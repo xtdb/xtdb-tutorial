@@ -4,7 +4,7 @@
 
 # Introduction
 
-This is the third installment of the xtdb tutorial, focusing on Datalog queries.
+This is the third instalment of the xtdb tutorial, focusing on Datalog queries.
 
 ## Setup
 
@@ -198,7 +198,7 @@ You put together examples and make notes so you can be confident in your lesson.
            :where [[element :type :element/metal]]})))
 ```
 
-*The vectors given to the clauses should be quoted. How you do it at this stage is arbitrary, but it becomes more important if you are using `:args`, which we will cover momentarily.*
+*The vectors given to the clauses should be quoted. How you do it at this stage is arbitrary.*
 
 *Example 3*. **Return the name of metal elements.**
 
@@ -230,31 +230,34 @@ You put together examples and make notes so you can be confident in your lesson.
 
 ```clojure id=9c836f78-21cc-4ddd-aef8-e40a755d99a2
 (xt/q (xt/db node)
-        {:find '[name]
-         :where '[[e :type t]
-                  [e :common-name name]]
-         :args [{'t :element/metal}]})
+      '{:find [name]
+        :where [[e :type type]
+                [e :common-name name]]
+        :in [type]}
+      :element/metal)
 ```
 
-*`:args` can be used to further filter the results. Lets break down what is going down here.*
+*`:in` can be used to further filter the results. Lets break down what is going down here.*
 
 *First, we are assigning all `:xt/id`s that have a `:type` to `e`:*
 
 `e` ← `#{[:commodity/Pu] [:commodity/borax] [:commodity/CH4] [:commodity/Au] [:commodity/C] [:commodity/N]}`
 
-*At the same time we are assigning all the `:types` to `t`:*
+*At the same time we are assigning all the `:types` to `type`:*
 
-`t` ← `#{[:element/gas] [:element/metal] [:element/non-metal] [:mineral/solid] [:molecule/gas]}`
+`type` ← `#{[:element/gas] [:element/metal] [:element/non-metal] [:mineral/solid] [:molecule/gas]}`
 
 *Then we assign all the names within `e` that have a `:common-name` to `name`:*
 
 `name` ← `#{["Methane"] ["Carbon"] ["Gold"] ["Plutonium"] ["Nitrogen"] ["Borax"]}`
 
-*We have specified that we want to get the names out, but not before looking at `:args`*
+*We have specified that we want to get the names out, but not before looking at `:in`*
 
-*In `:args` we have further filtered the results to only show us the names of that have `:type` `:element/metal`.*
+*For `:in` we have further filtered the results to only show us the names of that have `:type` `:element/metal`.*
 
-*We could have done that before inside the `:where` clause, but using `:args` removes the need for hard-coding inside the query clauses.*
+*We could have done that before inside the `:where` clause, but using `:in` removes the need for hard-coding inside the query clauses.*
+
+*We pass the value(s) to be used as the third argument to `xt/q`.*
 
 **- Notes.**
 
@@ -266,19 +269,21 @@ To check their understanding you set them a task to create a function to aid the
 (defn filter-type
   [type]
   (xt/q (xt/db node)
-        {:find '[name]
-         :where '[[e :type t]
-                  [e :common-name name]]
-         :args [{'t type}]}))
+        '{:find [name]
+          :where [[e :common-name name]
+                  [e :type type]]
+          :in [type]}
+        type))
 
 (defn filter-appearance
   [description]
   (xt/q (xt/db node)
-        {:find '[name IUPAC]
-         :where '[[e :common-name name]
+        '{:find [name IUPAC]
+          :where [[e :common-name name]
                   [e :IUPAC-name IUPAC]
-                  [e :appearance ?appearance]]
-         :args [{'?appearance description}]}))
+                  [e :appearance appearance]]
+          :in [apperance]}
+        description))
 ```
 
 ```clojure id=f46e8e06-61db-4e10-9235-4cb2b26892fe
