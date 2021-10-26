@@ -177,7 +177,7 @@ You are astonished with the amount that you have done in one short week. How did
 
 Your eyes get heavy as the cryogenicist initiates the hibernation process. As they do, you wonder if you’ll ever come back to the solar system.
 
-![ice.jpg][nextjournal#file#f0026e73-9244-45f5-ac13-bab33663707d]
+![ice.jpg](https://github.com/xtdb/xtdb-tutorial/raw/main/images/7b-evict-ice.jpg)
 
 # This is not The End
 
