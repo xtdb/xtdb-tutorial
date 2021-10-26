@@ -44,17 +44,17 @@ GitHub, then reimport the notebooks using the following instructions.
 2. Go to the [Nextjournal Dashboard](https://nextjournal.com/dashboard) and open notebook you want to edit.
 3. Open the "Share" dialog (in the upper-right):
    1. Select "Notebook Visibility: Private"
-   2. Select "Edit Slug" and change the slug to a name like `evict-old-05` so it won't collide with the notebook you are about to import.
+   2. Select "Edit Slug" and change the slug to a name like `evict-old-2021-10-26` so it won't collide with the notebook you are about to import.
    3. Select "Published Version: Unpublish this notebook..."
-7. Edit the title of the document to `"Evict - Old05"` or something similar so it's easy to identify
+7. Edit the title of the document to `"Evict - Old 2021-10-26"` or something similar so it's easy to identify
 in the list of archived notebooks.
-8. Refresh the [Nextjournal Dashboard](https://nextjournal.com/dashboard). You should see `"Evict - Old05"` (or similar) in the list. Select "Actions: Archive". (At present, you cannot completely delete a notebook.)
+8. Refresh the [Nextjournal Dashboard](https://nextjournal.com/dashboard). You should see `"Evict - Old 2021-10-06"` (or similar) in the list. Select "Actions: Archive". (At present, you cannot completely delete a notebook.)
 9. Follow the `"Installation"` instructions above, with the following additional steps from the "Share" dialog:
    1. Select "Notebook Visibility: Public"
    2. Select "Edit Slug" and change the slug to the original (`evict`, in the above example)
    3. Select "Publish Changes" to see the preview dialog. Click "Publish".
 10. Check to make sure the public URLs in the `"Quickstart"` work correctly.
-11. If the lessons seem out-of-order, it is because they are listed reverse-chronologically. Whatever lesson you edited, publish lessons _backward_ from that point. For example, if you edited Lesson 4, you must publish #3, #2, and finally #1.
+11. If the lessons seem out-of-order, it is because they are listed reverse-chronologically. Whatever lesson you edited, publish lessons _backward_ from that point. For example, if you edited Lesson 4, you must publish #3, #2, and finally #1 (Note if you haven't edited a lesson, you only need to re-publish the old notebook without following the import steps).
 
 
 ## Copyright & License
