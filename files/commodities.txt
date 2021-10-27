@@ -1,4 +1,4 @@
-{:xt/id :commodity/Pu
+[{:xt/id :commodity/Pu
  :common-name "Plutonium"
  :type :element/metal
  :density 19.816
@@ -14,4 +14,4 @@
  :common-name "Methane"
  :type :molecule/gas
  :density 0.717
- :radioactive false}
+ :radioactive false}]
