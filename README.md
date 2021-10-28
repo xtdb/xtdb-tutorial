@@ -25,13 +25,9 @@ like. However, you can import the Markdown files in this repository directly, if
 prefer.
 
 1. Create a new account on [Nextjournal](https://nextjournal.com).
-2. Download a Markdown file from this repository root.
-3. Click "+ NEW" to create a new notebook on the [Nextjournal Dashboard](https://nextjournal.com/dashboard).
-4. At the bottom of the page, choose "Import: Select (or drag & drop) a Markdown file to import" and upload the `.md` file you downloaded in Step 2.
-Do not use "Import from a URL (e.g. GitHub)" -- it will not work.
-5. You do not need to name the `deps.edn` block -- the metadata names it for you.
-6. You do not need to configure the Clojure runtime or mounts -- the metadata configures it for you.
-Click "Save changes and start" in the dialog that appears at the top.
+1. Click "+ NEW" to create a new notebook on the [Nextjournal Dashboard](https://nextjournal.com/dashboard).
+1. At the bottom of the page, choose "Import from a URL (e.g. GitHub)" and paste in the link to the file in GitHub (e.g. `https://github.com/xtdb/xtdb-tutorial/blob/main/1-getting-started.nextjournal.md`)
+1. You do not need to name the `deps.edn` block -- the metadata names it for you.
 
 You can now run the tutorial notebook.
 
@@ -41,20 +37,13 @@ To reinstall the tutorial: Treat this GitHub repository as the golden store. Mak
 GitHub, then reimport the notebooks using the following instructions.
 
 1. Log in as the `xtdb-tutorial` Nextjournal user (ask @deobald, @refset, or @johantonelli for creds)
-2. Go to the [Nextjournal Dashboard](https://nextjournal.com/dashboard) and open notebook you want to edit.
-3. Open the "Share" dialog (in the upper-right):
-   1. Select "Notebook Visibility: Private"
-   2. Select "Edit Slug" and change the slug to a name like `evict-old-2021-10-26` so it won't collide with the notebook you are about to import.
-   3. Select "Published Version: Unpublish this notebook..."
-7. Edit the title of the document to `"Evict - Old 2021-10-26"` or something similar so it's easy to identify
-in the list of archived notebooks.
-8. Refresh the [Nextjournal Dashboard](https://nextjournal.com/dashboard). You should see `"Evict - Old 2021-10-06"` (or similar) in the list. Select "Actions: Archive". (At present, you cannot completely delete a notebook.)
-9. Follow the `"Installation"` instructions above, with the following additional steps from the "Share" dialog:
-   1. Select "Notebook Visibility: Public"
-   2. Select "Edit Slug" and change the slug to the original (`evict`, in the above example)
-   3. Select "Publish Changes" to see the preview dialog. Click "Publish".
-10. Check to make sure the public URLs in the `"Quickstart"` work correctly.
-11. If the lessons seem out-of-order, it is because they are listed reverse-chronologically. Whatever lesson you edited, publish lessons _backward_ from that point. For example, if you edited Lesson 4, you must publish #3, #2, and finally #1 (Note if you haven't edited a lesson, you only need to re-publish the old notebook without following the import steps).
+1. Go to the [Nextjournal Dashboard](https://nextjournal.com/dashboard) and open notebook you want to edit.
+1. Click anywhere in the document, select all (ctrl+a) and delete the contents.
+1. At the bottom of the page, choose "Import from a URL (e.g. GitHub)" and paste in the link to the file in GitHub (e.g. `https://github.com/xtdb/xtdb-tutorial/blob/main/1-getting-started.nextjournal.md`)
+1. Scroll to the bottom of the page and expand the Appendix. Pull from the repo to ensure the changes are brought in
+1. Select "Publish Changes" in the share dialog
+1. Check to make sure the public URLs in the `"Quickstart"` work correctly.
+1. If the lessons seem out-of-order, it is because they are listed reverse-chronologically. Whatever lesson you edited, publish lessons _backward_ from that point. For example, if you edited Lesson 4, you must publish #3, #2, and finally #1 (Note if you haven't edited a lesson, you only need to re-publish the old notebook without following the import steps).
 
 
 ## Copyright & License
