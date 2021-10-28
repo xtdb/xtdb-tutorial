@@ -10,6 +10,7 @@ This is the `await-tx` installment of the xtdb tutorial.
 
 You need to get xtdb running before you can use it.
 
+<!--- Stil want to show the user deps.edn even though it's loaded in the repo. --->
 ```edn no-exec
 {:deps
  {org.clojure/clojure {:mvn/version "1.10.0"}
@@ -40,25 +41,27 @@ You take a minute to acknowledge the cold surroundings. You realize the ship eng
 
 Captain Ilex's voice comes over the intercom.
 
-```clojure no-exec
-"Good morning passengers.
-And hello new world.
-We've reached the planet Kepra-5 of the Gilese 667C star system.
-
-If you could make your way to the https://en.wikipedia.org/wiki/Space_elevator[space elevator] which is waiting to take you to the planet surface, where you will need to go through customs and get a new passport.
-
-We would like to wish you all the best in your future travels."
-
-— Ilex
-```
+> Good morning passengers.
+> And hello new world.
+> We've reached the planet Kepra-5 of the Gilese 667C star system.
+>
+> If you could make your way to the https://en.wikipedia.org/wiki/Space_elevator[space elevator] which is waiting to take you to the planet surface, where you will need to go through customs and get a new passport.
+>
+> We would like to wish you all the best in your future travels."
+>
+> \- Ilex
 
 Finding your way to the space elevator dock, you notice that you feel a lot heavier than usual. You wonder if this is your body being weaker than usual from being in cryostasis for so long, or if this new planet has stronger gravity.
 
 ## Choose your path:
 
-**You want to test this, and are interested to know how the gravity of the planet below compares to planets back in your home solar system:** *You see it as a good opportunity to refresh yourself with ingestion and queries.*
 
-**You think about testing this, but you're in a rush and want to get your passport as fast as possible:** *Head over to passport control.*
+  * **You want to test this, and are interested to know how the gravity of the planet below compares to planets back in your home solar system:** 
+      * *You see it as a good opportunity to refresh yourself with ingestion and queries.*
+
+
+  * **You think about testing this, but you're in a rush and want to get your passport as fast as possible:**
+      * *Head over to passport control.*
 
 # Gravity comparison
 
@@ -290,13 +293,9 @@ You are sure your query and ingest syntax is correct, but to check you try runni
 
 Confused, you open your trusty xtdb manual, skimming through until you hit the page on `await-tx`:
 
-```custom no-exec
-Blocks until the node has indexed a transaction that is at or past the supplied tx. Will throw on timeout. Returns the most recent tx indexed by the node.
-
-- xtdb manual
-```
-
-*[Read More](https://xtdb.com/reference/transactions.html#await)*
+> Blocks until the node has indexed a transaction that is at or past the supplied tx. Will throw on timeout. Returns the most recent tx indexed by the node.
+>
+> \- xtdb manual *[Read More](https://xtdb.com/reference/transactions.html#await)*
 
 Of course. Submit operations in xtdb are **asynchronous** - your query did not return the new data as it had not yet been indexed into xtdb. You decide to rewrite your function using `await-tx`:
 
@@ -328,15 +327,13 @@ You run the function again, Changing the traveler-doc so you can see if it’s w
   :penalties []})
 ```
 
-## Caution
-
-*XTDB is fundamentally asynchronous: you submit a transaction to the central transaction log - then, later, each individual xtdb node reads the transaction from the log and indexes it. If you submit a transaction and then run a query without explicitly waiting for the node to have indexed the transaction, you’re not guaranteed that your query will reflect your recent transaction. On a small use-case, you might get lucky - but, if you want to reliably read your writes, use `await-tx`. If you’re ingesting a large batch of data though, calling `await-tx` after every transaction will slow the process significantly - you only need to await the final transaction to know that all of the preceding transactions are available.*
+> ## Caution
+>
+> *XTDB is fundamentally asynchronous: you submit a transaction to the central transaction log - then, later, each individual xtdb node reads the transaction from the log and indexes it. If you submit a transaction and then run a query without explicitly waiting for the node to have indexed the transaction, you’re not guaranteed that your query will reflect your recent transaction. On a small use-case, you might get lucky - but, if you want to reliably read your writes, use `await-tx`. If you’re ingesting a large batch of data though, calling `await-tx` after every transaction will slow the process significantly - you only need to await the final transaction to know that all of the preceding transactions are available.*
 
 You show this to the manager at the passport control office. They are happy that this will work.
 
-```clojure
-"Thank you, this will save us so much time in dealing with missing traveler information. As a token of our gratitude, we would like to grant you with free entry to the planet."
-```
+> Thank you, this will save us so much time in dealing with missing traveler information. As a token of our gratitude, we would like to grant you with free entry to the planet.
 
 You graciously accept. For the passport you must provide your origin planet, name and also a chosen name. Many people come to Kepra-5 in order to start fresh, so your chosen name can be anything you wish.
 
