@@ -20,7 +20,7 @@ Let’s begin.
 
 You need to get xtdb running before you can use it.
 
-```edn no-exec id=ffcf0396-b3f9-40e6-a0c2-654401879781
+```edn no-exec
 {:deps
  {org.clojure/clojure {:mvn/version "1.10.0"}
   org.clojure/tools.deps.alpha
@@ -32,7 +32,7 @@ You need to get xtdb running before you can use it.
   {"snapshots" {:url "https://s01.oss.sonatype.org/content/repositories/snapshots"}}}
 ```
 
-```clojure id=35dc65e9-f458-4e32-9a59-1af72cd12a78
+```clojure
 (require '[xtdb.api :as xt])
 ```
 
@@ -42,7 +42,7 @@ You are now ready for your first assignment, so you head over to the space port.
 
 On entering your spaceship, you notice a flashing blue light on the left of your communications panel. You submit an iris scan to unlock your first message.
 
-```clojure no-exec id=0dfd4496-febc-41b0-962a-0fc4e590368a
+```clojure no-exec
 "A warm welcome from the Helios family.
 
 For your first assignment we would like you to go to Pluto and help Tombaugh Resources Ltd. set up their stock reporting system. There will be a ticket with more information waiting for you upon your arrival. Find Reginald if you have any questions.
@@ -58,7 +58,7 @@ Before you leave you must fill in your flight manifest. To do this, you must fir
 
 You read the xtdb manual entry for the standalone node to make sure this is OK.
 
-```clojure no-exec id=bda0feab-462e-4584-be69-e9e3c23d25f7
+```clojure no-exec
 "If you want to get up and running with xtdb fast, consider using the standalone node. There is a xtdb inbuilt standalone node which is the most simple way to start playing with xtdb. Bear in mind that this does not store any information beyond your session.
 
 For persistent storage consider using RocksDB and for scale you should consider using Kafka."
@@ -70,7 +70,7 @@ For persistent storage consider using RocksDB and for scale you should consider 
 
 You decide this is fine for now, and so define your xtdb node.
 
-```clojure id=2bdeaaa6-3672-48c1-bbc7-aa5d05fd1153
+```clojure
 (def node
   (xt/start-node {}))
 ```
@@ -81,7 +81,7 @@ You take a look around your ship and check the critical levels.
 
 You read the manual entry for putting data into xtdb.
 
-```clojure no-exec id=ca575f8d-8096-48d8-acef-9a05712e43c6
+```clojure no-exec
 "XTDB takes information in document form. Each document must be in Extensible Data Notation (edn) and each document must contain a unique `:xt/id` value. However, beyond those two requirements you have the flexibility to add whatever you like to your documents because xtdb is schemaless."
 
 — xtdb manual
@@ -91,7 +91,7 @@ You read the manual entry for putting data into xtdb.
 
 Just as you’re about to write your manifest, one of the porters passes you a secret note and asks you to deliver it to a martian named Kaarlang. They are certain you will meet Kaarlang on your travels and so you see no harm in delivering the note for them.
 
-```clojure id=4a6c4961-14b1-4ac9-96e7-7aec033b55a8
+```clojure
 (def manifest
   {:xt/id :manifest
    :pilot-name "Johanna"
@@ -103,13 +103,13 @@ Just as you’re about to write your manifest, one of the porters passes you a s
 
 You put the manifest into xtdb.
 
-```clojure id=bd1e9012-f10e-4bfb-bee3-83abf3be162e
+```clojure
 (xt/submit-tx node [[::xt/put manifest]])
 ```
 
 This is `put`, one of xtdb's four transaction operations. Check that this was successful by asking xtdb to show the whole entity.
 
-```clojure id=3e0d81c5-2598-432f-9f83-038b47b5f5fc
+```clojure
 (xt/entity (xt/db node) :manifest)
 ```
 

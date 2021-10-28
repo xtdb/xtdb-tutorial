@@ -10,7 +10,7 @@ This is the `await-tx` installment of the xtdb tutorial.
 
 You need to get xtdb running before you can use it.
 
-```edn no-exec id=ffcf0396-b3f9-40e6-a0c2-654401879781
+```edn no-exec
 {:deps
  {org.clojure/clojure {:mvn/version "1.10.0"}
   org.clojure/tools.deps.alpha
@@ -22,7 +22,7 @@ You need to get xtdb running before you can use it.
   {"snapshots" {:url "https://s01.oss.sonatype.org/content/repositories/snapshots"}}}
 ```
 
-```clojure id=35dc65e9-f458-4e32-9a59-1af72cd12a78
+```clojure
 (require '[xtdb.api :as xt])
 ```
 
@@ -40,7 +40,7 @@ You take a minute to acknowledge the cold surroundings. You realize the ship eng
 
 Captain Ilex's voice comes over the intercom.
 
-```clojure no-exec id=223ddbe8-8eed-4e69-ae1c-57f484971dcb
+```clojure no-exec
 "Good morning passengers.
 And hello new world.
 We've reached the planet Kepra-5 of the Gilese 667C star system.
@@ -64,11 +64,11 @@ Finding your way to the space elevator dock, you notice that you feel a lot heav
 
 You spin up a new xtdb node and ingest the known data from the solar system.
 
-```clojure id=2bdeaaa6-3672-48c1-bbc7-aa5d05fd1153
+```clojure
 (def node (xt/start-node {}))
 ```
 
-```clojure id=1ffd8986-b9d6-468c-b533-00d7bc13f67c
+```clojure
 (def stats
   [{:body "Sun"
     :type "Star"
@@ -210,7 +210,7 @@ As soon as you reach the surface, you waste no time in taking the gravity readin
 
 You want to check against the data of the other planets on your node, to see how the gravity from this planet compares, so you write a function to add the new planetary data and query it against the other planets:
 
-```clojure id=950de198-0847-4b3b-bd24-1d1300a30158
+```clojure
 (xt/submit-tx
  node
  [[::xt/put
@@ -247,7 +247,7 @@ Kaarlang has told the manager that you have a background in solving problems usi
 
 Your task is to make a function that ensures no passport is given before the travelers data is successfully ingested into xtdb.
 
-```clojure id=99b0dd9c-d5cb-4c34-8a77-d71f941e97cd
+```clojure
 (defn ingest-and-query
   [traveler-doc]
   (xt/submit-tx node [[::xt/put traveler-doc]])
@@ -262,7 +262,7 @@ Your task is to make a function that ensures no passport is given before the tra
 
 You test out your function.
 
-```clojure id=8a4d7bc7-69f2-47c3-878c-8d60e6986674
+```clojure
 (ingest-and-query
  {:xt/id :origin-planet/test-traveler
   :chosen-name "Test"
@@ -276,7 +276,7 @@ This strikes you as peculiar - you received no errors from your xtdb node upon s
 
 You are sure your query and ingest syntax is correct, but to check you try running the query again. This time you get the expected result:
 
-```clojure id=392b9eb4-0a7b-4fb3-953d-b0f15cf8c758
+```clojure
 (ingest-and-query
  {:xt/id :origin-planet/test-traveler
   :chosen-name "Test"
@@ -290,7 +290,7 @@ You are sure your query and ingest syntax is correct, but to check you try runni
 
 Confused, you open your trusty xtdb manual, skimming through until you hit the page on `await-tx`:
 
-```custom no-exec id=4ec8e24c-39cf-4080-be97-3de19d78af04
+```custom no-exec
 Blocks until the node has indexed a transaction that is at or past the supplied tx. Will throw on timeout. Returns the most recent tx indexed by the node.
 
 - xtdb manual
@@ -300,7 +300,7 @@ Blocks until the node has indexed a transaction that is at or past the supplied 
 
 Of course. Submit operations in xtdb are **asynchronous** - your query did not return the new data as it had not yet been indexed into xtdb. You decide to rewrite your function using `await-tx`:
 
-```clojure id=b22751f2-2aa9-4b26-9a76-08807e4ac6af
+```clojure
 (defn ingest-and-query
   "Ingests the given travelers document into xtdb, returns the passport
   number once the transaction is complete."
@@ -318,7 +318,7 @@ Of course. Submit operations in xtdb are **asynchronous** - your query did not r
 
 You run the function again, Changing the traveler-doc so you can see if it’s worked. This time you receive the following:
 
-```clojure id=563c4aa6-5fbd-46c2-b959-18aa6bba7d90
+```clojure
 (ingest-and-query
  {:xt/id :origin-planet/new-test-traveler
   :chosen-name "Testy"
@@ -334,7 +334,7 @@ You run the function again, Changing the traveler-doc so you can see if it’s w
 
 You show this to the manager at the passport control office. They are happy that this will work.
 
-```clojure id=3109132e-f436-437d-976f-b49857a0bdaa
+```clojure
 "Thank you, this will save us so much time in dealing with missing traveler information. As a token of our gratitude, we would like to grant you with free entry to the planet."
 ```
 
@@ -342,7 +342,7 @@ You graciously accept. For the passport you must provide your origin planet, nam
 
 Once chosen you can not easily change it, so you think carefully.
 
-```clojure id=80d2cc45-e470-483d-b7bc-53ea1e6bb7c7
+```clojure
 (ingest-and-query
  {:xt/id :earth/ioelena
   :chosen-name "Ioelena"
@@ -359,131 +359,3 @@ Now that you are in the Gilese 667C you must keep your passport up to date where
 Through customs, you are now free to explore the exciting new planet. Taking in your surroundings, you see a hostel nearby. You head over. Although you’ve been in cryostasis for such a long time, the new gravity has made you very tired.
 
 # THE END.
-
-<details id="com.nextjournal.article">
-<summary>This notebook was exported from <a href="https://nextjournal.com/a/MPrTfmoyFHctxUufCNRJV?change-id=CwhbKgNeHLxGW2DSrNhzvN">https://nextjournal.com/a/MPrTfmoyFHctxUufCNRJV?change-id=CwhbKgNeHLxGW2DSrNhzvN</a></summary>
-
-```edn nextjournal-metadata
-{:article
- {:settings nil,
-  :nodes
-  {"1ffd8986-b9d6-468c-b533-00d7bc13f67c"
-   {:compute-ref #uuid "5571bedd-68ce-4e3a-bedb-56d461f1b52a",
-    :exec-duration 311,
-    :id "1ffd8986-b9d6-468c-b533-00d7bc13f67c",
-    :kind "code",
-    :output-log-lines {},
-    :runtime [:runtime "80403b0a-1226-48ff-9bcc-624ed02e3635"]},
-   "223ddbe8-8eed-4e69-ae1c-57f484971dcb"
-   {:id "223ddbe8-8eed-4e69-ae1c-57f484971dcb",
-    :kind "code-listing",
-    :name "Ship Captain"},
-   "2bdeaaa6-3672-48c1-bbc7-aa5d05fd1153"
-   {:compute-ref #uuid "eaa5a883-a18a-4aea-bc8a-ce4646de0264",
-    :exec-duration 6130,
-    :id "2bdeaaa6-3672-48c1-bbc7-aa5d05fd1153",
-    :kind "code",
-    :output-log-lines {},
-    :refs (),
-    :runtime [:runtime "80403b0a-1226-48ff-9bcc-624ed02e3635"]},
-   "3109132e-f436-437d-976f-b49857a0bdaa"
-   {:compute-ref #uuid "8ddd3f91-10a5-477e-bbab-a5c64b98954b",
-    :exec-duration 71,
-    :id "3109132e-f436-437d-976f-b49857a0bdaa",
-    :kind "code",
-    :name "Passport control manager ",
-    :output-log-lines {},
-    :runtime [:runtime "80403b0a-1226-48ff-9bcc-624ed02e3635"]},
-   "35dc65e9-f458-4e32-9a59-1af72cd12a78"
-   {:compute-ref #uuid "b15fc45a-d8a2-44e5-8386-00363f367b16",
-    :exec-duration 12442,
-    :id "35dc65e9-f458-4e32-9a59-1af72cd12a78",
-    :kind "code",
-    :output-log-lines {},
-    :refs (),
-    :runtime [:runtime "80403b0a-1226-48ff-9bcc-624ed02e3635"]},
-   "392b9eb4-0a7b-4fb3-953d-b0f15cf8c758"
-   {:compute-ref #uuid "cfd10182-a90f-48e4-88e1-0d3fd88f8403",
-    :exec-duration 130,
-    :id "392b9eb4-0a7b-4fb3-953d-b0f15cf8c758",
-    :kind "code",
-    :output-log-lines {},
-    :runtime [:runtime "80403b0a-1226-48ff-9bcc-624ed02e3635"]},
-   "4ec8e24c-39cf-4080-be97-3de19d78af04"
-   {:custom-language "txt",
-    :id "4ec8e24c-39cf-4080-be97-3de19d78af04",
-    :kind "code-listing",
-    :name "xtdb Manual"},
-   "563c4aa6-5fbd-46c2-b959-18aa6bba7d90"
-   {:compute-ref #uuid "ebbb9f56-2f15-46e3-be3e-7cd62f82bcf0",
-    :exec-duration 107,
-    :id "563c4aa6-5fbd-46c2-b959-18aa6bba7d90",
-    :kind "code",
-    :output-log-lines {},
-    :runtime [:runtime "80403b0a-1226-48ff-9bcc-624ed02e3635"]},
-   "6e1e3414-7ad4-42fa-ace0-6939985e69e2"
-   {:id "6e1e3414-7ad4-42fa-ace0-6939985e69e2",
-    :kind "file",
-    :layout :normal},
-   "80403b0a-1226-48ff-9bcc-624ed02e3635"
-   {:environment
-    [:environment
-     {:article/nextjournal.id
-      #uuid "5b45eb52-bad4-413d-9d7f-b2b573a25322",
-      :change/nextjournal.id
-      #uuid "5cd52af1-7a79-4804-a169-d6ffcdb6eb7a",
-      :node/id "0ae15688-6f6a-40e2-a4fa-52d81371f733"}],
-    :id "80403b0a-1226-48ff-9bcc-624ed02e3635",
-    :kind "runtime",
-    :language "clojure",
-    :type :nextjournal,
-    :runtime/mounts
-    [{:src [:node "ffcf0396-b3f9-40e6-a0c2-654401879781"],
-      :dest "/deps.edn"}]},
-   "80d2cc45-e470-483d-b7bc-53ea1e6bb7c7"
-   {:compute-ref #uuid "c59878c7-96fd-462e-909c-39f6bdd31e82",
-    :exec-duration 115,
-    :id "80d2cc45-e470-483d-b7bc-53ea1e6bb7c7",
-    :kind "code",
-    :output-log-lines {},
-    :runtime [:runtime "80403b0a-1226-48ff-9bcc-624ed02e3635"]},
-   "8a4d7bc7-69f2-47c3-878c-8d60e6986674"
-   {:compute-ref #uuid "101fde2b-5ca3-4a0d-bc27-5256fc731661",
-    :exec-duration 385,
-    :id "8a4d7bc7-69f2-47c3-878c-8d60e6986674",
-    :kind "code",
-    :output-log-lines {},
-    :runtime [:runtime "80403b0a-1226-48ff-9bcc-624ed02e3635"]},
-   "950de198-0847-4b3b-bd24-1d1300a30158"
-   {:compute-ref #uuid "a26b3bdf-1b06-4d1a-a37f-fa9f0cdc0ced",
-    :exec-duration 393,
-    :id "950de198-0847-4b3b-bd24-1d1300a30158",
-    :kind "code",
-    :output-log-lines {},
-    :refs (),
-    :runtime [:runtime "80403b0a-1226-48ff-9bcc-624ed02e3635"]},
-   "99b0dd9c-d5cb-4c34-8a77-d71f941e97cd"
-   {:compute-ref #uuid "12cf0b81-ebfc-4f4c-8b42-a262956455ff",
-    :exec-duration 116,
-    :id "99b0dd9c-d5cb-4c34-8a77-d71f941e97cd",
-    :kind "code",
-    :output-log-lines {},
-    :refs (),
-    :runtime [:runtime "80403b0a-1226-48ff-9bcc-624ed02e3635"]},
-   "b22751f2-2aa9-4b26-9a76-08807e4ac6af"
-   {:compute-ref #uuid "4b6ef175-809e-4111-9bc2-8b3d322e5011",
-    :exec-duration 100,
-    :id "b22751f2-2aa9-4b26-9a76-08807e4ac6af",
-    :kind "code",
-    :output-log-lines {},
-    :runtime [:runtime "80403b0a-1226-48ff-9bcc-624ed02e3635"]},
-   "ffcf0396-b3f9-40e6-a0c2-654401879781"
-   {:id "ffcf0396-b3f9-40e6-a0c2-654401879781",
-    :kind "code-listing",
-    :name "deps.edn"}},
-  :nextjournal/id #uuid "02d8f57b-2d5c-4528-b5cc-869f4d531b8e",
-  :article/change
-  {:nextjournal/id #uuid "60b7b453-96b5-4647-950f-652deb72d68b"}}}
-
-```
-</details>

@@ -10,7 +10,7 @@ This is the second part of the xtdb tutorial. The Earth installment looked at se
 
 You need to get xtdb running before you can use it.
 
-```edn no-exec id=ffcf0396-b3f9-40e6-a0c2-654401879781
+```edn no-exec
 {:deps
  {org.clojure/clojure {:mvn/version "1.10.0"}
   org.clojure/tools.deps.alpha
@@ -22,7 +22,7 @@ You need to get xtdb running before you can use it.
   {"snapshots" {:url "https://s01.oss.sonatype.org/content/repositories/snapshots"}}}
 ```
 
-```clojure id=35dc65e9-f458-4e32-9a59-1af72cd12a78
+```clojure
 (require '[xtdb.api :as xt])
 ```
 
@@ -30,7 +30,7 @@ You need to get xtdb running before you can use it.
 
 As you enter the Plutonian atmosphere, a message pops up on your communication panel:
 
-```clojure no-exec id=a86efe70-c896-4cc1-ad16-2bdc46cb01b2
+```clojure no-exec
 "Welcome to the dwarf planet Pluto. You are entering privately governed space. If you do not have the correct papers, entry will be denied. We hope you enjoy your stay.
 
 Have a nice day."
@@ -50,7 +50,7 @@ The government of Pluto is asking to see your flight manifest.
 
 As you circle the dwarf planet to land, you have a quick read of your xtdb manual. You know you will be using the `put` operation a lot for this assignment and although you used the operation to add your manifest before you left, you think it is a good idea to brush up on your knowledge.
 
-```clojure no-exec id=223ddbe8-8eed-4e69-ae1c-57f484971dcb
+```clojure no-exec
 "Currently there are only four transaction operations in xtdb: put, delete, match and evict.
 
 		Transaction 	(Description)
@@ -88,7 +88,7 @@ A complete put transaction has the form:
 
 You are happy with what you have read, and in anticipation of your first assignment you define the standalone node.
 
-```clojure id=2bdeaaa6-3672-48c1-bbc7-aa5d05fd1153
+```clojure
 (def node (xt/start-node {}))
 ```
 
@@ -98,7 +98,7 @@ You land on the surface of the dwarf planet. As you do, the job ticket for this 
 
 ## Ticket
 
-```clojure no-exec id=b62c033a-93f1-438b-abf1-bbbd0050c31f
+```clojure no-exec
 Task 			"Commodity Logging"
 Company		"Tombaugh Resources Ltd."
 Contact 			"R. Glogofloon"
@@ -107,32 +107,31 @@ Additional information:
 "We need help setting up a new recording system for our mine. I have enclosed a list of the commodities we deal with. Please send someone soon because we already have a week’s worth of unrecorded stocktakes."
 ```
 
-[commodities.txt][nextjournal#file#48b4711b-6c2d-4b09-9584-a15ef4f05ef2]
-
 You make your way over to the mines on the next shuttle. On your way you decide to get a head start and put the commodities into xtdb.
 
-```clojure id=ff24c118-14bf-4e4a-a4d3-03e890292d1b
-(xt/submit-tx node
-                [[::xt/put
-                  {:xt/id :commodity/Pu
-                   :common-name "Plutonium"
-                   :type :element/metal
-                   :density 19.816
-                   :radioactive true}]
+```clojure
+(xt/submit-tx
+ node
+ [[::xt/put
+   {:xt/id :commodity/Pu
+    :common-name "Plutonium"
+    :type :element/metal
+    :density 19.816
+    :radioactive true}]
 
-                 [::xt/put
-                  {:xt/id :commodity/N
-                   :common-name "Nitrogen"
-                   :type :element/gas
-                   :density 1.2506
-                   :radioactive false}]
+  [::xt/put
+   {:xt/id :commodity/N
+    :common-name "Nitrogen"
+    :type :element/gas
+    :density 1.2506
+    :radioactive false}]
 
-                 [::xt/put
-                  {:xt/id :commodity/CH4
-                   :common-name "Methane"
-                   :type :molecule/gas
-                   :density 0.717
-                   :radioactive false}]])
+  [::xt/put
+   {:xt/id :commodity/CH4
+    :common-name "Methane"
+    :type :molecule/gas
+    :density 0.717
+    :radioactive false}]])
 ```
 
 Since it takes six hours for each transaction to reach your xtdb node on Earth from here, it is a good idea to batch up all the commodities in a single transaction.
@@ -141,7 +140,7 @@ Since it takes six hours for each transaction to reach your xtdb node on Earth f
 
 You arrive at the mine and are met by the CEO, Reginald Glogofloon, a 150 year old Plutonian.
 
-```clojure no-exec id=a95f32b0-7b7a-4381-8087-68c09f19e100
+```clojure no-exec
 "Hello, I’m glad you’re here.
 
 I would like you to fill in our last weeks worth of data on our commodities. We need to be able to look back at a given day and see what our stocks were for auditing purposes.
@@ -161,7 +160,7 @@ Are you able to do that for me?"
 
 You remember that with xtdb you have the option of adding a `valid-time`. This comes in useful now as you enter the weeks worth of stock takes for Plutonium.
 
-```clojure id=990d9283-0343-4d24-8d59-e5ed9aa04668
+```clojure
 (xt/submit-tx node
                 [[::xt/put
                   {:xt/id :stock/Pu
@@ -196,7 +195,7 @@ You remember that with xtdb you have the option of adding a `valid-time`. This c
 
 You notice that the amount of Nitrogen and Methane has not changed which saves you some time:
 
-```clojure id=7fb5e55a-cf65-4628-8079-5597bad38806
+```clojure
 (xt/submit-tx node
                 [[::xt/put
                   {:xt/id :stock/N
@@ -217,11 +216,11 @@ The CEO is impressed with your speed, but a little skeptical that you have done 
 
 You gain their confidence by showing them the entries for Plutonium on two different days:
 
-```clojure id=87681d10-7b1f-481c-ab36-80dffbf5ecba
+```clojure
 (xt/entity (xt/db node #inst "2115-02-14") :stock/Pu)
 ```
 
-```clojure id=42e3db39-68e7-4786-b5f5-1e11202a7bd7
+```clojure
 (xt/entity (xt/db node #inst "2115-02-18") :stock/Pu)
 ```
 
@@ -229,7 +228,7 @@ You gain their confidence by showing them the entries for Plutonium on two diffe
 
 As a parting gift to them you create an easy ingest function so that if they needed to add more commodities to their stock list they could do it fast.
 
-```clojure id=c0425038-62d2-4117-b3ff-3fa7e2f4700e
+```clojure
 (defn easy-ingest
   "Uses xtdb put transaction to add a vector of documents to a specified
   node"
@@ -245,7 +244,7 @@ Tombaugh Resources Ltd. are happy that this will be simple enough to use. They t
 
 You are back at your ship and check your communications panel. There is a new assignment waiting for you:
 
-```clojure no-exec id=efc84bb8-702c-4fa7-82f8-6cfef39dd934
+```clojure no-exec
 "Congratulations on completing your first assignment.
 
 We would like you to go to Mercury, the hub of the trade world. Their main trade center has a new IT department and want you to show them how to query xtdb"
@@ -255,7 +254,7 @@ We would like you to go to Mercury, the hub of the trade world. Their main trade
 
 It’s a long flight so you refuel, and update your manifest. You have been awarded a new badge, so you add this to your manifest.
 
-```clojure id=ab2ade6b-7352-4e44-b659-cad259ea12f9
+```clojure
 (xt/submit-tx
  node
  [[::xt/put
@@ -270,5 +269,3 @@ It’s a long flight so you refuel, and update your manifest. You have been awar
 You enter the countdown for lift off to Mercury. [See you soon.](https://nextjournal.com/xtdb-tutorial/datalog)
 
 ![Mercury: Datalog](https://github.com/xtdb/xtdb-tutorial/raw/main/images/2b-datalog-mercury.png)
-
-[nextjournal#file#48b4711b-6c2d-4b09-9584-a15ef4f05ef2]: <https://raw.githubusercontent.com/xtdb/xtdb-tutorial/main/files/commodities.txt>

@@ -10,7 +10,7 @@ This is the `evict` installment of the xtdb tutorial.
 
 You need to get xtdb running before you can use it.
 
-```edn no-exec id=ffcf0396-b3f9-40e6-a0c2-654401879781
+```edn no-exec
 {:deps
  {org.clojure/clojure {:mvn/version "1.10.0"}
   org.clojure/tools.deps.alpha
@@ -22,7 +22,7 @@ You need to get xtdb running before you can use it.
   {"snapshots" {:url "https://s01.oss.sonatype.org/content/repositories/snapshots"}}}
 ```
 
-```clojure id=35dc65e9-f458-4e32-9a59-1af72cd12a78
+```clojure
 (require '[xtdb.api :as xt])
 ```
 
@@ -30,7 +30,7 @@ You need to get xtdb running before you can use it.
 
 You arrive at the comet 'Oumuamua and pull along side, asking for permission to land. A voice comes over the communications system
 
-```clojure no-exec id=a86efe70-c896-4cc1-ad16-2bdc46cb01b2
+```clojure no-exec
 "How did you find us? Who sent you??"
 
 — Mysterious person
@@ -46,7 +46,7 @@ You arrive at the comet 'Oumuamua and pull along side, asking for permission to 
 
 You land on the space port and are ushered inside. The ships captain, Ilex, greets you.
 
-```clojure no-exec id=223ddbe8-8eed-4e69-ae1c-57f484971dcb
+```clojure no-exec
 "Hello, it’s good to have you with us.
 
 We are set to leave the solar system right away and as part of our service we offer people the right to be forgotten. Some are not worried that their information is kept here, however others want there to be no personal data left behind.
@@ -60,7 +60,7 @@ Our task for you is to remove the records of the people who have chosen to be fo
 
 You are excited by the prospect and agree to help. First you read the manual entry for `evict` as this will be the perfect tool.
 
-```custom no-exec id=4ec8e24c-39cf-4080-be97-3de19d78af04
+```custom no-exec
 Currently there are only four transaction operations in xtdb: put, delete, match and evict.
 
 		Transaction 	(Description)
@@ -86,7 +86,7 @@ A complete evict transaction has the form:
 
 You are happy with what you have read, and in anticipation of the assignment you define the standalone system.
 
-```clojure id=2bdeaaa6-3672-48c1-bbc7-aa5d05fd1153
+```clojure
 (def node (xt/start-node {}))
 ```
 
@@ -94,7 +94,7 @@ You are happy with what you have read, and in anticipation of the assignment you
 
 You are given the data for the people on the ship and sync up your xtdb node. You decide that you are going to embark on this adventure along with them so you add your name to the list.
 
-```clojure id=950de198-0847-4b3b-bd24-1d1300a30158
+```clojure
 (xt/submit-tx node
                 [[::xt/put
                   {:xt/id :person/kaarlang
@@ -127,7 +127,7 @@ You are given the data for the people on the ship and sync up your xtdb node. Yo
 
 Before you start the eviction process you make a query function so you can see the full results of anything stored in xtdb:
 
-```clojure id=99b0dd9c-d5cb-4c34-8a77-d71f941e97cd
+```clojure
 (defn full-query
   [node]
   (xt/q
@@ -138,19 +138,19 @@ Before you start the eviction process you make a query function so you can see t
 
 You show the others the result:
 
-```clojure id=9aaf2276-94b6-4c1e-a4e2-716c1dc3d7c3
+```clojure
 (full-query node)
 ```
 
 The xtdb manual said that the `evict` operation will remove a document entirely. Ilex tells you the only person who whishes to exercise their right to be forgotten is Kaarlang.
 
-```clojure id=188a6bc3-288a-4a96-b18d-bdbe893c7bcb
+```clojure
   (xt/submit-tx node [[::xt/evict :person/kaarlang]])
 ```
 
 You use your function and see that the transaction was a success.
 
-```clojure id=c8c2c663-6436-429b-8125-70350b4302e3
+```clojure
 (full-query node)
 ```
 
@@ -158,7 +158,7 @@ All the data associated with the the specified `:xt/id` has been removed from th
 
 The transaction history is immutable. This means the transactions will never be removed. You assure Ilex that the documents are completely removed from xtdb, you can show this by looking at the `history-descending` information for each person.
 
-```clojure id=00a1bb7a-46dc-4455-ba90-a50c485f7e46
+```clojure
 (xt/entity-history (xt/db node)
                      :person/kaarlang
                      :desc
@@ -184,130 +184,3 @@ Your eyes get heavy as the cryogenicist initiates the hibernation process. As th
 I hope you enjoyed learning about the basics of xtdb. Although this is the final installment for the main tutorial series it is not the end of the xtdb tutorial. There is one last bonus mission to complete: learning to `await` transactions on [Kepra-5](https://nextjournal.com/xtdb-tutorial/await).
 
 ![Kepra 5: Await](https://github.com/xtdb/xtdb-tutorial/raw/main/images/7b-await-kepra5.png)
-
-
-<details id="com.nextjournal.article">
-<summary>This notebook was exported from <a href="https://nextjournal.com/a/LPtrycCCeyMe5hDp9YQTU?change-id=CyhMmbqH2c4Wsqyu6fbq33">https://nextjournal.com/a/LPtrycCCeyMe5hDp9YQTU?change-id=CyhMmbqH2c4Wsqyu6fbq33</a></summary>
-
-```edn nextjournal-metadata
-{:article
- {:settings nil,
-  :nodes
-  {"00a1bb7a-46dc-4455-ba90-a50c485f7e46"
-   {:compute-ref #uuid "5b7ccd91-a5eb-435d-81a7-e9274983b4e6",
-    :exec-duration 50,
-    :id "00a1bb7a-46dc-4455-ba90-a50c485f7e46",
-    :kind "code",
-    :output-log-lines {},
-    :refs (),
-    :runtime [:runtime "80403b0a-1226-48ff-9bcc-624ed02e3635"]},
-   "188a6bc3-288a-4a96-b18d-bdbe893c7bcb"
-   {:compute-ref #uuid "b49a2b0a-e7d5-474d-bc5b-a13f84a54258",
-    :exec-duration 46,
-    :id "188a6bc3-288a-4a96-b18d-bdbe893c7bcb",
-    :kind "code",
-    :output-log-lines {},
-    :refs (),
-    :runtime [:runtime "80403b0a-1226-48ff-9bcc-624ed02e3635"]},
-   "223ddbe8-8eed-4e69-ae1c-57f484971dcb"
-   {:id "223ddbe8-8eed-4e69-ae1c-57f484971dcb",
-    :kind "code-listing",
-    :name "Ship Captain"},
-   "2bdeaaa6-3672-48c1-bbc7-aa5d05fd1153"
-   {:compute-ref #uuid "ce645546-3408-48a2-8493-9df4d43771ed",
-    :exec-duration 7791,
-    :id "2bdeaaa6-3672-48c1-bbc7-aa5d05fd1153",
-    :kind "code",
-    :output-log-lines {},
-    :refs (),
-    :runtime [:runtime "80403b0a-1226-48ff-9bcc-624ed02e3635"]},
-   "35dc65e9-f458-4e32-9a59-1af72cd12a78"
-   {:compute-ref #uuid "aa535970-b502-4239-a928-b70413014d99",
-    :exec-duration 12201,
-    :id "35dc65e9-f458-4e32-9a59-1af72cd12a78",
-    :kind "code",
-    :output-log-lines {},
-    :refs (),
-    :runtime [:runtime "80403b0a-1226-48ff-9bcc-624ed02e3635"]},
-   "4ec8e24c-39cf-4080-be97-3de19d78af04"
-   {:custom-language "txt",
-    :id "4ec8e24c-39cf-4080-be97-3de19d78af04",
-    :kind "code-listing",
-    :name "xtdb Manual"},
-   "6e1e3414-7ad4-42fa-ace0-6939985e69e2"
-   {:id "6e1e3414-7ad4-42fa-ace0-6939985e69e2",
-    :kind "file",
-    :layout :normal},
-   "80403b0a-1226-48ff-9bcc-624ed02e3635"
-   {:environment
-    [:environment
-     {:article/nextjournal.id
-      #uuid "5b45eb52-bad4-413d-9d7f-b2b573a25322",
-      :change/nextjournal.id
-      #uuid "5cd52af1-7a79-4804-a169-d6ffcdb6eb7a",
-      :node/id "0ae15688-6f6a-40e2-a4fa-52d81371f733"}],
-    :id "80403b0a-1226-48ff-9bcc-624ed02e3635",
-    :kind "runtime",
-    :language "clojure",
-    :type :nextjournal,
-    :runtime/mounts
-    [{:src [:node "ffcf0396-b3f9-40e6-a0c2-654401879781"],
-      :dest "/deps.edn"}]},
-   "82b75d0b-67f2-4bc2-a36a-5bd2051e1807"
-   {:id "82b75d0b-67f2-4bc2-a36a-5bd2051e1807", :kind "file"},
-   "8480e0d0-9ad2-440a-a7cb-6bebb50f77d8"
-   {:compute-ref #uuid "2ccdf133-dafd-4f2b-be6e-c2f242798100",
-    :exec-duration 43,
-    :id "8480e0d0-9ad2-440a-a7cb-6bebb50f77d8",
-    :kind "code",
-    :output-log-lines {},
-    :refs (),
-    :runtime [:runtime "80403b0a-1226-48ff-9bcc-624ed02e3635"]},
-   "950de198-0847-4b3b-bd24-1d1300a30158"
-   {:compute-ref #uuid "d2c7534e-fb26-45e5-b676-c0600e102d77",
-    :exec-duration 359,
-    :id "950de198-0847-4b3b-bd24-1d1300a30158",
-    :kind "code",
-    :output-log-lines {},
-    :refs (),
-    :runtime [:runtime "80403b0a-1226-48ff-9bcc-624ed02e3635"]},
-   "99b0dd9c-d5cb-4c34-8a77-d71f941e97cd"
-   {:compute-ref #uuid "bc949a24-d4d2-4c92-ae9a-61347d13dd14",
-    :exec-duration 69,
-    :id "99b0dd9c-d5cb-4c34-8a77-d71f941e97cd",
-    :kind "code",
-    :output-log-lines {},
-    :refs (),
-    :runtime [:runtime "80403b0a-1226-48ff-9bcc-624ed02e3635"]},
-   "9aaf2276-94b6-4c1e-a4e2-716c1dc3d7c3"
-   {:compute-ref #uuid "0ba83de0-427a-415a-95f6-a016b584c595",
-    :exec-duration 283,
-    :id "9aaf2276-94b6-4c1e-a4e2-716c1dc3d7c3",
-    :kind "code",
-    :output-log-lines {},
-    :refs (),
-    :runtime [:runtime "80403b0a-1226-48ff-9bcc-624ed02e3635"]},
-   "a86efe70-c896-4cc1-ad16-2bdc46cb01b2"
-   {:id "a86efe70-c896-4cc1-ad16-2bdc46cb01b2",
-    :kind "code-listing",
-    :name "Top secret security"},
-   "c8c2c663-6436-429b-8125-70350b4302e3"
-   {:compute-ref #uuid "48509611-2e6b-43d5-a912-fed534082385",
-    :exec-duration 96,
-    :id "c8c2c663-6436-429b-8125-70350b4302e3",
-    :kind "code",
-    :output-log-lines {},
-    :refs (),
-    :runtime [:runtime "80403b0a-1226-48ff-9bcc-624ed02e3635"]},
-   "f0026e73-9244-45f5-ac13-bab33663707d"
-   {:id "f0026e73-9244-45f5-ac13-bab33663707d", :kind "file"},
-   "ffcf0396-b3f9-40e6-a0c2-654401879781"
-   {:id "ffcf0396-b3f9-40e6-a0c2-654401879781",
-    :kind "code-listing",
-    :name "deps.edn"}},
-  :nextjournal/id #uuid "02b53d9b-fbfd-4709-92f8-3de9201154f3",
-  :article/change
-  {:nextjournal/id #uuid "60ff0c45-65f9-45eb-b08b-f980bbc25e06"}}}
-
-```
-</details>
