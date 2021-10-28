@@ -10,6 +10,7 @@ This is the `match` installment of the xtdb tutorial.
 
 You need to get xtdb running before you can use it.
 
+<!--- Stil want to show the user deps.edn even though it's loaded in the repo. --->
 ```edn no-exec
 {:deps
  {org.clojure/clojure {:mvn/version "1.10.0"}
@@ -30,52 +31,56 @@ You need to get xtdb running before you can use it.
 
 As you pass through the innermost ring of Saturn, A warning light appears on your communications panel. You open the message. It’s from Space Customs and reads:
 
-```clojure no-exec
-"We extend you the warmest welcome.
+> We extend you the warmest welcome.
+>
+> We must check papers before we can give you permission to land.
+>
+> \- Cronus Peaceful Nations
 
-We must check papers before we can give you permission to land."
-
-— Cronus Peaceful Nations
-```
 
 They are asking to see your flight manifest.
 
 ## Choose your path:
 
-**You have your manifest** : *You have permission to land, continue to the space port.*
 
-**You do not have your manifest** : *You do not have permission to land. You can either return to [Neptune](https://nextjournal.com/xtdb-tutorial/bitemporality) or continue at your own risk.*
+  * **You have your manifest** : 
+      * *You have permission to land, continue to the space port.*
+
+
+  * **You do not have your manifest** :
+      * *You do not have permission to land. You can either return to [Neptune](https://nextjournal.com/xtdb-tutorial/bitemporality) or continue at your own risk.*
 
 # Space Port
 
 As you prepare to land you open your xtdb manual to the page on `match`
 
-```clojure no-exec
-"Currently there are only four transaction operations in xtdb: put, delete, match and evict.
-		Transaction 	(Description)
-    put    		(Writes a version of a document)
-    delete    (Deletes a version of a document)
-    match     (Stops a transaction if the precondition is not met.)
-    evict    	(Removes an document entirely)
-
-match:
-
-match checks the current state of an entity - if the entity doesn’t match the provided doc, the transaction will not continue. You can also pass nil to check that the entity doesn’t exist prior to your transaction.
-
-A match transaction takes the entity id, along with an expected document. Optionally you can provide a valid time.
-
-Time in xtdb is denoted #inst 'yyyy-MM-ddThh:mm:ss'. For example, 9:30 pm on January 2nd 1999 would be written: #inst \"1999-01-02T21:30:00\".
-
-A complete match transaction has the form:
-
-    [::xt/match entity-id expected-doc valid-time]
-
-Note that if there is no old-doc in the system, you can provide `nil` in its place."
-
-— xtdb manual
-```
-
-*[Read More](https://xtdb.com/reference/transactions.html#match)*
+> Currently there are only four transaction operations in xtdb: put, delete, match and evict.
+>
+>> **Transaction**    **(Description)**
+>>
+>> put                (Writes a version of a document)
+>>
+>> delete           (Deletes a version of a document)
+>>
+>> match           (Stops a transaction if the precondition is not met.)
+>>
+>> evict             (Removes a document entirely)
+>
+> ## match:
+>
+> match checks the current state of an entity - if the entity doesn’t match the provided doc, the transaction will not continue. You can also pass nil to check that the entity doesn’t exist prior to your transaction.
+>
+> A match transaction takes the entity id, along with an expected document. Optionally you can provide a valid time.
+>
+> Time in xtdb is denoted #inst 'yyyy-MM-ddThh:mm:ss'. For example, 9:30 pm on January 2nd 1999 would be written: `#inst "1999-01-02T21:30:00"`.
+>
+> A complete match transaction has the form:
+>
+> `[::xt/match entity-id expected-doc valid-time]`
+>
+> Note that if there is no old-doc in the system, you can provide `nil` in its place."
+>
+> \- xtdb manual *[Read More](https://xtdb.com/reference/transactions.html#match)*
 
 You are happy with what you have read, and in anticipation of the assignment you define the standalone node.
 
@@ -89,16 +94,20 @@ As you land on the surface of Saturn the job ticket for this assignment is unloc
 
 ## Ticket
 
-```clojure no-exec
-Task 			"Secure trading system"
-Company		"Cronus Market Technologies"
-Contact 			"Ubuku Eppimami"
-Submitted "2115-02-23T13:38:20"
-Additional information:
-"We need to be shown how to ensure no trades are done without the buyer and seller having the necessary funds or stock respectively"
-```
-
-[example_data.txt][nextjournal#file#6b4d39da-314d-4dab-87f7-f2f61bd99ac4]
+> ### Task
+> *Secure trading system*
+>
+> ### Company
+> *Cronus Market Technologies*
+>
+> ### Contact
+> *Ubuku Eppimami*
+>
+> ### Submitted 
+> *2115-02-23T13:38:20*
+>
+> ### Additional information:
+> *We need to be shown how to ensure no trades are done without the buyer and seller having the necessary funds or stock respectively*
 
 The next shuttle to the CMT office leaves in 5 Earth minutes. While you wait you use your easy ingest function you created on Pluto to put the example data into your system.
 
@@ -170,25 +179,28 @@ Just as you are finishing off your shuttle arrives.
 
 After a short journey through the icy lower clouds of Saturn you are met by a friendly faced Ubuku.
 
-```clojure no-exec
-"Hello friend.
+> Hello friend.
+>
+> We have been using xtdb for a short time now and think it is great. The problem is a human one. Occasionally we process trades without checking that are enough funds in the buyers account.
+>
+> I know there is a way that we can stop this happening in xtdb.
+>
+> I sent you some example data in the job ticket for you to use, I trust you found it.
+>
+> Do you think you can help us?
+>
+> \- Ubuku Eppimami
 
-We have been using xtdb for a short time now and think it is great. The problem is a human one. Occasionally we process trades without checking that are enough funds in the buyers account.
-
-I know there is a way that we can stop this happening in xtdb.
-
-I sent you some example data in the job ticket for you to use, I trust you found it.
-
-Do you think you can help us?"
-
-— Ubuku Eppimami
-```
 
 ## Choose your path:
 
-**"Yes, I'll give it a go."** : *Continue to complete the assignment.*
 
-**"I'm not even sure how to begin"** : *Take some time to read through the xtdb manual again. If you're still unsure then you can follow along anyway and see if things become clear.*
+  * **"Yes, I'll give it a go."** : 
+      * *Continue to complete the assignment.*
+
+
+  * **"I'm not even sure how to begin"** : 
+      * *Take some time to read through the xtdb manual again. If you're still unsure then you can follow along anyway and see if things become clear.*
 
 ## Assignment
 
@@ -307,13 +319,12 @@ Ubuku thanks you. This is just what they are looking for. You head back to the s
 
 Back at the spaceship there is a light waiting for you on your communications panel.
 
-```clojure no-exec
-"Well done, you’ve had a productive week. We have one final task for you to do before you finish for the week
+> Well done, you’ve had a productive week. We have one final task for you to do before you finish for the week
+>
+> You need to go to Jupiter and meet Kaarlang, it’s his last day working for us and he needs to delete his trade clients from his personal xtdb node for data protection.
+>
+> \- Helios Banking Inc.
 
-You need to go to Jupiter and meet Kaarlang, it’s his last day working for us and he needs to delete his trade clients from his personal xtdb node for data protection."
-
-— Helios Banking Inc.
-```
 
 You update your manifest with your most recent badge.
 
