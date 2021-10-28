@@ -10,6 +10,7 @@ This is the `evict` installment of the xtdb tutorial.
 
 You need to get xtdb running before you can use it.
 
+<!--- Stil want to show the user deps.edn even though it's loaded in the repo. --->
 ```edn no-exec
 {:deps
  {org.clojure/clojure {:mvn/version "1.10.0"}
@@ -30,59 +31,61 @@ You need to get xtdb running before you can use it.
 
 You arrive at the comet 'Oumuamua and pull along side, asking for permission to land. A voice comes over the communications system
 
-```clojure no-exec
-"How did you find us? Who sent you??"
 
-— Mysterious person
-```
+> How did you find us? Who sent you??
+>
+> \- Mysterious person
+
 
 ## Choose your path:
 
-**"Kaarlang sent me"** : *You have permission to land, continue to the space port.*
 
-**"I'm not sure how I got here, I found you by mistake"**: *You are sent away. You must return to [Jupiter](https://nextjournal.com/xtdb-tutorial/delete) and find Kaarlang.*
+  * **"Kaarlang sent me"** : 
+      * *You have permission to land, continue to the space port.*
+
+
+  * **"I'm not sure how I got here, I found you by mistake"**:
+      *  *You are sent away. You must return to [Jupiter](https://nextjournal.com/xtdb-tutorial/delete) and find Kaarlang.*
 
 # Space Port
 
 You land on the space port and are ushered inside. The ships captain, Ilex, greets you.
 
-```clojure no-exec
-"Hello, it’s good to have you with us.
+Hello, it’s good to have you with us.
 
-We are set to leave the solar system right away and as part of our service we offer people the right to be forgotten. Some are not worried that their information is kept here, however others want there to be no personal data left behind.
-
-You may not have been told this yet, but this comet is actually a transportation vessel. It will take us to the star system Gilese 667C which is home to intelligent life far superior to our own. We all are hoping to find opportunities beyond our wildest dreams. All records of this transportation vessel and any life outside of the solar system are heavily monitored and wiped in the interest of preserving the normal technological advancement of the Human race. This means we know little of the beings we are going to meet.
-
-Our task for you is to remove the records of the people who have chosen to be forgotten here."
-
-— Ilex
-```
+> We are set to leave the solar system right away and as part of our service we offer people the right to be forgotten. Some are not worried that their information is kept here, however others want there to be no personal data left behind.
+>
+> You may not have been told this yet, but this comet is actually a transportation vessel. It will take us to the star system Gilese 667C which is home to intelligent life far superior to our own. We all are hoping to find opportunities beyond our wildest dreams. All records of this transportation vessel and any life outside of the solar system are heavily monitored and wiped in the interest of preserving the normal technological advancement of the Human race. This means we know little of the beings we are going to meet.
+>
+> Our task for you is to remove the records of the people who have chosen to be forgotten here.
+>
+> \- Ilex
 
 You are excited by the prospect and agree to help. First you read the manual entry for `evict` as this will be the perfect tool.
 
-```custom no-exec
-Currently there are only four transaction operations in xtdb: put, delete, match and evict.
-
-		Transaction 	(Description)
-    put    		   	(Writes a version of a document)
-    delete    		(Deletes a version of a document)
-    match         (Stops a transaction if the precondition is not met.)
-    evict    			(Removes an document entirely)
-
-Evict:
-XTDB supports eviction of active and historical data to assist with technical compliance for information privacy regulations.
-
-The main transaction log contains only hashes and is immutable. All document content is stored in a dedicated document log that can be evicted by compaction.
-
-evict removes a document from xtdb. The transaction history will be available, but all versions at or within the provided valid time window are evicted.
-
-A complete evict transaction has the form:
-[::xt/put eid]
-
-- xtdb manual
-```
-
-*[Read More.](https://xtdb.com/reference/transactions.html#evict)*
+> Currently there are only four transaction operations in xtdb: put, delete, match and evict.
+>
+>> **Transaction**    **(Description)**
+>>
+>> put                (Writes a version of a document)
+>>
+>> delete           (Deletes a version of a document)
+>>
+>> match           (Stops a transaction if the precondition is not met.)
+>>
+>> evict             (Removes a document entirely)
+>
+> ## Evict
+> XTDB supports eviction of active and historical data to assist with technical compliance for information privacy regulations.
+>
+> The main transaction log contains only hashes and is immutable. All document content is stored in a dedicated document log that can be evicted by compaction.
+>
+> evict removes a document from xtdb. The transaction history will be available, but all versions at or within the provided valid time window are evicted.
+>
+> A complete evict transaction has the form:
+> `[::xt/evict eid]`
+>
+> \- xtdb manual *[Read More.](https://xtdb.com/reference/transactions.html#evict)*
 
 You are happy with what you have read, and in anticipation of the assignment you define the standalone system.
 
