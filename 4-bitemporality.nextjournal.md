@@ -10,6 +10,7 @@ This is the bitemporal installment of the xtdb "choose your own adventure" tutor
 
 You need to get xtdb running before you can use it.
 
+<!--- Stil want to show the user deps.edn even though it's loaded in the repo. --->
 ```edn no-exec
 {:deps
  {org.clojure/clojure {:mvn/version "1.10.0"}
@@ -30,37 +31,34 @@ You need to get xtdb running before you can use it.
 
 You enter the Neptunian atmosphere and your communications panel lights up.
 
-```clojure no-exec
-"It is our honor to welcome you to the planet Neptune.
+> It is our honor to welcome you to the planet Neptune.
+>
+> If you are visiting for business reasons, please present your manifest.
+>
+> Otherwise, have your visa ready for inspection.
+>
+> \- Poseidon Republic of Wealth
 
-If you are visiting for business reasons, please present your manifest.
-
-Otherwise, have your visa ready for inspection."
-
-- Poseidon Republic of Wealth
-```
 
 The government is asking to see your flight manifest.
 
 ## Choose your path:
 
-**You have your manifest** : *You have permission to land, continue to the space port.*
+- **You have your manifest** : 
+    - *You have permission to land, continue to the space port.*
 
-**You do not have your manifest** : *You do not have permission to land. You can either return to [Mercury](https://nextjournal.com/xtdb-tutorial/datalog-queries) or continue at your own risk.*
+- **You do not have your manifest** : 
+    - *You do not have permission to land. You can either return to [Mercury](https://nextjournal.com/xtdb-tutorial/datalog-queries) or continue at your own risk.*
 
 # Space Port
 
 On your way down to the landing site you take the time to read the xtdb manual.
 
-```clojure no-exec
-"One or more documents can be inserted into xtdb via a put transaction at a specific valid-time. The valid-time can be any time (past, future or present).
-
-If no valid-time is provided, xtdb will default to the transaction time, i.e. the present. Each document survives until it is deleted or a new version of it is added."
-
-— xtdb manual
-```
-
-*[Read More](https://xtdb.com/articles/bitemporality.html)*
+> One or more documents can be inserted into xtdb via a put transaction at a specific valid-time. The valid-time can be any time (past, future or present).
+>
+> If no valid-time is provided, xtdb will default to the transaction time, i.e. the present. Each document survives until it is deleted or a new version of it is added.
+>
+> \- xtdb manual *[Read More](https://xtdb.com/articles/bitemporality.html)*
 
 You are happy with what you have read, and in anticipation of the assignment you define the standalone node.
 
@@ -74,32 +72,40 @@ Upon landing on the ice giant, your communications panel lights up indicating th
 
 ## Ticket
 
-```clojure no-exec
-Task 			"Back fill insurance documents"
-Company		"Coast Insurance"
-Contact 			"Lyndon Mercia-York"
-Submitted "2115-02-22T13:38:20"
-Additional information:
-"We have lost a lot of our records in a flood. I think it is prudent to start storing our data digitally. It is important to track policy holders' level of cover at the time of the incident. We have read a lot about the conveniences of xtdb's bitemporality in this situation. We need you to help us get up and running. Please send someone quickly though - the waters are rising."
-```
+
+> ### Task
+> *Back fill insurance documents*
+>
+> ### Company
+> *Coast Insurance*
+>
+> ### Contact
+> *Lyndon Mercia-York*
+>
+> ### Submitted
+> *2115-02-22T13:38:20*
+>
+> ### Additional information:
+> *We have lost a lot of our records in a flood. I think it is prudent to start storing our data digitally. It is important to track policy holders' level of cover at the time of the incident. We have read a lot about the conveniences of xtdb's bitemporality in this situation. We need you to help us get up and running. Please send someone quickly though - the waters are rising.*
 
 Outside your ship you are met by a panicked looking Lyndon.
 
-```clojure no-exec
-"Thank goodness you’re here.
+> Thank goodness you’re here.
+>
+> We need you to show us how to put our customers information into xtdb in order of time. Working with insurance claims, we should be able to easily look back in time at what type of coverage the customer had at the time of the incident.
+>
+> Are you able to help us?
+>
+> \- Lyndon Mercia-York
 
-We need you to show us how to put our customers information into xtdb in order of time. Working with insurance claims, we should be able to easily look back in time at what type of coverage the customer had at the time of the incident.
-
-Are you able to help us?"
-
-— Lyndon Mercia-York
-```
 
 ## Choose your path:
 
-**"Yes, I'll give it a go."** : *Continue to complete the assignment.*
-
-**"I'm not even sure how to begin"** : *Take some time to read through the xtdb manual again. If you're still unsure then you can follow along anyway and see if things become clear.*
+  * **"Yes, I'll give it a go."** :
+    * *Continue to complete the assignment.*
+    
+  * **"I'm not even sure how to begin"** :
+    * *Take some time to read through the xtdb manual again. If you're still unsure then you can follow along anyway and see if things become clear.*
 
 ## Assignment
 
@@ -206,10 +212,9 @@ And finally you show them a time when the customer had no cover at all.
 
 Confident in their ability to put the remainder of their records into xtdb, Lyndon thanks you.
 
-```clojure no-exec
-"I can’t believe we’ve not digitized sooner. There was a huge push to start using more paper as the Neptune tree population was getting out of control from the accelerated terraforming, but since all these floods I’m not sure paper was the right choice."
-— Lyndon Mercia-York
-```
+> I can’t believe we’ve not digitized sooner. There was a huge push to start using more paper as the Neptune tree population was getting out of control from the accelerated terraforming, but since all these floods I’m not sure paper was the right choice."
+> 
+> \- Lyndon Mercia-York
 
 You say goodbye to Lyndon and head back to the space port.
 
@@ -217,13 +222,11 @@ You say goodbye to Lyndon and head back to the space port.
 
 Back at your spaceship you check your communications panel. There is a new assignment waiting for you.
 
-```clojure no-exec
-"We have assigned you a quick task on Saturn helping a small company who are having some problems keeping their records in order.
-
-This shouldn’t take long, but don’t forget they will still need to see your manifest."
-
-— Helios Banking Inc.
-```
+> We have assigned you a quick task on Saturn helping a small company who are having some problems keeping their records in order.
+>
+> This shouldn’t take long, but don’t forget they will still need to see your manifest.
+>
+> — Helios Banking Inc.
 
 You add the new badge to your manifest
 

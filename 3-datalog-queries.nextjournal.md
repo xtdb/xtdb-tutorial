@@ -10,6 +10,7 @@ This is the third instalment of the xtdb tutorial, focusing on Datalog queries.
 
 You need to get xtdb running before you can use it.
 
+<!--- Stil want to show the user deps.edn even though it's loaded in the repo. --->
 ```edn no-exec
 {:deps
  {org.clojure/clojure {:mvn/version "1.10.0"}
@@ -30,39 +31,35 @@ You need to get xtdb running before you can use it.
 
 You come into range of the satellites orbiting Mercury. Your communications panel lights up and you read:
 
-```clojure no-exec
-"Greetings.
-
-You have reached Mercury, home to the greatest stock market in the Solar System. Your ship has been flagged as a transport vessel for business related activities.
-
-Please have your flight manifest ready and prepare to land."
-
-- Mercury Commonwealth
-```
+> Greetings.
+>
+> You have reached Mercury, home to the greatest stock market in the Solar System. Your ship has been flagged as a transport vessel for business related activities.
+>
+> Please have your flight manifest ready and prepare to land.
+>
+> \- Mercury Commonwealth
 
 The government is asking to see your flight manifest.
 
 ## Choose your path:
 
-**You have your manifest** : *You have permission to land, continue to the space port.*
+- **You have your manifest** : 
+    - *You have permission to land, continue to the space port.*
 
-**You do not have your manifest** : *You do not have permission to land. You can either return to [Pluto](https://nextjournal.com/xtdb-tutorial/put-transactions), or continue at your own risk.*
+- **You do not have your manifest** : 
+    - *You do not have permission to land. You can either return to [Pluto](https://nextjournal.com/xtdb-tutorial/put-transactions), or continue at your own risk.*
 
 # Space Port
 
 You read your xtdb manual as you wait for an available landing pad.
 
-```clojure no-exec
-"A Datalog query consists of a set of variables and a set of clauses. The result of running a query is a result set (or lazy sequence) of the possible combinations of values that satisfy all of the clauses at the same time. These combinations of values are referred to as "tuples".
-
-The possible values within the result tuples are derived from your database of documents. The documents themselves are represented in the database indexes as "entity–attribute–value" (EAV) facts. For example, a single document {:xt/id :myid :color "blue" :age 12} is transformed into two facts [[:myid :color "blue"][:myid :age 12]].
-
-In the most basic case, a Datalog query works by searching for "subgraphs" in the database that match the pattern defined by the clauses. The values within these subgraphs are then returned according to the list of return variables requested in the :find vector within the query."
-
-— xtdb manual
-```
-
-*[Read More](https://xtdb.com/reference/queries.html)*
+> A Datalog query consists of a set of variables and a set of clauses. The result of running a query is a result set (or lazy sequence) of the possible combinations of values that satisfy all of the clauses at the same time. These combinations of values are referred to as "tuples".
+>
+> The possible values within the result tuples are derived from your database of documents. The documents themselves are represented in the database indexes as "entity–attribute–value" (EAV) facts. For example, a single document `{:xt/id :myid, :color "blue", :age 12}` is transformed into two facts `[[:myid :color "blue"][:myid :age 12]]`.
+>
+> In the most basic case, a Datalog query works by searching for "subgraphs" in the database that match the pattern defined by the clauses. The values within these subgraphs are then returned according to the list of return variables requested in the :find vector within the query."
+>
+> \- xtdb manual *[Read More](https://xtdb.com/reference/queries.html)*
 
 You are happy with what you have read, and in anticipation of the assignment you define the standalone node.
 
@@ -76,16 +73,20 @@ You land on the surface of the tidally locked planet. As you do, the job ticket 
 
 ## Ticket
 
-```clojure no-exec
-Task 			"Find information on products for stock buyers"
-Company		"Interplanetary Buyers & Sellers (IPBS)"
-Contact 			"Cosmina Sinnett"
-Submitted "2115-06-20T10:54:27"
-Additional information:
-"We have some new starters in the sales team. They need to be trained on how to query xtdb using Datalog to quickly find the information they need on a product. Traders must have access to up-to-date information when talking to their clients. We would also like you to create a function that can be used for the things we have to look up a lot. I will include example data so they can learn using relevant commodities."
-```
-
-[example_data.txt][nextjournal#file#551cde09-6dd5-4f40-90ee-b2024a0ceceb]
+> ### Task
+> *Find information on products for stock buyers*
+> 
+> ### Company
+> *Interplanetary Buyers & Sellers (IPBS)*
+>
+> ### Contact 
+> *Cosmina Sinnett*
+> 
+> ### Submitted 
+> *2115-06-20T10:54:27*
+> 
+> ### Additional information:
+> *We have some new starters in the sales team. They need to be trained on how to query xtdb using Datalog to quickly find the information they need on a product. Traders must have access to up-to-date information when talking to their clients. We would also like you to create a function that can be used for the things we have to look up a lot. I will include example data so they can learn using relevant commodities.*
 
 On your way over to the IPBS office you input the data in the attachment using the easy ingest function you created on Pluto.
 
@@ -142,25 +143,25 @@ On your way over to the IPBS office you input the data in the attachment using t
 
 This means you are ready to give them a tutorial when you get there.
 
-```clojure no-exec
-"Oh good, you’re here.
-
-I have a room reserved and we have five new starters ready and waiting to learn how to query xtdb.
-
-We are in the middle of our double sunrise. The workers take this time to rest, but in half an Earth hour the sun will rise again and the workers will start back.
-
-You can take this time to prepare any training material if you wish."
-
-— Cosmina Sinnett
-```
+> Oh good, you’re here.
+>
+> I have a room reserved and we have five new starters ready and waiting to learn how to query xtdb.
+>
+> We are in the middle of our double sunrise. The workers take this time to rest, but in half an Earth hour the sun will rise again and the workers will start back.
+>
+> You can take this time to prepare any training material if you wish.
+>
+> \- Cosmina Sinnett
 
 You have the opportunity to prepare examples for the lesson ahead.
 
 ## Choose your path:
 
-**"You use the time wisely and plan some examples"** : *Continue to complete the assignment.*
+- **"You use the time wisely and plan some examples"** : 
+    - *Continue to complete the assignment.*
 
-**"You decide to wing it and see how the tutorial goes"** : *You go and teach the new starters. They are not impressed with your lack of preparation. They learn next to nothing and you realize you made a mistake.*
+- **"You decide to wing it and see how the tutorial goes"** : 
+    - *You go and teach the new starters. They are not impressed with your lack of preparation. They learn next to nothing and you realize you made a mistake.*
 
 # Datalog Tutorial
 
@@ -168,7 +169,7 @@ You put together examples and make notes so you can be confident in your lesson.
 
 ## Lesson Plan
 
-*Example 1.* **Basic Query**
+### 1. Basic Query
 
 ```clojure
 (xt/q (xt/db node)
@@ -180,7 +181,7 @@ You put together examples and make notes so you can be confident in your lesson.
 
 *In this case we are returning the `:xt/id` due to our placement of `element`.*
 
-*Example 2.* **Quoting**
+### 2. Quoting
 
 ```clojure
 (=
@@ -200,7 +201,7 @@ You put together examples and make notes so you can be confident in your lesson.
 
 *The vectors given to the clauses should be quoted. How you do it at this stage is arbitrary.*
 
-*Example 3*. **Return the name of metal elements.**
+### 3. Return the name of metal elements.
 
 ```clojure
 (xt/q (xt/db node)
@@ -213,7 +214,7 @@ You put together examples and make notes so you can be confident in your lesson.
 
 *One way to think of this is that you are filtering to only get the results that satisfy all the clauses.*
 
-*Example 4.* **More information.**
+### 4. More information.
 
 ```clojure
 (xt/q (xt/db node)
@@ -226,7 +227,7 @@ You put together examples and make notes so you can be confident in your lesson.
 
 *The example above returns the `:density` and the `:common-name` values for all entities in xtdb that have values of some kind for both `:density` and `:common-name` attributes.*
 
-*Example 5*. **Arguments***.*
+### 5. Arguments
 
 ```clojure
 (xt/q (xt/db node)
@@ -259,7 +260,7 @@ You put together examples and make notes so you can be confident in your lesson.
 
 *We pass the value(s) to be used as the third argument to `xt/q`.*
 
-**- Notes.**
+***
 
 You give your lesson to the new starters when they return. They are a good audience and follow it well.
 
@@ -300,15 +301,13 @@ When you are finished, Cosmina thanks you and you head back to the space port.
 
 You are back at your spaceship. Seeing another light on your communications panel, you realize there is another assignment ready for you.
 
-```clojure no-exec
-"Congratulations on completing your assignment. You are getting the hang of things now, and we are impressed with your progress.
-
-We would like you to go to Neptune. They have recently lost a lot of data in a flood so they have decided to digitize their entire system and archives. We told them you could do it in such a way that the data is still time ordered as it was with their previous filing system.
-
-Good luck, and don’t forget to update your manifest."
-
-— Helios Banking Inc.
-```
+> Congratulations on completing your assignment. You are getting the hang of things now, and we are impressed with your progress.
+>
+> We would like you to go to Neptune. They have recently lost a lot of data in a flood so they have decided to digitize their entire system and archives. We told them you could do it in such a way that the data is still time ordered as it was with their previous filing system.
+>
+> Good luck, and don’t forget to update your manifest."
+>
+> \- Helios Banking Inc.
 
 You update your manifest with the latest badge.
 
