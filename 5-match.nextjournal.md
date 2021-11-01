@@ -4,7 +4,7 @@
 
 # Introduction
 
-This is the `match` installment of the xtdb tutorial.
+This is the `match` instalment of the xtdb tutorial.
 
 ## Setup
 
@@ -29,7 +29,9 @@ You need to get xtdb running before you can use it.
 
 # Arrival on Saturn
 
-As you pass through the innermost ring of Saturn, A warning light appears on your communications panel. You open the message. It’s from Space Customs and reads:
+As you pass through the innermost ring of Saturn, A warning light appears on your communications panel.
+You open the message.
+It’s from Space Customs and reads:
 
 > We extend you the warmest welcome.
 >
@@ -43,14 +45,14 @@ They are asking to see your flight manifest.
 ## Choose your path:
 
 
-  * **You have your manifest** : 
-      * *You have permission to land, continue to the space port.*
+  * **You have your manifest**: 
+      * *You have permission to land, continue to the spaceport.*
 
 
-  * **You do not have your manifest** :
+  * **You do not have your manifest**:
       * *You do not have permission to land. You can either return to [Neptune](https://nextjournal.com/xtdb-tutorial/bitemporality) or continue at your own risk.*
 
-# Space Port
+# Spaceport
 
 As you prepare to land you open your xtdb manual to the page on `match`
 
@@ -68,11 +70,14 @@ As you prepare to land you open your xtdb manual to the page on `match`
 >
 > ## match:
 >
-> match checks the current state of an entity - if the entity doesn’t match the provided doc, the transaction will not continue. You can also pass nil to check that the entity doesn’t exist prior to your transaction.
+> match checks the current state of an entity - if the entity doesn’t match the provided doc, the transaction will not continue.
+> You can also pass nil to check that the entity doesn’t exist prior to your transaction.
 >
-> A match transaction takes the entity id, along with an expected document. Optionally you can provide a valid time.
+> A match transaction takes the entity id, along with an expected document.
+> Optionally you can provide a valid time.
 >
-> Time in xtdb is denoted #inst 'yyyy-MM-ddThh:mm:ss'. For example, 9:30 pm on January 2nd 1999 would be written: `#inst "1999-01-02T21:30:00"`.
+> Time in xtdb is denoted #inst 'yyyy-MM-ddThh:mm:ss'.
+> For example, 9:30 pm on January 2nd 1999 would be written: `#inst "1999-01-02T21:30:00"`.
 >
 > A complete match transaction has the form:
 >
@@ -82,7 +87,7 @@ As you prepare to land you open your xtdb manual to the page on `match`
 >
 > \- xtdb manual *[Read More](https://xtdb.com/reference/transactions.html#match)*
 
-You are happy with what you have read, and in anticipation of the assignment you define the standalone node.
+You are happy with what you have read, and in anticipation of the assignment, you define the standalone node.
 
 ```clojure
 (def node (xt/start-node {}))
@@ -109,7 +114,8 @@ As you land on the surface of Saturn the job ticket for this assignment is unloc
 > ### Additional information:
 > *We need to be shown how to ensure no trades are done without the buyer and seller having the necessary funds or stock respectively*
 
-The next shuttle to the CMT office leaves in 5 Earth minutes. While you wait you use your easy ingest function you created on Pluto to put the example data into your system.
+The next shuttle to the CMT office leaves in 5 Earth minutes.
+While you wait you use the easy ingest function you created on Pluto to put the example data into your system.
 
 ```clojure
 (defn easy-ingest
@@ -177,11 +183,13 @@ You also decide to make some Clojure functions so you can easily show Ubuku the 
 
 Just as you are finishing off your shuttle arrives.
 
-After a short journey through the icy lower clouds of Saturn you are met by a friendly faced Ubuku.
+After a short journey through the icy lower clouds of Saturn, you are met by a friendly-faced Ubuku.
 
-> Hello friend.
+> Hello, friend.
 >
-> We have been using xtdb for a short time now and think it is great. The problem is a human one. Occasionally we process trades without checking that are enough funds in the buyers account.
+> We have been using xtdb for a short time now and think it is great.
+> The problem is a human one.
+> Occasionally we process trades without checking that are enough funds in the buyer's account.
 >
 > I know there is a way that we can stop this happening in xtdb.
 >
@@ -195,18 +203,19 @@ After a short journey through the icy lower clouds of Saturn you are met by a fr
 ## Choose your path:
 
 
-  * **"Yes, I'll give it a go."** : 
+  * **"Yes, I'll give it a go."**: 
       * *Continue to complete the assignment.*
 
 
-  * **"I'm not even sure how to begin"** : 
+  * **"I'm not even sure how to begin"**: 
       * *Take some time to read through the xtdb manual again. If you're still unsure then you can follow along anyway and see if things become clear.*
 
 ## Assignment
 
 You explain to Ubuku that all they need to do to solve their problem is to use the `match` operation instead of `put` when they are processing their trades.
 
-You show Ubuku the `match` operation for a valid transaction. You move 10 units of Methane (`:units/CH4`) each at the cost of 100 credits to Blue Energy:
+You show Ubuku the `match` operation for a valid transaction.
+You move 10 units of Methane (`:units/CH4`) each at the cost of 100 credits to Blue Energy:
 
 ```clojure
 (xt/submit-tx
@@ -259,9 +268,11 @@ You show Ubuku the result of the trade using the function you created earlier:
 (format-stock-check (stock-check :blue-energy :units/CH4))
 ```
 
-They are happy that this works as he sees the 1000 credits move from Blue energy to Tombaugh Resources Ltd. and 10 units of Methane the other way.
+They are happy that this works as he sees the 1000 credits move from Blue energy to Tombaugh Resources Ltd.
+and 10 units of Methane the other way.
 
-Ubuku asks if you can show them what would happen if there was not enough funds in the account of a buyer. You show him a trade where the old doc is not as expected for Encompass trade, to buy 10,000 units of Gold from Gold Harmony.
+Ubuku asks if you can show them what would happen if there were not enough funds in the account of a buyer.
+You show him a trade where the old doc is not as expected for Encompass trade, to buy 10,000 units of Gold from Gold Harmony.
 
 ```clojure
 (xt/submit-tx
@@ -311,15 +322,19 @@ Ubuku asks if you can show them what would happen if there was not enough funds 
 (format-stock-check (stock-check :encompass-trade :units/Au))
 ```
 
-You explain to Ubuku that this time, because you have both `match` operations in the same transaction, the trade does not go through. The accounts remain the same, even though the failing `match` was the second operation.
+You explain to Ubuku that this time, because you have both `match` operations in the same transaction, the trade does not go through.
+The accounts remain the same, even though the failing `match` was the second operation.
 
-Ubuku thanks you. This is just what they are looking for. You head back to the space station to see if there is another assignment waiting for you.
+Ubuku thanks you.
+This is just what they are looking for.
+You head back to the space station to see if there is another assignment waiting for you.
 
-# Space Port
+# Spaceport
 
-Back at the spaceship there is a light waiting for you on your communications panel.
+Back at the spaceship, there is a light waiting for you on your communications panel.
 
-> Well done, you’ve had a productive week. We have one final task for you to do before you finish for the week
+> Well done, you’ve had a productive week.
+> We have one final task for you to do before you finish for the week
 >
 > You need to go to Jupiter and meet Kaarlang, it’s his last day working for us and he needs to delete his trade clients from his personal xtdb node for data protection.
 >
@@ -350,7 +365,7 @@ As you do so, you check to see if you still have the note that the porter gave y
       "secret note")
 ```
 
-Feeling a bit apprehensive, you enter countdown for lift off to Jupiter.
+Feeling a bit apprehensive, you enter countdown for liftoff to Jupiter.
 [See you soon.](https://nextjournal.com/xtdb-tutorial/delete)
 
 ![Jupiter: Delete](https://github.com/xtdb/xtdb-tutorial/raw/main/images/5b-delete-jupiter.png)

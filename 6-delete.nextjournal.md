@@ -44,11 +44,11 @@ The government is asking to see your flight manifest.
 ## Choose your path:
 
 
-  * **You have your manifest** : 
+  * **You have your manifest**: 
       * *You have permission to land, continue to the spaceport.*
 
 
-  * **You do not have your manifest** : 
+  * **You do not have your manifest**: 
       * *You do not have permission to land. You can either return to [Saturn](https://nextjournal.com/xtdb-tutorial/match) or continue at your own risk.*
 
 # Spaceport
