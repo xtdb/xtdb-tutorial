@@ -4,7 +4,7 @@
 
 # Introduction
 
-This is the `await-tx` installment of the xtdb tutorial.
+This is the `await-tx` instalment of the xtdb tutorial.
 
 ## Setup
 
@@ -29,14 +29,17 @@ You need to get xtdb running before you can use it.
 
 # Recap
 
-Last time you opted to leave the solar system on the secret space ship 'Oumuamua on an exciting new adventure. You have been traveling for 25 years at near light speed to reach the star system Gilese 667C. This star system is home to intelligent life far superior to our own. With you on the ship is the captain, Ilex, and your new friend Kaarlang. You were put into cryostasis so you could safely withstand the long journey.
+Last time you opted to leave the solar system on the secret spaceship 'Oumuamua on an exciting new adventure.
+You have been travelling for 25 years at near light speed to reach the star system Gilese 667C.
+This star system is home to intelligent life far superior to our own.
+With you on the ship is the captain, Ilex, and your new friend Kaarlang.
+You were put into cryostasis so you could safely withstand the long journey.
 
 **We begin again in the year 2140.**
 
 # Awakening
 
-You open your eyes after what feels like only a moment, your 25 year slumber broken by a loud hiss from the opening of the cryogenic pod door.
-
+You open your eyes after what feels like only a moment, your 25-year slumber broken by a loud hiss from the opening of the cryogenic pod door.
 You take a minute to acknowledge the cold surroundings. You realize the ship engines have fallen still and assume that you are now in geostationary orbit.
 
 Captain Ilex's voice comes over the intercom.
@@ -45,13 +48,14 @@ Captain Ilex's voice comes over the intercom.
 > And hello new world.
 > We've reached the planet Kepra-5 of the Gilese 667C star system.
 >
-> If you could make your way to the https://en.wikipedia.org/wiki/Space_elevator[space elevator] which is waiting to take you to the planet surface, where you will need to go through customs and get a new passport.
+> If you could make your way to the [space elevator](https://en.wikipedia.org/wiki/Space_elevator) which is waiting to take you to the planet surface, where you will need to go through customs and get a new passport.
 >
 > We would like to wish you all the best in your future travels."
 >
 > \- Ilex
 
-Finding your way to the space elevator dock, you notice that you feel a lot heavier than usual. You wonder if this is your body being weaker than usual from being in cryostasis for so long, or if this new planet has stronger gravity.
+Finding your way to the space elevator dock, you notice that you feel a lot heavier than usual.
+You wonder if this is your body being weaker than usual from being in cryostasis for so long, or if this new planet has stronger gravity.
 
 ## Choose your path:
 
@@ -207,9 +211,11 @@ You spin up a new xtdb node and ingest the known data from the solar system.
 (xt/submit-tx node (mapv (fn [stat] [::xt/put stat]) stats))
 ```
 
-The elevator arrives and you drag yourself aboard. As you are carried to the surface, you note the relief as the force of gravity on your body is canceled by the movement of the lift.
+The elevator arrives and you drag yourself aboard.
+As you are carried to the surface, you note the relief as the force of gravity on your body is cancelled by the movement of the lift.
 
-As soon as you reach the surface, you waste no time in taking the gravity reading from your iPhone CM. The reading is 1.4g - no wonder you feel sluggish.
+As soon as you reach the surface, you waste no time in taking the gravity reading from your iPhone CM.
+The reading is 1.4g - no wonder you feel sluggish.
 
 You want to check against the data of the other planets on your node, to see how the gravity from this planet compares, so you write a function to add the new planetary data and query it against the other planets:
 
@@ -244,46 +250,50 @@ Now you’ve satisfied your curiosity, you head over to passport control.
 
 You find yourself at passport control where you are told your xtdb experience is needed.
 
-Kaarlang has arrived there first and has been chatting to the manager here. As an advanced civilization, they are quite happily using xtdb with no issues, but still have a problem with human error. Some employees have been handing out passports before putting the travelers information into xtdb. When it gets particularly busy, it’s not uncommon for the employees to forget to go back and put the data in, resulting in unregistered travelers.
+Kaarlang has arrived there first and has been chatting to the manager here.
+As an advanced civilization, they are quite happily using xtdb with no issues but still have a problem with human error.
+Some employees have been handing out passports before putting the traveller's information into xtdb.
+When it gets particularly busy, it’s not uncommon for the employees to forget to go back and put the data in, resulting in unregistered travellers.
 
 Kaarlang has told the manager that you have a background in solving problems using xtdb, so has offered them your skills.
 
-Your task is to make a function that ensures no passport is given before the travelers data is successfully ingested into xtdb.
+Your task is to make a function that ensures no passport is given before the traveller's data is successfully ingested into xtdb.
 
 ```clojure
 (defn ingest-and-query
-  [traveler-doc]
-  (xt/submit-tx node [[::xt/put traveler-doc]])
+  [traveller-doc]
+  (xt/submit-tx node [[::xt/put traveller-doc]])
   (xt/q
    (xt/db node)
    '{:find [n]
      :where [[e :xt/id id]
              [e :passport-number n]]
      :in [id]}
-   (:xt/id traveler-doc)))
+   (:xt/id traveller-doc)))
 ```
 
 You test out your function.
 
 ```clojure
 (ingest-and-query
- {:xt/id :origin-planet/test-traveler
+ {:xt/id :origin-planet/test-traveller
   :chosen-name "Test"
-  :given-name "Test Traveler"
+  :given-name "Test Traveller"
   :passport-number (java.util.UUID/randomUUID)
   :stamps []
   :penalties []})
 ```
 
-This strikes you as peculiar - you received no errors from your xtdb node upon submitting, but the ingested traveler doc has not returned a passport number.
+This strikes you as peculiar - you received no errors from your xtdb node upon submitting, but the ingested traveller doc has not returned a passport number.
 
-You are sure your query and ingest syntax is correct, but to check you try running the query again. This time you get the expected result:
+You are sure your query and ingest syntax is correct, but to check you try running the query again.
+This time you get the expected result:
 
 ```clojure
 (ingest-and-query
- {:xt/id :origin-planet/test-traveler
+ {:xt/id :origin-planet/test-traveller
   :chosen-name "Test"
-  :given-name "Test Traveler"
+  :given-name "Test Traveller"
   :passport-number (java.util.UUID/randomUUID)
   :stamps []
   :penalties []})
@@ -293,35 +303,40 @@ You are sure your query and ingest syntax is correct, but to check you try runni
 
 Confused, you open your trusty xtdb manual, skimming through until you hit the page on `await-tx`:
 
-> Blocks until the node has indexed a transaction that is at or past the supplied tx. Will throw on timeout. Returns the most recent tx indexed by the node.
+> Blocks until the node has indexed a transaction that is at or past the supplied tx. 
+> Will throw on timeout.
+> Returns the most recent tx indexed by the node.
 >
 > \- xtdb manual *[Read More](https://xtdb.com/reference/transactions.html#await)*
 
-Of course. Submit operations in xtdb are **asynchronous** - your query did not return the new data as it had not yet been indexed into xtdb. You decide to rewrite your function using `await-tx`:
+Of course.
+Submit operations in xtdb are **asynchronous** - your query did not return the new data as it had not yet been indexed into xtdb.
+You decide to rewrite your function using `await-tx`:
 
 ```clojure
 (defn ingest-and-query
-  "Ingests the given travelers document into xtdb, returns the passport
+  "Ingests the given traveller's document into xtdb, returns the passport
   number once the transaction is complete."
-  [traveler-doc]
+  [traveller-doc]
   (xt/await-tx node
-               (xt/submit-tx node [[::xt/put traveler-doc]]))
+               (xt/submit-tx node [[::xt/put traveller-doc]]))
   (xt/q
    (xt/db node)
    '{:find [n]
      :where [[e :xt/id id]
              [e :passport-number n]]
      :in [id]}
-   (:xt/id traveler-doc)))
+   (:xt/id traveller-doc)))
 ```
 
-You run the function again, Changing the traveler-doc so you can see if it’s worked. This time you receive the following:
+You run the function again, Changing the traveller-doc so you can see if it’s worked.
+This time you receive the following:
 
 ```clojure
 (ingest-and-query
- {:xt/id :origin-planet/new-test-traveler
+ {:xt/id :origin-planet/new-test-traveller
   :chosen-name "Testy"
-  :given-name "Test Traveler"
+  :given-name "Test Traveller"
   :passport-number (java.util.UUID/randomUUID)
   :stamps []
   :penalties []})
@@ -329,13 +344,20 @@ You run the function again, Changing the traveler-doc so you can see if it’s w
 
 > ## Caution
 >
-> *XTDB is fundamentally asynchronous: you submit a transaction to the central transaction log - then, later, each individual xtdb node reads the transaction from the log and indexes it. If you submit a transaction and then run a query without explicitly waiting for the node to have indexed the transaction, you’re not guaranteed that your query will reflect your recent transaction. On a small use-case, you might get lucky - but, if you want to reliably read your writes, use `await-tx`. If you’re ingesting a large batch of data though, calling `await-tx` after every transaction will slow the process significantly - you only need to await the final transaction to know that all of the preceding transactions are available.*
+> *XTDB is fundamentally asynchronous: you submit a transaction to the central transaction log - then, later, each individual xtdb node reads the transaction from the log and indexes it.
+> If you submit a transaction and then run a query without explicitly waiting for the node to have indexed the transaction, you’re not guaranteed that your query will reflect your recent transaction.
+> On a small use-case, you might get lucky - but, if you want to reliably read your writes, use `await-tx`.
+> If you’re ingesting a large batch of data though, calling `await-tx` after every transaction will slow the process significantly - you only need to await the final transaction to know that all of the preceding transactions are available.*
 
-You show this to the manager at the passport control office. They are happy that this will work.
+You show this to the manager at the passport control office.
+They are happy that this will work.
 
-> Thank you, this will save us so much time in dealing with missing traveler information. As a token of our gratitude, we would like to grant you with free entry to the planet.
+> Thank you, this will save us so much time in dealing with missing traveller information.
+> As a token of our gratitude, we would like to grant you with free entry to the planet.
 
-You graciously accept. For the passport you must provide your origin planet, name and also a chosen name. Many people come to Kepra-5 in order to start fresh, so your chosen name can be anything you wish.
+You graciously accept.
+For the passport, you must provide your origin planet, name and also a chosen name.
+Many people come to Kepra-5 to start fresh, so your chosen name can be anything you wish.
 
 Once chosen you can not easily change it, so you think carefully.
 
@@ -351,8 +373,12 @@ Once chosen you can not easily change it, so you think carefully.
 
 New name, new you.
 
-Now that you are in the Gilese 667C you must keep your passport up to date wherever you travel. You take a note of your passport number and put it somewhere safe.
+Now that you are in the Gilese 667C you must keep your passport up to date wherever you travel.
+You take a note of your passport number and put it somewhere safe.
 
-Through customs, you are now free to explore the exciting new planet. Taking in your surroundings, you see a hostel nearby. You head over. Although you’ve been in cryostasis for such a long time, the new gravity has made you very tired.
+Through customs, you are now free to explore the exciting new planet.
+Taking in your surroundings, you see a hostel nearby.
+You head over.
+Although you’ve been in cryostasis for such a long time, the new gravity has made you very tired.
 
 # THE END.
