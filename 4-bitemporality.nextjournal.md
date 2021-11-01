@@ -257,6 +257,6 @@ You add the new badge to your manifest
     :cargo ["stereo" "gold fish" "slippers" "secret note"]}]])
 ```
 
-Countdown to liftoff to the ringed plant. [See you soon.](https://nextjournal.com/xtdb-tutorial/match)
+Countdown to liftoff to the ringed planet. [See you soon.](https://nextjournal.com/xtdb-tutorial/match)
 
 ![Saturn: Match](https://github.com/xtdb/xtdb-tutorial/raw/main/images/4b-match-saturn.png)
