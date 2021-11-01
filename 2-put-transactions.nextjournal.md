@@ -4,7 +4,8 @@
 
 # Introduction
 
-This is the second part of the xtdb tutorial. The Earth installment looked at setting up a simple xtdb standalone node and a very simple `put` transaction.
+This is the second part of the xtdb tutorial.
+The Earth instalment looked at setting up a simple xtdb standalone node and a very simple `put` transaction.
 
 ## Setup
 
@@ -31,7 +32,10 @@ You need to get xtdb running before you can use it.
 
 As you enter the Plutonian atmosphere, a message pops up on your communication panel:
 
-> Welcome to the dwarf planet Pluto. You are entering privately governed space. If you do not have the correct papers, entry will be denied. We hope you enjoy your stay.
+> Welcome to the dwarf planet Pluto.
+> You are entering privately governed space.
+> If you do not have the correct papers, entry will be denied.
+> We hope you enjoy your stay.
 >
 > Have a nice day.
 >
@@ -41,16 +45,16 @@ The government of Pluto is asking to see your flight manifest.
 
 ## Choose your path:
 
-- **You have your manifest** :
-    - *You have permission to land, continue to the space port.*
+- **You have your manifest**:
+    - *You have permission to land, continue to the spaceport.*
 
-- **You do not have your manifest** :
+- **You do not have your manifest**:
     - *You do not have permission to land. You can either return to [Earth](https://nextjournal.com/xtdb-tutorial/getting-started-with-xtdb), or continue at your own risk.*
 
-# Space Port
+# Spaceport
 
-As you circle the dwarf planet to land, you have a quick read of your xtdb manual. You know you will be using the `put` operation a lot for this assignment and although you used the operation to add your manifest before you left, you think it is a good idea to brush up on your knowledge.
-
+As you circle the dwarf planet to land, you have a quick read of your xtdb manual.
+You know you will be using the `put` operation a lot for this assignment and although you used the operation to add your manifest before you left, you think it is a good idea to brush up on your knowledge.
 
 > Currently there are only four transaction operations in xtdb: put, delete, match and evict.
 >
@@ -68,7 +72,8 @@ As you circle the dwarf planet to land, you have a quick read of your xtdb manua
 >
 > The `put` transaction is used to write versions of a document (doc).
 >
-> Each document must be in Extensible Data Notation (edn) and must contain a unique :xt/id value. However, beyond those two requirements you have the flexibility to add whatever you like to your documents because xtdb is schemaless.
+> Each document must be in Extensible Data Notation (edn) and must contain a unique :xt/id value.
+> However, beyond those two requirements you have the flexibility to add whatever you like to your documents because xtdb is schemaless.
 >
 > Along with the document (doc), put has two optional additional arguments:
 >> start `valid-time`   *(The time at which the entry will be valid from.)*
@@ -78,7 +83,8 @@ As you circle the dwarf planet to land, you have a quick read of your xtdb manua
 > This means that you can query back through the database, you can use valid-time arguments to see the state of the database at a different time.
 >
 >
-> Time in xtdb is denoted `#inst "yyyy-MM-ddThh:mm:ss"`. For example, 9:30 pm on January 2nd 1999 would be written:
+> Time in xtdb is denoted `#inst "yyyy-MM-ddThh:mm:ss"`.
+> For example, 9:30 pm on January 2nd 1999 would be written:
 >
 >>    `#inst "1999-01-02T21:30:00".`
 >
@@ -97,7 +103,8 @@ You are happy with what you have read, and in anticipation of your first assignm
 
 # Assignment
 
-You land on the surface of the dwarf planet. As you do, the job ticket for this assignment is unlocked.
+You land on the surface of the dwarf planet.
+As you do, the job ticket for this assignment is unlocked.
 
 ## Ticket
 
@@ -114,9 +121,12 @@ You land on the surface of the dwarf planet. As you do, the job ticket for this 
 > *2115-02-20T13:38:20*
 >
 > ### Additional information:
-> *We need help setting up a new recording system for our mine. I have enclosed a list of the commodities we deal with. Please send someone soon because we already have a week’s worth of unrecorded stocktakes.*
+> *We need help setting up a new recording system for our mine.
+> I have enclosed a list of the commodities we deal with.
+> Please send someone soon because we already have a week’s worth of unrecorded stocktakes.*
 
-You make your way over to the mines on the next shuttle. On your way you decide to get a head start and put the commodities into xtdb.
+You make your way over to the mines on the next shuttle.
+On your way you decide to get a head start and put the commodities into xtdb.
 
 ```clojure
 (xt/submit-tx
@@ -151,7 +161,8 @@ You arrive at the mine and are met by the CEO, Reginald Glogofloon, a 150 year o
 
 > Hello, I’m glad you’re here.
 >
-> I would like you to fill in our last weeks worth of data on our commodities. We need to be able to look back at a given day and see what our stocks were for auditing purposes.
+> I would like you to fill in our last weeks worth of data on our commodities.
+> We need to be able to look back at a given day and see what our stocks were for auditing purposes.
 > 
 > The stock for each day must be submitted at 6pm Earth time (UTC) for your banks records.
 >
@@ -161,13 +172,14 @@ You arrive at the mine and are met by the CEO, Reginald Glogofloon, a 150 year o
 
 ## Choose your path:
 
-- **"Yes I'll give it a go"** :
+- **"Yes I'll give it a go"**:
     - *Continue to complete the assignment.*
 
-- **"I'm not sure how to even begin"** :
+- **"I'm not sure how to even begin"**:
     - *Go back and read the manual entry.*
 
-You remember that with xtdb you have the option of adding a `valid-time`. This comes in useful now as you enter the weeks worth of stock takes for Plutonium.
+You remember that with xtdb you have the option of adding a `valid-time`.
+This comes in useful now as you enter the weeks worth of stock takes for Plutonium.
 
 ```clojure
 (xt/submit-tx
@@ -249,19 +261,23 @@ As a parting gift to them you create an easy ingest function so that if they nee
                          [::xt/put doc]))))
 ```
 
-Tombaugh Resources Ltd. are happy that this will be simple enough to use. They thank you for the extra help and you head back to your ship.
+Tombaugh Resources Ltd. are happy that this will be simple enough to use.
+They thank you for the extra help and you head back to your ship.
 
-# Space Port
+# Spaceport
 
-You are back at your ship and check your communications panel. There is a new assignment waiting for you:
+You are back at your ship and check your communications panel.
+There is a new assignment waiting for you:
 
 > Congratulations on completing your first assignment.
 >
-> We would like you to go to Mercury, the hub of the trade world. Their main trade center has a new IT department and want you to show them how to query xtdb"
+> We would like you to go to Mercury, the hub of the trade world.
+> Their main trade center has a new IT department and want you to show them how to query xtdb"
 >
 > \- Helios Banking Inc.
 
-It’s a long flight so you refuel, and update your manifest. You have been awarded a new badge, so you add this to your manifest.
+It’s a long flight so you refuel, and update your manifest.
+You have been awarded a new badge, so you add this to your manifest.
 
 ```clojure
 (xt/submit-tx
