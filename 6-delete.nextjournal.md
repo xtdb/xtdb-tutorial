@@ -171,7 +171,7 @@ You explain that you are using a snapshot of xtdb with a future `valid-time` to 
 
 The result shows the names of the clients that have been assigned to Kaarlang since he started at the company in 2110.
 
-Next, you delete the whole history of clients by choosing a start and end `valid-time` that spans his entire employment time.
+Next, you delete the whole history of clients by choosing a start and end `valid-time` that spans thier entire employment time.
 
 ```clojure
 (xt/submit-tx
