@@ -4,7 +4,7 @@
 
 # Introduction
 
-This is the `delete` installment of the xtdb tutorial.
+This is the `delete` instalment of the xtdb tutorial.
 
 ## Setup
 
@@ -29,9 +29,10 @@ You need to get xtdb running before you can use it.
 
 # Arrival on Jupiter
 
-You approach Jupiter and marvel at its bands. You wish you could have seen it this close before the Great Red Spot dissipated.
+You approach Jupiter and marvel at its bands.
+You wish you could have seen it this close before the Great Red Spot dissipated.
 
-As you enter the Jovian atmosphere your communications panel lights up with the now expected, but rather terse message from boundary control.
+As you enter the Jovian atmosphere your communications panel lights up with the now expected, but a rather terse message from boundary control.
 
 > Jupiter’s boundary is controlled.
 > If you wish to enter, present your papers now.
@@ -44,15 +45,16 @@ The government is asking to see your flight manifest.
 
 
   * **You have your manifest** : 
-      * *You have permission to land, continue to the space port.*
+      * *You have permission to land, continue to the spaceport.*
 
 
   * **You do not have your manifest** : 
       * *You do not have permission to land. You can either return to [Saturn](https://nextjournal.com/xtdb-tutorial/match) or continue at your own risk.*
 
-# Space Port
+# Spaceport
 
-It’s a turbulent ride down to the space port. To take your mind off the colossal storm outside, you check the xtdb manual for the `delete` operation.
+It’s a turbulent ride down to the spaceport.
+To take your mind off the colossal storm outside, you check the xtdb manual for the `delete` operation.
 
 > Currently there are only four transaction operations in xtdb: put, delete, match and evict.
 >
@@ -67,18 +69,20 @@ It’s a turbulent ride down to the space port. To take your mind off the coloss
 >> evict             (Removes a document entirely)
 >
 > ## delete
-> Deletes a document at a given valid time. Historical version of the document will still be available.
+> Deletes a document at a given valid time.
+> Historical version of the document will still be available.
 >
 > The delete operation takes a valid eid with the option to include a start and end valid-time.
 >
-> The document will be deleted as of the transaction time, or beteen the start and end valid-times if provided. Historical versions of the document that fall outside of the valid-time window will be preserved.
+> The document will be deleted as of the transaction time, or beteen the start and end valid-times if provided.
+> Historical versions of the document that fall outside of the valid-time window will be preserved.
 >
 > A complete delete transaction has the form:
 > [::xt/delete eid valid-time-start valid-time-end]
 >
 > \- xtdb manual *[Read More](https://xtdb.com/reference/transactions.html#delete)*
 
-You are happy with what you have read, and in anticipation of the assignment you define the standalone node.
+You are happy with what you have read, and in anticipation of the assignment, you define the standalone node.
 
 ```clojure
 (def node (xt/start-node {}))
@@ -153,7 +157,8 @@ Kaarlang gives you his client history so you can sync up your xtdb node.
                   #inst "2115-01-01T09"]])
 ```
 
-To get a good visual aid, you show Kaarlang how to view his client history. This way you both can see when the clients are deleted.
+To get a good visual aid, you show Kaarlang how to view his client history.
+This way you both can see when the clients are deleted.
 
 ```clojure
 (xt/entity-history
@@ -166,7 +171,7 @@ You explain that you are using a snapshot of xtdb with a future `valid-time` to 
 
 The result shows the names of the clients that have been assigned to Kaarlang since he started at the company in 2110.
 
-Next you delete the whole history of clients buy choosing a start and end `valid-time` that spans his entire employment time.
+Next, you delete the whole history of clients by choosing a start and end `valid-time` that spans his entire employment time.
 
 ```clojure
 (xt/submit-tx
@@ -184,13 +189,15 @@ Using the same method as before you show Kaarlang the effect that this operation
  {:with-docs? true})
 ```
 
-Kaarlang is impressed it is that easy. You point out that there are no longer any documents attached to the transactions.
+Kaarlang is impressed it is that easy.
+You point out that there are no longer any documents attached to the transactions.
 
 > I am grateful that you took the time to show me this.
 >
 > Today is a sad day for me as I have very much enjoyed my time here.
 >
-> Although, I was expecting to hear from a friend before I left. There is a very important message that I am waiting for."
+> Although, I was expecting to hear from a friend before I left.
+> There is a very important message that I am waiting for."
 >
 > \- Kaarlang
 
@@ -201,15 +208,18 @@ You remember the secret note in your pocket and pass it to Kaarlang.
 
 Kaarlang reads the note.
 
-He looks at you with the a peculiar facial expression.
+He looks at you with a peculiar facial expression.
 
 > This is the note I was waiting for.
 >
 > It has information about the a top secret stellar transport shuttle.
 >
-> If you are interested in a great adventure, the shuttle comes once every hundred years or so to take a select few to a nearby star system. The system is home to a mysterious hyper-intelligent form of life.
+> If you are interested in a great adventure, the shuttle comes once every hundred years or so to take a select few to a nearby star system.
+> The system is home to a mysterious hyper-intelligent form of life.
 >
-> I’m sure there would be a place for you if you were willing to help out. The passengers on the shuttle have the right to be forgotten. We need someone that can remove the passengers data from the solar system.
+> I’m sure there would be a place for you if you were willing to help out.
+> The passengers on the shuttle have the right to be forgotten.
+> We need someone that can remove the passengers data from the solar system.
 >
 > What do you think?"
 >
@@ -224,6 +234,6 @@ He looks at you with the a peculiar facial expression.
 
 
   * **"No thanks, not for me."**
-      *  *You choose not to got with Kaarlang. You continue working for Helios Banking Inc. for the rest of your days.*
+      *  *You choose not to go with Kaarlang. You continue working for Helios Banking Inc. for the rest of your days.*
 
 ![Oumuamua: Evict](https://github.com/xtdb/xtdb-tutorial/raw/main/images/6b-evict-meteor.png)
