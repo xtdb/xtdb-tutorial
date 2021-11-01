@@ -322,7 +322,7 @@ You show him a trade where the old doc is not as expected for Encompass trade, t
 (format-stock-check (stock-check :encompass-trade :units/Au))
 ```
 
-You explain to Ubuku that this time, because you have both `match` operations in the same transaction, the trade does not go through.
+You explain to Ubuku that this time because you have both `match` operations in the same transaction, the trade does not go through.
 The accounts remain the same, even though the failing `match` was the second operation.
 
 Ubuku thanks you.

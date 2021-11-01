@@ -4,7 +4,7 @@
 
 # Introduction
 
-This is the bitemporal installment of the xtdb "choose your own adventure" tutorial series.
+This is the bitemporal instalment of the xtdb "choose your own adventure" tutorial series.
 
 ## Setup
 
@@ -31,7 +31,7 @@ You need to get xtdb running before you can use it.
 
 You enter the Neptunian atmosphere and your communications panel lights up.
 
-> It is our honor to welcome you to the planet Neptune.
+> It is our honour to welcome you to the planet, Neptune.
 >
 > If you are visiting for business reasons, please present your manifest.
 >
@@ -44,23 +44,26 @@ The government is asking to see your flight manifest.
 
 ## Choose your path:
 
-- **You have your manifest** : 
-    - *You have permission to land, continue to the space port.*
+- **You have your manifest**: 
+    - *You have permission to land, continue to the spaceport.*
 
-- **You do not have your manifest** : 
+- **You do not have your manifest**: 
     - *You do not have permission to land. You can either return to [Mercury](https://nextjournal.com/xtdb-tutorial/datalog-queries) or continue at your own risk.*
 
-# Space Port
+# Spaceport
 
-On your way down to the landing site you take the time to read the xtdb manual.
+On your way down to the landing site, you take the time to read the xtdb manual.
 
-> One or more documents can be inserted into xtdb via a put transaction at a specific valid-time. The valid-time can be any time (past, future or present).
+> One or more documents can be inserted into xtdb via a put transaction at a specific valid-time.
+> The valid-time can be any time (past, future or present).
 >
-> If no valid-time is provided, xtdb will default to the transaction time, i.e. the present. Each document survives until it is deleted or a new version of it is added.
+> If no valid-time is provided, xtdb will default to the transaction time, i.e.
+> the present.
+> Each document survives until it is deleted or a new version of it is added.
 >
 > \- xtdb manual *[Read More](https://xtdb.com/articles/bitemporality.html)*
 
-You are happy with what you have read, and in anticipation of the assignment you define the standalone node.
+You are happy with what you have read, and in anticipation of the assignment, you define the standalone node.
 
 ```clojure
 (def node (xt/start-node {}))
@@ -86,13 +89,19 @@ Upon landing on the ice giant, your communications panel lights up indicating th
 > *2115-02-22T13:38:20*
 >
 > ### Additional information:
-> *We have lost a lot of our records in a flood. I think it is prudent to start storing our data digitally. It is important to track policy holders' level of cover at the time of the incident. We have read a lot about the conveniences of xtdb's bitemporality in this situation. We need you to help us get up and running. Please send someone quickly though - the waters are rising.*
+> *We have lost a lot of our records in a flood.
+> I think it is prudent to start storing our data digitally.
+> It is important to track policy holders' level of cover at the time of the incident.
+> We have read a lot about the conveniences of xtdb's bitemporality in this situation.
+> We need you to help us get up and running.
+> Please send someone quickly though - the waters are rising.*
 
-Outside your ship you are met by a panicked looking Lyndon.
+Outside your ship, you are met by a panicked looking Lyndon.
 
 > Thank goodness you’re here.
 >
-> We need you to show us how to put our customers information into xtdb in order of time. Working with insurance claims, we should be able to easily look back in time at what type of coverage the customer had at the time of the incident.
+> We need you to show us how to put our customers' information into xtdb in order of time.
+> Working with insurance claims, we should be able to easily look back in time at what type of coverage the customer had at the time of the incident.
 >
 > Are you able to help us?
 >
@@ -101,15 +110,16 @@ Outside your ship you are met by a panicked looking Lyndon.
 
 ## Choose your path:
 
-  * **"Yes, I'll give it a go."** :
+  * **"Yes, I'll give it a go."**:
     * *Continue to complete the assignment.*
     
-  * **"I'm not even sure how to begin"** :
+  * **"I'm not even sure how to begin"**:
     * *Take some time to read through the xtdb manual again. If you're still unsure then you can follow along anyway and see if things become clear.*
 
 ## Assignment
 
-Lyndon gives you some data for a client that you can use as an example. Coast Insurance need to know what kind of cover each customer has and if it was valid at a given time.
+Lyndon gives you some data for a client that you can use as an example.
+Coast Insurance need to know what kind of cover each customer has and if it was valid at a given time.
 
 You show them how to ingest a document using a `valid-time` so that the information is backdated to when the customer took the cover out.
 
@@ -126,7 +136,8 @@ You show them how to ingest a document using a `valid-time` so that the informat
    #inst "2114-12-03"]])
 ```
 
-The company needs to know the history of insurance for each cover. You show them how to use the bitemporality of xtdb to do this.
+The company needs to know the history of insurance for each cover.
+You show them how to use the bitemporality of xtdb to do this.
 
 ```clojure
 (xt/submit-tx
@@ -178,7 +189,9 @@ The company needs to know the history of insurance for each cover. You show them
 
 ## Queries through time
 
-You now show them a few queries. You know that you can query xtdb as of a given `valid-time`. This shows the state of xtdb at that time.
+You now show them a few queries.
+You know that you can query xtdb as of a given `valid-time`.
+This shows the state of xtdb at that time.
 
 First you chose a date that the customer had full cover:
 
@@ -212,15 +225,17 @@ And finally you show them a time when the customer had no cover at all.
 
 Confident in their ability to put the remainder of their records into xtdb, Lyndon thanks you.
 
-> I can’t believe we’ve not digitized sooner. There was a huge push to start using more paper as the Neptune tree population was getting out of control from the accelerated terraforming, but since all these floods I’m not sure paper was the right choice."
+> I can’t believe we’ve not digitized sooner.
+> There was a huge push to start using more paper as the Neptune tree population was getting out of control from the accelerated terraforming, but since all these floods I’m not sure paper was the right choice."
 > 
 > \- Lyndon Mercia-York
 
-You say goodbye to Lyndon and head back to the space port.
+You say goodbye to Lyndon and head back to the spaceport.
 
-# Space Port
+# Spaceport
 
-Back at your spaceship you check your communications panel. There is a new assignment waiting for you.
+Back at your spaceship, you check your communications panel.
+There is a new assignment waiting for you.
 
 > We have assigned you a quick task on Saturn helping a small company who are having some problems keeping their records in order.
 >
@@ -242,6 +257,6 @@ You add the new badge to your manifest
     :cargo ["stereo" "gold fish" "slippers" "secret note"]}]])
 ```
 
-You enter the countdown for lift off the ringed plant. [See you soon.](https://nextjournal.com/xtdb-tutorial/match)
+Countdown to liftoff to the ringed plant. [See you soon.](https://nextjournal.com/xtdb-tutorial/match)
 
 ![Saturn: Match](https://github.com/xtdb/xtdb-tutorial/raw/main/images/4b-match-saturn.png)
