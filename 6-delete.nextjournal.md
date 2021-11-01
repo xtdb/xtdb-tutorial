@@ -236,4 +236,4 @@ He looks at you with a peculiar facial expression.
   * **"No thanks, not for me."**
       *  *You choose not to go with Kaarlang. You continue working for Helios Banking Inc. for the rest of your days.*
 
-![Oumuamua: Evict](https://github.com/xtdb/xtdb-tutorial/raw/main/images/6b-evict-meteor.png)
+![Oumuamua: Evict](https://github.com/xtdb/xtdb-tutorial/raw/main/images/7c-evict-meteor.png)
