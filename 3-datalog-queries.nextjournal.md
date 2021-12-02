@@ -303,7 +303,7 @@ You are impressed with their efforts.
           :where [[e :common-name name]
                   [e :IUPAC-name IUPAC]
                   [e :appearance appearance]]
-          :in [apperance]}
+          :in [appearance]}
         description))
 ```
 
