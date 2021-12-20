@@ -4,11 +4,11 @@
 
 # Introduction
 
-This is the `match` instalment of the xtdb tutorial.
+This is the `match` instalment of the XTDB tutorial.
 
 ## Setup
 
-You need to get xtdb running before you can use it.
+You need to get XTDB running before you can use it.
 
 <!--- Stil want to show the user deps.edn even though it's loaded in the repo. --->
 ```edn no-exec
@@ -54,9 +54,9 @@ They are asking to see your flight manifest.
 
 # Spaceport
 
-As you prepare to land you open your xtdb manual to the page on `match`
+As you prepare to land you open your XTDB manual to the page on `match`
 
-> Currently there are only four transaction operations in xtdb: put, delete, match and evict.
+> Currently there are only four primitve transaction operations in XTDB: put, delete, match and evict.
 >
 >> **Transaction**    **(Description)**
 >>
@@ -76,7 +76,7 @@ As you prepare to land you open your xtdb manual to the page on `match`
 > A match transaction takes the entity id, along with an expected document.
 > Optionally you can provide a valid time.
 >
-> Time in xtdb is denoted #inst 'yyyy-MM-ddThh:mm:ss'.
+> Time in XTDB is denoted #inst 'yyyy-MM-ddThh:mm:ss'.
 > For example, 9:30 pm on January 2nd 1999 would be written: `#inst "1999-01-02T21:30:00"`.
 >
 > A complete match transaction has the form:
@@ -85,7 +85,7 @@ As you prepare to land you open your xtdb manual to the page on `match`
 >
 > Note that if there is no old-doc in the system, you can provide `nil` in its place."
 >
-> \- xtdb manual *[Read More](https://xtdb.com/reference/transactions.html#match)*
+> \- XTDB manual *[Read More](https://xtdb.com/reference/transactions.html#match)*
 
 You are happy with what you have read, and in anticipation of the assignment, you define the standalone node.
 
@@ -119,12 +119,13 @@ While you wait you use the easy ingest function you created on Pluto to put the 
 
 ```clojure
 (defn easy-ingest
-  "Uses xtdb put transaction to add a vector of
+  "Uses XTDB put transaction to add a vector of
   documents to a specified node"
   [node docs]
   (xt/submit-tx node
                   (vec (for [doc docs]
-                         [::xt/put doc]))))
+                         [::xt/put doc])))
+  (xt/sync node))
 
 (def data
   [{:xt/id :gold-harmony
@@ -187,11 +188,11 @@ After a short journey through the icy lower clouds of Saturn, you are met by a f
 
 > Hello, friend.
 >
-> We have been using xtdb for a short time now and think it is great.
+> We have been using XTDB for a short time now and think it is great.
 > The problem is a human one.
 > Occasionally we process trades without checking that are enough funds in the buyer's account.
 >
-> I know there is a way that we can stop this happening in xtdb.
+> I know there is a way that we can stop this happening in XTDB.
 >
 > I sent you some example data in the job ticket for you to use, I trust you found it.
 >
@@ -208,7 +209,7 @@ After a short journey through the icy lower clouds of Saturn, you are met by a f
 
 
   * **"I'm not even sure how to begin"**: 
-      * *Take some time to read through the xtdb manual again. If you're still unsure then you can follow along anyway and see if things become clear.*
+      * *Take some time to read through the XTDB manual again. If you're still unsure then you can follow along anyway and see if things become clear.*
 
 ## Assignment
 
@@ -254,6 +255,8 @@ You move 10 units of Methane (`:units/CH4`) each at the cost of 100 credits to B
     :units/N 3
     :units/CH4 82
     :credits 151}]])
+
+(xt/sync node)
 ```
 
 You explain that because the old doc is as expected for both the buyer and the seller that the transaction goes through.
@@ -312,6 +315,8 @@ You show him a trade where the old doc is not as expected for Encompass trade, t
     :units/Pu 5
     :units/CH4 211
     :credits 1002}]])
+
+(xt/sync node)
 ```
 
 ```clojure
@@ -336,7 +341,7 @@ Back at the spaceship, there is a light waiting for you on your communications p
 > Well done, you’ve had a productive week.
 > We have one final task for you to do before you finish for the week
 >
-> You need to go to Jupiter and meet Kaarlang, it’s his last day working for us and he needs to delete his trade clients from his personal xtdb node for data protection.
+> You need to go to Jupiter and meet Kaarlang, it’s his last day working for us and he needs to delete his trade clients from his personal XTDB node for data protection.
 >
 > \- Helios Banking Inc.
 
@@ -353,6 +358,8 @@ You update your manifest with your most recent badge.
     :id/employee "22910x2"
     :badges ["SETUP" "PUT" "DATALOG-QUERIES" "BITEMP" "MATCH"]
     :cargo ["stereo" "gold fish" "slippers" "secret note"]}]])
+
+(xt/sync node)
 ```
 
 As you do so, you check to see if you still have the note that the porter gave you for Kaarlang back on Earth.

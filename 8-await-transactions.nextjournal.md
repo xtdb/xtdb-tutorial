@@ -4,11 +4,11 @@
 
 # Introduction
 
-This is the `await-tx` instalment of the xtdb tutorial.
+This is the `await-tx` instalment of the XTDB tutorial.
 
 ## Setup
 
-You need to get xtdb running before you can use it.
+You need to get XTDB running before you can use it.
 
 <!--- Stil want to show the user deps.edn even though it's loaded in the repo. --->
 ```edn no-exec
@@ -69,7 +69,7 @@ You wonder if this is your body being weaker than usual from being in cryostasis
 
 # Gravity comparison
 
-You spin up a new xtdb node and ingest the known data from the solar system.
+You spin up a new XTDB node and ingest the known data from the solar system.
 
 ```clojure
 (def node (xt/start-node {}))
@@ -209,6 +209,8 @@ You spin up a new xtdb node and ingest the known data from the solar system.
     :xt/id :Mercury}])
 
 (xt/submit-tx node (mapv (fn [stat] [::xt/put stat]) stats))
+
+(xt/sync node)
 ```
 
 The elevator arrives and you drag yourself aboard.
@@ -235,6 +237,8 @@ You want to check against the data of the other planets on your node, to see how
     :type "planet"
     :xt/id :Kepra-5}]])
 
+(xt/sync node)
+
 (sort
  (xt/q
   (xt/db node)
@@ -248,16 +252,16 @@ Now you’ve satisfied your curiosity, you head over to passport control.
 
 # Passport Control
 
-You find yourself at passport control where you are told your xtdb experience is needed.
+You find yourself at passport control where you are told your XTDB experience is needed.
 
 Kaarlang has arrived there first and has been chatting to the manager here.
-As an advanced civilization, they are quite happily using xtdb with no issues but still have a problem with human error.
-Some employees have been handing out passports before putting the traveller's information into xtdb.
+As an advanced civilization, they are quite happily using XTDB with no issues but still have a problem with human error.
+Some employees have been handing out passports before putting the traveller's information into XTDB.
 When it gets particularly busy, it’s not uncommon for the employees to forget to go back and put the data in, resulting in unregistered travellers.
 
-Kaarlang has told the manager that you have a background in solving problems using xtdb, so has offered them your skills.
+Kaarlang has told the manager that you have a background in solving problems using XTDB, so has offered them your skills.
 
-Your task is to make a function that ensures no passport is given before the traveller's data is successfully ingested into xtdb.
+Your task is to make a function that ensures no passport is given before the traveller's data is successfully ingested into XTDB.
 
 ```clojure
 (defn ingest-and-query
@@ -284,7 +288,7 @@ You test out your function.
   :penalties []})
 ```
 
-This strikes you as peculiar - you received no errors from your xtdb node upon submitting, but the ingested traveller doc has not returned a passport number.
+This strikes you as peculiar - you received no errors from your XTDB node upon submitting, but the ingested traveller doc has not returned a passport number.
 
 You are sure your query and ingest syntax is correct, but to check you try running the query again.
 This time you get the expected result:
@@ -301,21 +305,21 @@ This time you get the expected result:
 
 **The plot thickens.**
 
-Confused, you open your trusty xtdb manual, skimming through until you hit the page on `await-tx`:
+Confused, you open your trusty XTDB manual, skimming through until you hit the page on `await-tx`:
 
 > Blocks until the node has indexed a transaction that is at or past the supplied tx. 
 > Will throw on timeout.
 > Returns the most recent tx indexed by the node.
 >
-> \- xtdb manual *[Read More](https://xtdb.com/reference/transactions.html#await)*
+> \- XTDB manual *[Read More](https://xtdb.com/reference/transactions.html#await)*
 
 Of course.
-Submit operations in xtdb are **asynchronous** - your query did not return the new data as it had not yet been indexed into xtdb.
+Submit operations in XTDB are **asynchronous** - your query did not return the new data as it had not yet been indexed into XTDB.
 You decide to rewrite your function using `await-tx`:
 
 ```clojure
 (defn ingest-and-query
-  "Ingests the given traveller's document into xtdb, returns the passport
+  "Ingests the given traveller's document into XTDB, returns the passport
   number once the transaction is complete."
   [traveller-doc]
   (xt/await-tx node
@@ -344,8 +348,8 @@ This time you receive the following:
 
 > ## Caution
 >
-> *XTDB is fundamentally asynchronous: you submit a transaction to the central transaction log - then, later, each individual xtdb node reads the transaction from the log and indexes it.
-> If you submit a transaction and then run a query without explicitly waiting for the node to have indexed the transaction, you’re not guaranteed that your query will reflect your recent transaction.
+> *XTDB is fundamentally asynchronous: you submit a transaction to the central transaction log - then, later, each individual XTDB node reads the transaction from the log and indexes it.
+> If you submit a transaction and then run a query without explicitly waiting for the node to have indexed the transaction - either via `sync` or `await-tx` - you’re not guaranteed that your query will reflect your recent transaction.
 > On a small use-case, you might get lucky - but, if you want to reliably read your writes, use `await-tx`.
 > If you’re ingesting a large batch of data though, calling `await-tx` after every transaction will slow the process significantly - you only need to await the final transaction to know that all of the preceding transactions are available.*
 

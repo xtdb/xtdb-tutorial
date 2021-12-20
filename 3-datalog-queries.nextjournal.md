@@ -4,11 +4,11 @@
 
 # Introduction
 
-This is the third instalment of the xtdb tutorial, focusing on Datalog queries.
+This is the third instalment of the XTDB tutorial, focusing on Datalog queries.
 
 ## Setup
 
-You need to get xtdb running before you can use it.
+You need to get XTDB running before you can use it.
 
 <!--- Stil want to show the user deps.edn even though it's loaded in the repo. --->
 ```edn no-exec
@@ -53,7 +53,7 @@ The government is asking to see your flight manifest.
 
 # Spaceport
 
-You read your xtdb manual as you wait for an available landing pad.
+You read your XTDB manual as you wait for an available landing pad.
 
 > A Datalog query consists of a set of variables and a set of clauses.
 > The result of running a query is a result set (or lazy sequence) of the possible combinations of values that satisfy all of the clauses at the same time.
@@ -66,7 +66,7 @@ You read your xtdb manual as you wait for an available landing pad.
 > In the most basic case, a Datalog query works by searching for "subgraphs" in the database that match the pattern defined by the clauses.
 > The values within these subgraphs are then returned according to the list of return variables requested in the `:find` vector within the query."
 >
-> \- xtdb manual *[Read More](https://xtdb.com/reference/queries.html)*
+> \- XTDB manual *[Read More](https://xtdb.com/reference/queries.html)*
 
 You are happy with what you have read, and in anticipation of the assignment, you define the standalone node.
 
@@ -95,7 +95,7 @@ As you do, the job ticket for this assignment is issued.
 > 
 > ### Additional information:
 > *We have some new starters in the sales team.
-> They need to be trained on how to query xtdb using Datalog to quickly find the information they need on a product.
+> They need to be trained on how to query XTDB using Datalog to quickly find the information they need on a product.
 > Traders must have access to up-to-date information when talking to their clients.
 > We would also like you to create a function that can be used for the things we have to look up a lot.
 > I will include example data so they can learn using relevant commodities.*
@@ -104,12 +104,14 @@ On your way over to the IPBS office, you input the data in the attachment using 
 
 ```clojure
 (defn easy-ingest
-  "Uses xtdb put transaction to add a vector of
+  "Uses XTDB put transaction to add a vector of
   documents to a specified system"
-  [db docs]
-  (xt/submit-tx db
-                  (vec (for [doc docs]
-                         [::xt/put doc]))))
+  [node docs]
+  (xt/submit-tx node
+    (vec (for [doc docs]
+              [::xt/put doc])))
+  (xt/sync node))
+
 (def data
   [{:xt/id :commodity/Pu
     :common-name "Plutonium"
@@ -157,7 +159,7 @@ This means you are ready to give them a tutorial when you get there.
 
 > Oh good, you’re here.
 >
-> I have a room reserved and we have five new starters ready and waiting to learn how to query xtdb.
+> I have a room reserved and we have five new starters ready and waiting to learn how to query XTDB.
 >
 > We are in the middle of our double sunrise.
 > The workers take this time to rest, but in half an Earth hour the sun will rise again and the workers will start back.
@@ -191,7 +193,7 @@ You put together examples and make notes so you can be confident in your lesson.
 ```
 
 *This basic query is returning all the elements that are defined as `:element/metal`.
-The `:find` clause tells xtdb the variables you want to return.*
+The `:find` clause tells XTDB the variables you want to return.*
 
 *In this case, we are returning the `:xt/id` due to our placement of `element`.*
 
@@ -243,7 +245,7 @@ Next, we can use the results bound to `e` and bind the `:common-name` of them to
 
 *You can pull out as much data as you want into your result tuples by adding additional variables to the `:find` clause.*
 
-*The example above returns the `:density` and the `:common-name` values for all entities in xtdb that have values of some kind for both `:density` and `:common-name` attributes.*
+*The example above returns the `:density` and the `:common-name` values for all entities in XTDB that have values of some kind for both `:density` and `:common-name` attributes.*
 
 ### 5. Arguments
 
@@ -345,6 +347,8 @@ You update your manifest with the latest badge.
     :id/employee "22910x2"
     :badges ["SETUP" "PUT" "DATALOG-QUERIES"]
     :cargo ["stereo" "gold fish" "slippers" "secret note"]}]])
+
+(xt/sync node)
 ```
 
 You enter the countdown for liftoff to Neptune. [ See you soon.](https://nextjournal.com/xtdb-tutorial/bitemporality)

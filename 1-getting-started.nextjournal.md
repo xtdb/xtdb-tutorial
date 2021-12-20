@@ -4,25 +4,25 @@
 
 # Introduction
 
-Welcome to the official xtdb tutorial, which complements the official [documentation](https://xtdb.com/reference/installation.html).
+Welcome to the official XTDB tutorial, which complements the official [documentation](https://xtdb.com/reference/installation.html).
 
-If you’re new to xtdb and want to get a practical hands-on guide, you’re in the right place.
+If you’re new to XTDB and want to get a practical hands-on guide, you’re in the right place.
 
 ## The Story
 
 It’s the year 2115.
 You have been hired by an inter-planetary bank, Helios Banking Inc.
-Your task is to travel around the solar system completing assignments using xtdb.
+Your task is to travel around the solar system completing assignments using XTDB.
 
 You have been given a company spaceship so transport won’t be a problem.
 Space Customs require all astronauts to complete a flight manifest for every journey.
-You also have a handy xtdb manual with you so you can read up on some background information before you get stuck into each assignment.
+You also have a handy XTDB manual with you so you can read up on some background information before you get stuck into each assignment.
 
 Let’s begin.
 
 ## Setup
 
-You need to get xtdb running before you can use it.
+You need to get XTDB running before you can use it.
 
 <!--- Stil want to show the user deps.edn even though it's loaded in the repo. --->
 ```edn no-exec
@@ -62,20 +62,20 @@ You submit an iris scan to unlock your first message.
 ## Power up
 
 Before you leave you must fill in your flight manifest.
-To do this, you must first set up a xtdb node.
-You want to get started as quickly as possible so you decide to use xtdb's inbuilt standalone node.
+To do this, you must first set up a XTDB node.
+You want to get started as quickly as possible so you decide to use XTDB's inbuilt standalone node.
 
-You read the xtdb manual entry for the standalone node to make sure this is OK.
+You read the XTDB manual entry for the standalone node to make sure this is OK.
 
-> If you want to get up and running with xtdb fast, consider using the standalone node.
-> There is a xtdb inbuilt standalone node which is the most simple way to start playing with xtdb.
+> If you want to get up and running with XTDB fast, consider using the standalone node.
+> There is a XTDB inbuilt standalone node which is the most simple way to start playing with XTDB.
 > Bear in mind that this does not store any information beyond your session.
 >
 > For persistent storage consider using RocksDB and for scale you should consider using Kafka.
 >
-> — xtdb manual *[Read More](https://xtdb.com/reference/installation.html)*
+> — XTDB manual *[Read More](https://xtdb.com/reference/installation.html)*
 
-You decide this is fine for now, and so define your xtdb node.
+You decide this is fine for now, and so define your XTDB node.
 
 ```clojure
 (def node (xt/start-node {}))
@@ -85,13 +85,13 @@ You decide this is fine for now, and so define your xtdb node.
 
 You take a look around your ship and check the critical levels.
 
-You read the manual entry for putting data into xtdb.
+You read the manual entry for putting data into XTDB.
 
 > XTDB takes information in document form.
 > Each document must be in Extensible Data Notation (edn) and each document must contain a unique `:xt/id` value.
-> However, beyond those two requirements you have the flexibility to add whatever you like to your documents because xtdb is schemaless.
+> However, beyond those two requirements you have the flexibility to add whatever you like to your documents because XTDB is schemaless.
 > 
-> — xtdb manual *[Read More](https://xtdb.com/reference/transactions.html#put)*
+> — XTDB manual *[Read More](https://xtdb.com/reference/transactions.html#put)*
 
 Just as you’re about to write your manifest, one of the porters passes you a secret note and asks you to deliver it to a martian named Kaarlang.
 They are certain you will meet Kaarlang on your travels and so you see no harm in delivering the note for them.
@@ -106,21 +106,25 @@ They are certain you will meet Kaarlang on your travels and so you see no harm i
    :cargo ["stereo" "gold fish" "slippers" "secret note"]})
 ```
 
-You put the manifest into xtdb.
+You put the manifest into XTDB.
 
 ```clojure
 (xt/submit-tx node [[::xt/put manifest]])
 ```
 
-This is `put`, one of xtdb's four transaction operations.
-Check that this was successful by asking xtdb to show the whole entity.
+This is `put`, one of XTDB's four transaction operations.
+
+Make sure this transaction has taken effect using `sync` which ensures that the node's indexes are caught up with the latest transaction.
+
+```clojure
+(xt/sync node) 
+```
+
+Check that this was successful by asking XTDB to show the whole entity.
 
 ```clojure
 (xt/entity (xt/db node) :manifest)
 ```
-
-> *Note: You should run this code block separately otherwise you may see only `nil` returned.
-> The reason for this is covered in the [await-tx](https://nextjournal.com/xtdb-tutorial/await/) tutorial.*
 
 You enter the countdown for lift off to Pluto. [See you soon](https://nextjournal.com/xtdb-tutorial/put).
 

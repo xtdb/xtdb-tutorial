@@ -1,6 +1,6 @@
 # XTDB Tutorial
 
-Official xtdb "Space Adventure" tutorial
+Official XTDB "Space Adventure" tutorial
 
 ## Quickstart
 
@@ -14,8 +14,6 @@ Official xtdb "Space Adventure" tutorial
     6. https://nextjournal.com/try/xtdb-tutorial/delete
     7. https://nextjournal.com/try/xtdb-tutorial/evict
     8. https://nextjournal.com/try/xtdb-tutorial/await
-
-
 
 ## Install Tutorial on Nextjournal
 
@@ -37,13 +35,14 @@ To reinstall the tutorial: Treat this GitHub repository as the golden store. Mak
 GitHub, then reimport the notebooks using the following instructions.
 
 1. Log in as the `xtdb-tutorial` Nextjournal user (ask @deobald, @refset, or @johantonelli for creds)
-1. Go to the [Nextjournal Dashboard](https://nextjournal.com/dashboard) and open notebook you want to edit.
-1. Click anywhere in the document, select all (ctrl+a) and delete the contents.
-1. At the bottom of the page, choose "Import from a URL (e.g. GitHub)" and paste in the link to the file in GitHub (e.g. `https://github.com/xtdb/xtdb-tutorial/blob/main/1-getting-started.nextjournal.md`)
-1. Scroll to the bottom of the page and expand the Appendix. Pull from the repo to ensure the changes are brought in
-1. Select "Publish Changes" in the share dialog
-1. Check to make sure the public URLs in the `"Quickstart"` work correctly.
-1. If the lessons seem out-of-order, it is because they are listed reverse-chronologically. Whatever lesson you edited, publish lessons _backward_ from that point. For example, if you edited Lesson 4, you must publish #3, #2, and finally #1 (Note if you haven't edited a lesson, you only need to re-publish the old notebook without following the import steps).
+2. Go to the [Nextjournal Dashboard](https://nextjournal.com/dashboard) and open notebook you want to edit.
+3. Click anywhere in the document, select all (ctrl+a) and delete the contents.
+4. At the bottom of the page, choose "Import from a URL (e.g. GitHub)" and paste in the link to the file in GitHub (e.g. `https://github.com/xtdb/xtdb-tutorial/blob/main/1-getting-started.nextjournal.md`)
+5. Scroll to the bottom of the page and expand the Appendix. Pull from the repo to ensure the changes are brought in
+6. Click "Run All" under the Play icon to evaluate all snippets
+7. Select "Publish Changes" in the share dialog
+8. Check to make sure the public URLs in the `"Quickstart"` work correctly.
+9. If the lessons seem out-of-order, it is because they are listed reverse-chronologically. Whatever lesson you edited, publish lessons _backward_ from that point. For example, if you edited Lesson 4, you must publish #3, #2, and finally #1 (Note if you haven't edited a lesson, you only need to re-publish the old notebook without following the import steps).
 
 
 ## Copyright & License
