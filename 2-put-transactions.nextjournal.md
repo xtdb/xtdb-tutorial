@@ -25,7 +25,7 @@ You need to get XTDB running before you can use it.
 ```
 
 ```clojure
-(require '[XTDB.api :as xt])
+(require '[xtdb.api :as xt])
 ```
 
 # Arrival on Pluto
@@ -263,7 +263,7 @@ As a parting gift to them you create an easy ingest function so that if they nee
   (xt/submit-tx node
                   (vec (for [doc docs]
                          [::xt/put doc])))
-  (xt/sync node)
+  (xt/sync node))
 ```
 
 Tombaugh Resources Ltd. are happy that this will be simple enough to use.
