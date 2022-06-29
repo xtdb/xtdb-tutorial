@@ -165,7 +165,7 @@ This way you both can see when the clients are deleted.
  (xt/db node #inst "2116-01-01T09")
  :kaarlang/clients
  :desc
- {:with-docs true})
+ {:with-docs? true})
 ```
 You explain that you are using a snapshot of XTDB with a future `valid-time` to see the full history.
 

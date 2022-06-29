@@ -268,8 +268,7 @@ Your task is to make a function that ensures no passport is given before the tra
   (xt/q
    (xt/db node)
    '{:find [n]
-     :where [[e :xt/id id]
-             [e :passport-number n]]
+     :where [[id :passport-number n]]
      :in [id]}
    (:xt/id traveller-doc)))
 ```
@@ -325,8 +324,7 @@ You decide to rewrite your function using `await-tx`:
   (xt/q
    (xt/db node)
    '{:find [n]
-     :where [[e :xt/id id]
-             [e :passport-number n]]
+     :where [[id :passport-number n]]
      :in [id]}
    (:xt/id traveller-doc)))
 ```
