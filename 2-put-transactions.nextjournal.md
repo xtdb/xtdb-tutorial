@@ -47,7 +47,7 @@ The government of Pluto is asking to see your flight manifest.
     - *You have permission to land, continue to the spaceport.*
 
 - **You do not have your manifest**:
-    - *You do not have permission to land. You can either return to [Earth](https://nextjournal.com/xtdb-tutorial/getting-started-with-xtdb), or continue at your own risk.*
+    - *You do not have permission to land. You can either return to [Earth](https://nextjournal.com/xtdb-tutorial/start), or continue at your own risk.*
 
 # Spaceport
 

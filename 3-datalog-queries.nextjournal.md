@@ -47,7 +47,7 @@ The government is asking to see your flight manifest.
     - *You have permission to land, continue to the spaceport.*
 
 - **You do not have your manifest**:
-    - *You do not have permission to land. You can either return to [Pluto](https://nextjournal.com/xtdb-tutorial/put-transactions) or continue at your own risk.*
+    - *You do not have permission to land. You can either return to [Pluto](https://nextjournal.com/xtdb-tutorial/put) or continue at your own risk.*
 
 # Spaceport
 

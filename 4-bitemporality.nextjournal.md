@@ -46,7 +46,7 @@ The government is asking to see your flight manifest.
     - *You have permission to land, continue to the spaceport.*
 
 - **You do not have your manifest**:
-    - *You do not have permission to land. You can either return to [Mercury](https://nextjournal.com/xtdb-tutorial/datalog-queries) or continue at your own risk.*
+    - *You do not have permission to land. You can either return to [Mercury](https://nextjournal.com/xtdb-tutorial/datalog) or continue at your own risk.*
 
 # Spaceport
 
