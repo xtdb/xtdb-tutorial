@@ -191,8 +191,20 @@ Using the same method as before you show Kaarlang the effect that this operation
  {:with-docs? true})
 ```
 
-Kaarlang is impressed it is that easy.
 You point out that there are no longer any documents attached to the transactions.
+
+However, should you ever need to retrieve the deleted documents again you can always do so, since these valid time deletions are 'soft'.
+
+```clojure
+(xt/entity-history
+ (xt/db node #inst "2115-01-01T08")
+ :kaarlang/clients
+ :desc
+ {:with-docs? true
+  :with-corrections? true})
+```
+
+Kaarlang is impressed it is all that easy.
 
 > I am grateful that you took the time to show me this.
 >
