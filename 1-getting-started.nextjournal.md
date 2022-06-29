@@ -4,7 +4,7 @@
 
 # Introduction
 
-Welcome to the official xtdb tutorial, which complements the official [documentation](https://docs.xtdb.com/administration/installing/).
+Welcome to the official XTDB tutorial, which complements the official [documentation](https://docs.xtdb.com/administration/installing/).
 
 If you’re new to XTDB and want to get a practical hands-on guide, you’re in the right place.
 
@@ -71,7 +71,7 @@ You read the XTDB manual entry for the standalone node to make sure this is OK.
 >
 > For persistent storage consider using RocksDB and for scale you should consider using Kafka.
 >
-> — xtdb manual *[Read More](https://docs.xtdb.com/administration/installing/)*
+> — XTDB manual *[Read More](https://docs.xtdb.com/administration/installing/)*
 
 You decide this is fine for now, and so define your XTDB node.
 
