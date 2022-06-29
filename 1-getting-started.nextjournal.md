@@ -27,10 +27,8 @@ You need to get XTDB running before you can use it.
 <!--- Stil want to show the user deps.edn even though it's loaded in the repo. --->
 ```edn no-exec
 {:deps
- {org.clojure/clojure {:mvn/version "1.10.0"}
-  org.clojure/tools.deps.alpha
-  {:git/url "https://github.com/clojure/tools.deps.alpha.git"
-   :sha "f6c080bd0049211021ea59e516d1785b08302515"}
+ {org.clojure/clojure {:mvn/version "1.11.1"}
+  org.clojure/tools.deps.alpha {:mvn/version "0.14.1212"}
   com.xtdb/xtdb-core {:mvn/version "dev-SNAPSHOT"}} ;; "RELEASE"
 
   :mvn/repos
@@ -90,7 +88,7 @@ You read the manual entry for putting data into XTDB.
 > XTDB takes information in document form.
 > Each document must be in Extensible Data Notation (edn) and each document must contain a unique `:xt/id` value.
 > However, beyond those two requirements you have the flexibility to add whatever you like to your documents because XTDB is schemaless.
-> 
+>
 > — XTDB manual *[Read More](https://xtdb.com/reference/transactions.html#put)*
 
 Just as you’re about to write your manifest, one of the porters passes you a secret note and asks you to deliver it to a martian named Kaarlang.
@@ -117,7 +115,7 @@ This is `put`, one of XTDB's four transaction operations.
 Make sure this transaction has taken effect using `sync` which ensures that the node's indexes are caught up with the latest transaction.
 
 ```clojure
-(xt/sync node) 
+(xt/sync node)
 ```
 
 Check that this was successful by asking XTDB to show the whole entity.

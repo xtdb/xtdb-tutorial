@@ -14,10 +14,8 @@ You need to get XTDB running before you can use it.
 <!--- Stil want to show the user deps.edn even though it's loaded in the repo. --->
 ```edn no-exec
 {:deps
- {org.clojure/clojure {:mvn/version "1.10.0"}
-  org.clojure/tools.deps.alpha
-  {:git/url "https://github.com/clojure/tools.deps.alpha.git"
-   :sha "f6c080bd0049211021ea59e516d1785b08302515"}
+ {org.clojure/clojure {:mvn/version "1.11.1"}
+  org.clojure/tools.deps.alpha {:mvn/version "0.14.1212"}
   com.xtdb/xtdb-core {:mvn/version "dev-SNAPSHOT"}} ;; "RELEASE"
 
   :mvn/repos
@@ -165,7 +163,7 @@ You arrive at the mine and are met by the CEO, Reginald Glogofloon, a 150 year o
 >
 > I would like you to fill in our last weeks worth of data on our commodities.
 > We need to be able to look back at a given day and see what our stocks were for auditing purposes.
-> 
+>
 > The stock for each day must be submitted at 6pm Earth time (UTC) for your banks records.
 >
 > Are you able to do that for me?
@@ -298,4 +296,4 @@ You have been awarded a new badge, so you add this to your manifest.
 
 You enter the countdown for lift off to Mercury. [See you soon.](https://nextjournal.com/xtdb-tutorial/datalog)
 
-![Mercury: Datalog](https://github.com/xtdb/xtdb-tutorial/raw/main/images/2b-datalog-mercury.png) 
+![Mercury: Datalog](https://github.com/xtdb/xtdb-tutorial/raw/main/images/2b-datalog-mercury.png)

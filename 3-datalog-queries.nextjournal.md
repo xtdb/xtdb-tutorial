@@ -13,10 +13,8 @@ You need to get XTDB running before you can use it.
 <!--- Stil want to show the user deps.edn even though it's loaded in the repo. --->
 ```edn no-exec
 {:deps
- {org.clojure/clojure {:mvn/version "1.10.0"}
-  org.clojure/tools.deps.alpha
-  {:git/url "https://github.com/clojure/tools.deps.alpha.git"
-   :sha "f6c080bd0049211021ea59e516d1785b08302515"}
+ {org.clojure/clojure {:mvn/version "1.11.1"}
+  org.clojure/tools.deps.alpha {:mvn/version "0.14.1212"}
   com.xtdb/xtdb-core {:mvn/version "dev-SNAPSHOT"}} ;; "RELEASE"
 
   :mvn/repos
@@ -45,10 +43,10 @@ The government is asking to see your flight manifest.
 
 ## Choose your path:
 
-- **You have your manifest**: 
+- **You have your manifest**:
     - *You have permission to land, continue to the spaceport.*
 
-- **You do not have your manifest**: 
+- **You do not have your manifest**:
     - *You do not have permission to land. You can either return to [Pluto](https://nextjournal.com/xtdb-tutorial/put-transactions) or continue at your own risk.*
 
 # Spaceport
@@ -83,16 +81,16 @@ As you do, the job ticket for this assignment is issued.
 
 > ### Task
 > *Find information on products for stock buyers*
-> 
+>
 > ### Company
 > *Interplanetary Buyers & Sellers (IPBS)*
 >
-> ### Contact 
+> ### Contact
 > *Cosmina Sinnett*
-> 
-> ### Submitted 
+>
+> ### Submitted
 > *2115-06-20T10:54:27*
-> 
+>
 > ### Additional information:
 > *We have some new starters in the sales team.
 > They need to be trained on how to query XTDB using Datalog to quickly find the information they need on a product.
@@ -172,10 +170,10 @@ You have the opportunity to prepare examples for the lesson ahead.
 
 ## Choose your path:
 
-- **"You use the time wisely and plan some examples"**: 
+- **"You use the time wisely and plan some examples"**:
     - *Continue to complete the assignment.*
 
-- **"You decide to wing it and see how the tutorial goes"**: 
+- **"You decide to wing it and see how the tutorial goes"**:
     - *You go and teach the new starters. They are not impressed with your lack of preparation. They learn next to nothing and you realize you made a mistake.*
 
 # Datalog Tutorial

@@ -13,10 +13,8 @@ You need to get XTDB running before you can use it.
 <!--- Stil want to show the user deps.edn even though it's loaded in the repo. --->
 ```edn no-exec
 {:deps
- {org.clojure/clojure {:mvn/version "1.10.0"}
-  org.clojure/tools.deps.alpha
-  {:git/url "https://github.com/clojure/tools.deps.alpha.git"
-   :sha "f6c080bd0049211021ea59e516d1785b08302515"}
+ {org.clojure/clojure {:mvn/version "1.11.1"}
+  org.clojure/tools.deps.alpha {:mvn/version "0.14.1212"}
   com.xtdb/xtdb-core {:mvn/version "dev-SNAPSHOT"}} ;; "RELEASE"
 
   :mvn/repos
@@ -44,11 +42,11 @@ The government is asking to see your flight manifest.
 ## Choose your path:
 
 
-  * **You have your manifest**: 
+  * **You have your manifest**:
       * *You have permission to land, continue to the spaceport.*
 
 
-  * **You do not have your manifest**: 
+  * **You do not have your manifest**:
       * *You do not have permission to land. You can either return to [Saturn](https://nextjournal.com/xtdb-tutorial/match) or continue at your own risk.*
 
 # Spaceport
@@ -94,13 +92,13 @@ You land on the raised platform and open your job ticket
 
 ## Ticket
 
-> ### Task 	
+> ### Task
 > *Remove assigned clients*
 >
 > ### Company
 > *Helios Banking Inc.*
 >
-> ### Contact 
+> ### Contact
 > *Kaarlang*
 >
 > ### Submitted
@@ -123,11 +121,11 @@ As you leave your ship, you are met by the martian Kaarlang:
 ## Choose your path:
 
 
-  * **"Yes, we'll work together to do this."** : 
+  * **"Yes, we'll work together to do this."** :
       * *Continue to complete the assignment.*
 
 
-  * **"I'm not even sure how to begin"** : 
+  * **"I'm not even sure how to begin"** :
       * *Take some time to read through the XTDB manual again. If you're still unsure then you can follow along anyway and see if things become clear.*
 
 ## Assignment
@@ -156,7 +154,7 @@ Kaarlang gives you his client history so you can sync up your XTDB node.
                   #inst "2114-01-01T09"
                   #inst "2115-01-01T09"]])
 
-(xt/sync node) 
+(xt/sync node)
 ```
 
 To get a good visual aid, you show Kaarlang how to view his client history.
@@ -233,7 +231,7 @@ He looks at you with a peculiar facial expression.
 ## Choose your path
 
 
-  * **"That sounds like a great opportunity, I'm in"** 
+  * **"That sounds like a great opportunity, I'm in"**
       *  *You head off to the [secret location](https://nextjournal.com/xtdb-tutorial/evict) of the shuttle.*
 
 

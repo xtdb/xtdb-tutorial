@@ -13,10 +13,8 @@ You need to get XTDB running before you can use it.
 <!--- Stil want to show the user deps.edn even though it's loaded in the repo. --->
 ```edn no-exec
 {:deps
- {org.clojure/clojure {:mvn/version "1.10.0"}
-  org.clojure/tools.deps.alpha
-  {:git/url "https://github.com/clojure/tools.deps.alpha.git"
-   :sha "f6c080bd0049211021ea59e516d1785b08302515"}
+ {org.clojure/clojure {:mvn/version "1.11.1"}
+  org.clojure/tools.deps.alpha {:mvn/version "0.14.1212"}
   com.xtdb/xtdb-core {:mvn/version "dev-SNAPSHOT"}} ;; "RELEASE"
 
   :mvn/repos
@@ -41,7 +39,7 @@ A voice comes over the communications system
 ## Choose your path:
 
 
-  * **"Kaarlang sent me"** : 
+  * **"Kaarlang sent me"** :
       * *You have permission to land, continue to the spaceport.*
 
 
@@ -54,7 +52,7 @@ You land on the spaceport and are ushered inside.
 The ship's captain, Ilex, greets you.
 
 > Hello, it’s good to have you with us.
-> 
+>
 > We are set to leave the solar system right away and as part of our service we offer people the right to be forgotten.
 > Some are not worried that their information is kept here, however others want there to be no personal data left behind.
 >

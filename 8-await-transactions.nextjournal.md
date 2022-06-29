@@ -13,10 +13,8 @@ You need to get XTDB running before you can use it.
 <!--- Stil want to show the user deps.edn even though it's loaded in the repo. --->
 ```edn no-exec
 {:deps
- {org.clojure/clojure {:mvn/version "1.10.0"}
-  org.clojure/tools.deps.alpha
-  {:git/url "https://github.com/clojure/tools.deps.alpha.git"
-   :sha "f6c080bd0049211021ea59e516d1785b08302515"}
+ {org.clojure/clojure {:mvn/version "1.11.1"}
+  org.clojure/tools.deps.alpha {:mvn/version "0.14.1212"}
   com.xtdb/xtdb-core {:mvn/version "dev-SNAPSHOT"}} ;; "RELEASE"
 
   :mvn/repos
@@ -60,7 +58,7 @@ You wonder if this is your body being weaker than usual from being in cryostasis
 ## Choose your path:
 
 
-  * **You want to test this, and are interested to know how the gravity of the planet below compares to planets back in your home solar system:** 
+  * **You want to test this, and are interested to know how the gravity of the planet below compares to planets back in your home solar system:**
       * *You see it as a good opportunity to refresh yourself with ingestion and queries.*
 
 
@@ -307,7 +305,7 @@ This time you get the expected result:
 
 Confused, you open your trusty XTDB manual, skimming through until you hit the page on `await-tx`:
 
-> Blocks until the node has indexed a transaction that is at or past the supplied tx. 
+> Blocks until the node has indexed a transaction that is at or past the supplied tx.
 > Will throw on timeout.
 > Returns the most recent tx indexed by the node.
 >
