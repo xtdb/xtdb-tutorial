@@ -4,19 +4,17 @@
 
 # Introduction
 
-This is the `delete` instalment of the xtdb tutorial.
+This is the `delete` instalment of the XTDB tutorial.
 
 ## Setup
 
-You need to get xtdb running before you can use it.
+You need to get XTDB running before you can use it.
 
 <!--- Stil want to show the user deps.edn even though it's loaded in the repo. --->
 ```edn no-exec
 {:deps
- {org.clojure/clojure {:mvn/version "1.10.0"}
-  org.clojure/tools.deps.alpha
-  {:git/url "https://github.com/clojure/tools.deps.alpha.git"
-   :sha "f6c080bd0049211021ea59e516d1785b08302515"}
+ {org.clojure/clojure {:mvn/version "1.11.1"}
+  org.clojure/tools.deps.alpha {:mvn/version "0.14.1212"}
   com.xtdb/xtdb-core {:mvn/version "dev-SNAPSHOT"}} ;; "RELEASE"
 
   :mvn/repos
@@ -44,19 +42,19 @@ The government is asking to see your flight manifest.
 ## Choose your path:
 
 
-  * **You have your manifest**: 
+  * **You have your manifest**:
       * *You have permission to land, continue to the spaceport.*
 
 
-  * **You do not have your manifest**: 
+  * **You do not have your manifest**:
       * *You do not have permission to land. You can either return to [Saturn](https://nextjournal.com/xtdb-tutorial/match) or continue at your own risk.*
 
 # Spaceport
 
 It’s a turbulent ride down to the spaceport.
-To take your mind off the colossal storm outside, you check the xtdb manual for the `delete` operation.
+To take your mind off the colossal storm outside, you check the XTDB manual for the `delete` operation.
 
-> Currently there are only four transaction operations in xtdb: put, delete, match and evict.
+> Currently there are only four primitive transaction operations in XTDB: put, delete, match and evict.
 >
 >> **Transaction**    **(Description)**
 >>
@@ -80,7 +78,7 @@ To take your mind off the colossal storm outside, you check the xtdb manual for 
 > A complete delete transaction has the form:
 > [::xt/delete eid valid-time-start valid-time-end]
 >
-> \- xtdb manual *[Read More](https://xtdb.com/reference/transactions.html#delete)*
+> \- XTDB manual *[Read More](https://xtdb.com/reference/transactions.html#delete)*
 
 You are happy with what you have read, and in anticipation of the assignment, you define the standalone node.
 
@@ -94,20 +92,20 @@ You land on the raised platform and open your job ticket
 
 ## Ticket
 
-> ### Task 	
+> ### Task
 > *Remove assigned clients*
 >
 > ### Company
 > *Helios Banking Inc.*
 >
-> ### Contact 
+> ### Contact
 > *Kaarlang*
 >
 > ### Submitted
 > *2115-02-10T13:38:20*
 >
 > ### Additional information:
-> *Help Kaarlang delete client history from his xtdb node in accordance with Earth data protection laws.*
+> *Help Kaarlang delete client history from his XTDB node in accordance with Earth data protection laws.*
 
 As you leave your ship, you are met by the martian Kaarlang:
 
@@ -123,16 +121,16 @@ As you leave your ship, you are met by the martian Kaarlang:
 ## Choose your path:
 
 
-  * **"Yes, we'll work together to do this."** : 
+  * **"Yes, we'll work together to do this."** :
       * *Continue to complete the assignment.*
 
 
-  * **"I'm not even sure how to begin"** : 
-      * *Take some time to read through the xtdb manual again. If you're still unsure then you can follow along anyway and see if things become clear.*
+  * **"I'm not even sure how to begin"** :
+      * *Take some time to read through the XTDB manual again. If you're still unsure then you can follow along anyway and see if things become clear.*
 
 ## Assignment
 
-Kaarlang gives you his client history so you can sync up your xtdb node.
+Kaarlang gives you his client history so you can sync up your XTDB node.
 
 ```clojure
 (xt/submit-tx node
@@ -155,6 +153,8 @@ Kaarlang gives you his client history so you can sync up your xtdb node.
                                 :clients [:blue-energy :gold-harmony :tombaugh-resources]}
                   #inst "2114-01-01T09"
                   #inst "2115-01-01T09"]])
+
+(xt/sync node)
 ```
 
 To get a good visual aid, you show Kaarlang how to view his client history.
@@ -165,9 +165,9 @@ This way you both can see when the clients are deleted.
  (xt/db node #inst "2116-01-01T09")
  :kaarlang/clients
  :desc
- {:with-docs true})
+ {:with-docs? true})
 ```
-You explain that you are using a snapshot of xtdb with a future `valid-time` to see the full history.
+You explain that you are using a snapshot of XTDB with a future `valid-time` to see the full history.
 
 The result shows the names of the clients that have been assigned to Kaarlang since he started at the company in 2110.
 
@@ -177,6 +177,8 @@ Next, you delete the whole history of clients by choosing a start and end `valid
 (xt/submit-tx
  node
  [[::xt/delete :kaarlang/clients #inst "2110-01-01" #inst "2116-01-01"]])
+
+(xt/sync node)
 ```
 
 Using the same method as before you show Kaarlang the effect that this operation has had.
@@ -229,7 +231,7 @@ He looks at you with a peculiar facial expression.
 ## Choose your path
 
 
-  * **"That sounds like a great opportunity, I'm in"** 
+  * **"That sounds like a great opportunity, I'm in"**
       *  *You head off to the [secret location](https://nextjournal.com/xtdb-tutorial/evict) of the shuttle.*
 
 

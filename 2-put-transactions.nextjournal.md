@@ -4,20 +4,18 @@
 
 # Introduction
 
-This is the second part of the xtdb tutorial.
-The Earth instalment looked at setting up a simple xtdb standalone node and a very simple `put` transaction.
+This is the second part of the XTDB tutorial.
+The Earth instalment looked at setting up a simple XTDB standalone node and a very simple `put` transaction.
 
 ## Setup
 
-You need to get xtdb running before you can use it.
+You need to get XTDB running before you can use it.
 
 <!--- Stil want to show the user deps.edn even though it's loaded in the repo. --->
 ```edn no-exec
 {:deps
- {org.clojure/clojure {:mvn/version "1.10.0"}
-  org.clojure/tools.deps.alpha
-  {:git/url "https://github.com/clojure/tools.deps.alpha.git"
-   :sha "f6c080bd0049211021ea59e516d1785b08302515"}
+ {org.clojure/clojure {:mvn/version "1.11.1"}
+  org.clojure/tools.deps.alpha {:mvn/version "0.14.1212"}
   com.xtdb/xtdb-core {:mvn/version "dev-SNAPSHOT"}} ;; "RELEASE"
 
   :mvn/repos
@@ -49,14 +47,14 @@ The government of Pluto is asking to see your flight manifest.
     - *You have permission to land, continue to the spaceport.*
 
 - **You do not have your manifest**:
-    - *You do not have permission to land. You can either return to [Earth](https://nextjournal.com/xtdb-tutorial/getting-started-with-xtdb), or continue at your own risk.*
+    - *You do not have permission to land. You can either return to [Earth](https://nextjournal.com/xtdb-tutorial/start), or continue at your own risk.*
 
 # Spaceport
 
-As you circle the dwarf planet to land, you have a quick read of your xtdb manual.
+As you circle the dwarf planet to land, you have a quick read of your XTDB manual.
 You know you will be using the `put` operation a lot for this assignment and although you used the operation to add your manifest before you left, you think it is a good idea to brush up on your knowledge.
 
-> Currently there are only four transaction operations in xtdb: put, delete, match and evict.
+> Currently there are only four transaction operations in XTDB: put, delete, match and evict.
 >
 >> **Transaction**    **(Description)**
 >>
@@ -73,7 +71,7 @@ You know you will be using the `put` operation a lot for this assignment and alt
 > The `put` transaction is used to write versions of a document (doc).
 >
 > Each document must be in Extensible Data Notation (edn) and must contain a unique :xt/id value.
-> However, beyond those two requirements you have the flexibility to add whatever you like to your documents because xtdb is schemaless.
+> However, beyond those two requirements you have the flexibility to add whatever you like to your documents because XTDB is schemaless.
 >
 > Along with the document (doc), put has two optional additional arguments:
 >> start `valid-time`   *(The time at which the entry will be valid from.)*
@@ -83,7 +81,7 @@ You know you will be using the `put` operation a lot for this assignment and alt
 > This means that you can query back through the database, you can use valid-time arguments to see the state of the database at a different time.
 >
 >
-> Time in xtdb is denoted `#inst "yyyy-MM-ddThh:mm:ss"`.
+> Time in XTDB is denoted `#inst "yyyy-MM-ddThh:mm:ss"`.
 > For example, 9:30 pm on January 2nd 1999 would be written:
 >
 >>    `#inst "1999-01-02T21:30:00".`
@@ -92,7 +90,7 @@ You know you will be using the `put` operation a lot for this assignment and alt
 > A complete put transaction has the form:
 >> `[::xt/put doc valid-time-start valid-time-end]`
 >
-> \- xtdb manual *[Read More](https://xtdb.com/reference/transactions.html)*
+> \- XTDB manual *[Read More](https://xtdb.com/reference/transactions.html)*
 
 
 You are happy with what you have read, and in anticipation of your first assignment you define the standalone node.
@@ -126,7 +124,7 @@ As you do, the job ticket for this assignment is unlocked.
 > Please send someone soon because we already have a week’s worth of unrecorded stocktakes.*
 
 You make your way over to the mines on the next shuttle.
-On your way you decide to get a head start and put the commodities into xtdb.
+On your way you decide to get a head start and put the commodities into XTDB.
 
 ```clojure
 (xt/submit-tx
@@ -151,9 +149,11 @@ On your way you decide to get a head start and put the commodities into xtdb.
     :type :molecule/gas
     :density 0.717
     :radioactive false}]])
+
+(xt/sync node)
 ```
 
-Since it takes six hours for each transaction to reach your xtdb node on Earth from here, it is a good idea to batch up all the commodities in a single transaction.
+Since it takes six hours for each transaction to reach your XTDB node on Earth from here, it is a good idea to batch up all the commodities in a single transaction.
 
 ## Stock Take
 
@@ -163,7 +163,7 @@ You arrive at the mine and are met by the CEO, Reginald Glogofloon, a 150 year o
 >
 > I would like you to fill in our last weeks worth of data on our commodities.
 > We need to be able to look back at a given day and see what our stocks were for auditing purposes.
-> 
+>
 > The stock for each day must be submitted at 6pm Earth time (UTC) for your banks records.
 >
 > Are you able to do that for me?
@@ -178,7 +178,7 @@ You arrive at the mine and are met by the CEO, Reginald Glogofloon, a 150 year o
 - **"I'm not sure how to even begin"**:
     - *Go back and read the manual entry.*
 
-You remember that with xtdb you have the option of adding a `valid-time`.
+You remember that with XTDB you have the option of adding a `valid-time`.
 This comes in useful now as you enter the weeks worth of stock takes for Plutonium.
 
 ```clojure
@@ -213,6 +213,8 @@ This comes in useful now as you enter the weeks worth of stock takes for Plutoni
     :commod :commodity/Pu
     :weight-ton 24.9 }
    #inst "2115-02-19T18"]])
+
+(xt/sync node)
 ```
 
 You notice that the amount of Nitrogen and Methane has not changed which saves you some time:
@@ -253,12 +255,13 @@ As a parting gift to them you create an easy ingest function so that if they nee
 
 ```clojure
 (defn easy-ingest
-  "Uses xtdb put transaction to add a vector of documents to a specified
+  "Uses XTDB put transaction to add a vector of documents to a specified
   node"
   [node docs]
   (xt/submit-tx node
                   (vec (for [doc docs]
-                         [::xt/put doc]))))
+                         [::xt/put doc])))
+  (xt/sync node))
 ```
 
 Tombaugh Resources Ltd. are happy that this will be simple enough to use.
@@ -272,7 +275,7 @@ There is a new assignment waiting for you:
 > Congratulations on completing your first assignment.
 >
 > We would like you to go to Mercury, the hub of the trade world.
-> Their main trade center has a new IT department and want you to show them how to query xtdb"
+> Their main trade center has a new IT department and want you to show them how to query XTDB"
 >
 > \- Helios Banking Inc.
 
@@ -293,4 +296,4 @@ You have been awarded a new badge, so you add this to your manifest.
 
 You enter the countdown for lift off to Mercury. [See you soon.](https://nextjournal.com/xtdb-tutorial/datalog)
 
-![Mercury: Datalog](https://github.com/xtdb/xtdb-tutorial/raw/main/images/2b-datalog-mercury.png) 
+![Mercury: Datalog](https://github.com/xtdb/xtdb-tutorial/raw/main/images/2b-datalog-mercury.png)
