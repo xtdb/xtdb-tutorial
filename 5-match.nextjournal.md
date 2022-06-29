@@ -110,7 +110,7 @@ As you land on the surface of Saturn the job ticket for this assignment is unloc
 > *2115-02-23T13:38:20*
 >
 > ### Additional information:
-> *We need to be shown how to ensure no trades are done without the buyer and seller having the necessary funds or stock respectively*
+> *We need to be shown how to ensure no trades are done without the buyer and seller having the expected funds or stock respectively*
 
 The next shuttle to the CMT office leaves in 5 Earth minutes.
 While you wait you use the easy ingest function you created on Pluto to put the example data into your system.
@@ -188,7 +188,7 @@ After a short journey through the icy lower clouds of Saturn, you are met by a f
 >
 > We have been using XTDB for a short time now and think it is great.
 > The problem is a human one.
-> Occasionally we process trades without checking that are enough funds in the buyer's account.
+> Occasionally we process trades without first confirming the state of the funds in the buyer's account. This means that any trades happening at approximately the same time will not observe each other's effects on the current balance, and therefore the final state of the account will not reflect all the trades correctly.
 >
 > I know there is a way that we can stop this happening in XTDB.
 >
@@ -272,7 +272,7 @@ You show Ubuku the result of the trade using the function you created earlier:
 They are happy that this works as he sees the 1000 credits move from Blue energy to Tombaugh Resources Ltd.
 and 10 units of Methane the other way.
 
-Ubuku asks if you can show them what would happen if there were not enough funds in the account of a buyer.
+Ubuku asks if you can show them what would happen if the state of funds in the account of a buyer did not match expectations.
 You show him a trade where the old doc is not as expected for Encompass trade, to buy 10,000 units of Gold from Gold Harmony.
 
 ```clojure
