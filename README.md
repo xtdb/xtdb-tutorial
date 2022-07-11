@@ -34,7 +34,7 @@ You can now run the tutorial notebook.
 To reinstall the tutorial: Treat this GitHub repository as the golden store. Make edits to the Markdown file in
 GitHub, then reimport the notebooks using the following instructions.
 
-1. Log in as the `xtdb-tutorial` Nextjournal user (ask @deobald, @refset, or @johantonelli for creds)
+1. Log in as the `xtdb-tutorial` Nextjournal user (ask @deobald or @refset for creds, stored via `pass` `juxt.xtdb.ops/password-store` on Keybase)
 2. Go to the [Nextjournal Dashboard](https://nextjournal.com/dashboard) and open notebook you want to edit.
 3. Click anywhere in the document, select all (ctrl+a) and delete the contents.
 4. At the bottom of the page, choose "Import from a URL (e.g. GitHub)" and paste in the link to the file in GitHub (e.g. `https://github.com/xtdb/xtdb-tutorial/blob/main/1-getting-started.nextjournal.md`)
@@ -44,6 +44,7 @@ GitHub, then reimport the notebooks using the following instructions.
 8. Check to make sure the public URLs in the `"Quickstart"` work correctly.
 9. If the lessons seem out-of-order, it is because they are listed reverse-chronologically. Whatever lesson you edited, publish lessons _backward_ from that point. For example, if you edited Lesson 4, you must publish #3, #2, and finally #1 (Note if you haven't edited a lesson, you only need to re-publish the old notebook without following the import steps).
 
+TIPS: Publish last (e.g. Tutorial #8) to first so that the notebook listing is always in the correct order, i.e. import/edit backwards from the last notebook. If necessary add a non-obvious space to the end of a paragraph so that you can re-publish an otherwise unchanged notebook. Open tutorials in multiple tabs so that you can process them more efficiently in a pipelined fashion while waiting for "Run All" commands.
 
 ## Copyright & License
 
