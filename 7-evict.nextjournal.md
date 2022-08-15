@@ -175,13 +175,13 @@ All the data associated with the specified `:xt/id` has been removed from the XT
 
 The transaction history is immutable.
 This means the transactions will never be removed.
-You assure Ilex that the documents are completely removed from XTDB, you can show this by looking at the `history-descending` information for each person.
+You assure Ilex that the documents are completely removed from XTDB, you can show this by looking at the `entity-history` information for each person.
 
 ```clojure
 (xt/entity-history (xt/db node)
-                     :person/kaarlang
-                     :desc
-                     {:with-docs? true})
+                   :person/kaarlang
+                   :desc
+                   {:with-docs? true})
 ```
 
 You show the results to Kaarlang who is happy that there his details are no longer a part of the ships logs.
