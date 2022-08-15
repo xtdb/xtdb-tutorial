@@ -269,7 +269,7 @@ You show Ubuku the result of the trade using the function you created earlier:
 (format-stock-check (stock-check :blue-energy :units/CH4))
 ```
 
-They are happy that this works as he sees the 1000 credits move from Blue energy to Tombaugh Resources Ltd.
+They are happy that this works as he sees the 100 credits move from Blue energy to Tombaugh Resources Ltd.
 and 10 units of Methane the other way.
 
 Ubuku asks if you can show them what would happen if the state of funds in the account of a buyer did not match expectations.
